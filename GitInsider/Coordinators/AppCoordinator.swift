@@ -23,7 +23,7 @@ class AppCoordinator: Coordinator {
     }
     
     func start() {
-        goToContainer()
+        goToLoginPage()
     }
     
     func goToContainer() {
@@ -38,6 +38,11 @@ class AppCoordinator: Coordinator {
         loginController.viewModel = loginViewModel
         
         navigationController.pushViewController(loginController, animated: true)
+    }
+    
+    func goToLoginOnSafari() {
+        guard let url = URL(string: "https://github.com/login/oauth/authorize?client_id=38fecaa5dc828643d268") else { return }
+        UIApplication.shared.open(url)
     }
     
     func goToSignUpOnSafari() {
