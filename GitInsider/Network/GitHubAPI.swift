@@ -14,13 +14,16 @@ enum GitHubAPI {
 
 extension GitHubAPI: TargetType {
     var baseURL: URL {
-        URL(string: "https://api.github.com")!
+        switch self {
+        case .exchangeToken(_, _, _, let redirectUri):
+            return URL(string: "https://github.com")!
+        }
     }
     
     var path: String {
         switch self {
         case .exchangeToken:
-            return "/login/oauth/access_token/"
+            return "/login/oauth/access_token"
         }
     }
     
@@ -44,7 +47,7 @@ extension GitHubAPI: TargetType {
                 "code": code,
                 "redirect_uri": redirectUri
             ]
-            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
+            return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
         }
     }
     
