@@ -10,19 +10,8 @@ import UIKit
 class LoginViewModel {
     weak var coordinator: AppCoordinator!
     
-    var email: String?
-    var password: String?
-    
-    var formIsValid: Bool {
-        return email?.isEmpty == false && password?.isEmpty == false
-    }
-    
-    var buttonBackgroundColor: UIColor {
-        return formIsValid ? .black : .black.withAlphaComponent(0.5)
-    }
-    
-    var buttonTitleColor: UIColor {
-        return formIsValid ? .white : UIColor(white: 1, alpha: 0.67)
+    func goToLogin() {
+        coordinator.goToLoginOnSafari()
     }
     
     func goToSignUp() {
