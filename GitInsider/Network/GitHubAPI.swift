@@ -7,16 +7,20 @@
 
 import Foundation
 import Moya
+import KeychainSwift
 
 enum GitHubAPI {
-    case exchangeToken(clientId: String, clientSecret: String, code: String, redirectUri: String)
+    case exchangeToken(code: String)
+    case getCurrentUser
 }
 
 extension GitHubAPI: TargetType {
     var baseURL: URL {
         switch self {
-        case .exchangeToken(_, _, _, let redirectUri):
+        case .exchangeToken:
             return URL(string: "https://github.com")!
+        case .getCurrentUser:
+            return URL(string: "https://api.github.com")!
         }
     }
     
@@ -24,6 +28,8 @@ extension GitHubAPI: TargetType {
         switch self {
         case .exchangeToken:
             return "/login/oauth/access_token"
+        case .getCurrentUser:
+            return "/user"
         }
     }
     
@@ -31,6 +37,8 @@ extension GitHubAPI: TargetType {
         switch self {
         case .exchangeToken:
             return .post
+        case .getCurrentUser:
+            return .get
         }
     }
     
@@ -40,14 +48,16 @@ extension GitHubAPI: TargetType {
     
     var task: Moya.Task {
         switch self {
-        case .exchangeToken(let clientId, let clientSecret, let code, let redirectUri):
+        case .exchangeToken(let code):
             let parameters: [String: Any] = [
-                "client_id": clientId,
-                "client_secret": clientSecret,
+                "client_id": gitHubClientId,
+                "client_secret": gitHubClientSecret,
                 "code": code,
-                "redirect_uri": redirectUri
+                "redirect_uri": gitHubredirectUri
             ]
             return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
+        case .getCurrentUser:
+            return .requestPlain
         }
     }
     
@@ -55,6 +65,13 @@ extension GitHubAPI: TargetType {
         switch self {
         case .exchangeToken:
             return ["Accept": "application/json"]
+        case .getCurrentUser:
+            guard let accessToken = KeychainSwift().get("Access Token") else { return ["":""]}
+            return [
+                "Accept": "application/vnd.github+json",
+                "Authorization": "Bearer \(accessToken)",
+                "X-GitHub-Api-Version": "2022-11-28"
+            ]
         }
     }
 }

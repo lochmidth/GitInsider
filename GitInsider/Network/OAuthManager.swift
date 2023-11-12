@@ -15,7 +15,7 @@ enum OAuthError: Error {
 }
 
 class OAuthManager {
-    static let shared = OAuthManager()
+    
     
     func handleCallBack(withUrl url: URL) async throws -> String {
         guard url.scheme == "gitinsider" else { throw OAuthError.invalidScheme }
@@ -24,5 +24,4 @@ class OAuthManager {
         guard let code = query.queryItems?.first(where: { $0.name == "code" })?.value else { throw OAuthError.invalidCode}
         return code
     }
-    
 }

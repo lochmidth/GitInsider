@@ -11,21 +11,23 @@ import Moya
 class GitHubService {
     let provider = MoyaProvider<GitHubAPI>()
     
-    func exchangeToken(clientId: String, clientSecret: String, code: String, redirectUri: String, completion: @escaping (Result<String, Error>) -> Void) {
+    func exchangeToken(code: String) async throws -> String {
         
-        let request = GitHubAPI.exchangeToken(clientId: clientId, clientSecret: clientSecret, code: code, redirectUri: redirectUri)
-        provider.request(request) { result in
-            switch result {
-            case .success(let response):
-                do {
-                    let accessTokenResponse = try JSONDecoder().decode(AccessTokenResponse.self, from: response.data)
-                    let accessToken = accessTokenResponse.accessToken
-                    completion(.success(accessToken))
-                } catch {
-                    completion(.failure(error))
+        let request1 = GitHubAPI.exchangeToken(code: code)
+        return try await withCheckedThrowingContinuation { continuation in
+            provider.request(request1) { result in
+                switch result {
+                case .success(let response):
+                    do {
+                        let accessTokenResponse = try JSONDecoder().decode(AccessTokenResponse.self, from: response.data)
+                        let accessToken = accessTokenResponse.accessToken
+                        continuation.resume(with: .success(accessToken))
+                    } catch {
+                        continuation.resume(with: .failure(error))
+                    }
+                case .failure(let error):
+                    continuation.resume(with: .failure(error))
                 }
-            case .failure(let error):
-                completion(.failure(error))
             }
         }
     }

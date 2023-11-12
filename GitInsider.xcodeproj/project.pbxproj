@@ -30,6 +30,8 @@
 		C2D592C02AFE7BF800B2D271 /* OAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D592BF2AFE7BF800B2D271 /* OAuthManager.swift */; };
 		C2D592C22AFE825800B2D271 /* GitHubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D592C12AFE825800B2D271 /* GitHubService.swift */; };
 		C2D592C42AFE836400B2D271 /* AccessTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D592C32AFE836400B2D271 /* AccessTokenResponse.swift */; };
+		C2EAEBB92B010207008A1A10 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EAEBB82B010207008A1A10 /* Constants.swift */; };
+		C2EAEBBC2B010318008A1A10 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C2EAEBBB2B010318008A1A10 /* KeychainSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +77,7 @@
 		C2D592BF2AFE7BF800B2D271 /* OAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthManager.swift; sourceTree = "<group>"; };
 		C2D592C12AFE825800B2D271 /* GitHubService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubService.swift; sourceTree = "<group>"; };
 		C2D592C32AFE836400B2D271 /* AccessTokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTokenResponse.swift; sourceTree = "<group>"; };
+		C2EAEBB82B010207008A1A10 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2EAEBBC2B010318008A1A10 /* KeychainSwift in Frameworks */,
 				C2D592BB2AFD841100B2D271 /* Kingfisher in Frameworks */,
 				C2D592B82AFD83FA00B2D271 /* Moya in Frameworks */,
 			);
@@ -145,6 +149,7 @@
 			children = (
 				C2D592942AFBC08800B2D271 /* Extensions.swift */,
 				C2D5929F2AFBC47F00B2D271 /* Utilities.swift */,
+				C2EAEBB82B010207008A1A10 /* Constants.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -258,6 +263,7 @@
 			packageProductDependencies = (
 				C2D592B72AFD83FA00B2D271 /* Moya */,
 				C2D592BA2AFD841100B2D271 /* Kingfisher */,
+				C2EAEBBB2B010318008A1A10 /* KeychainSwift */,
 			);
 			productName = GitInsider;
 			productReference = C2D592612AFBC03D00B2D271 /* GitInsider.app */;
@@ -334,6 +340,7 @@
 			packageReferences = (
 				C2D592B62AFD83FA00B2D271 /* XCRemoteSwiftPackageReference "Moya" */,
 				C2D592B92AFD841100B2D271 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				C2EAEBBA2B010318008A1A10 /* XCRemoteSwiftPackageReference "keychain-swift" */,
 			);
 			productRefGroup = C2D592622AFBC03D00B2D271 /* Products */;
 			projectDirPath = "";
@@ -395,6 +402,7 @@
 				C2D592952AFBC08800B2D271 /* Extensions.swift in Sources */,
 				C2D592AC2AFC50AD00B2D271 /* ContainerViewModel.swift in Sources */,
 				C2D592AA2AFC50A300B2D271 /* ContainerController.swift in Sources */,
+				C2EAEBB92B010207008A1A10 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -754,6 +762,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		C2EAEBBA2B010318008A1A10 /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/keychain-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 20.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -766,6 +782,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C2D592B92AFD841100B2D271 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		C2EAEBBB2B010318008A1A10 /* KeychainSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C2EAEBBA2B010318008A1A10 /* XCRemoteSwiftPackageReference "keychain-swift" */;
+			productName = KeychainSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

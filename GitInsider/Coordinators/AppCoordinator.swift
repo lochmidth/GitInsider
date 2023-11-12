@@ -28,7 +28,8 @@ class AppCoordinator: Coordinator {
     
     func goToContainer() {
         let containerController = ContainerController()
-        navigationController.pushViewController(containerController, animated: true)
+        containerController.modalPresentationStyle = .fullScreen
+        navigationController.present(containerController, animated: true)
     }
     
     func goToLoginPage() {
@@ -41,12 +42,12 @@ class AppCoordinator: Coordinator {
     }
     
     func goToLoginOnSafari() {
-        guard let url = URL(string: "https://github.com/login/oauth/authorize?client_id=38fecaa5dc828643d268") else { return }
+        guard let url = URL(string: gitHubAuthLink) else { return }
         UIApplication.shared.open(url)
     }
     
     func goToSignUpOnSafari() {
-        guard let url = URL(string: "https://github.com/signup") else { return }
+        guard let url = URL(string: githubSignUpLink) else { return }
         UIApplication.shared.open(url)
     }
 }
