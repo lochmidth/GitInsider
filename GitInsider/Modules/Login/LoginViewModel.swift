@@ -6,12 +6,9 @@
 //
 
 import UIKit
+import KeychainSwift
 
 class LoginViewModel {
-<<<<<<< Updated upstream
-    weak var coordinator: AppCoordinator!
-    
-=======
     
     //MARK: - Properties
     
@@ -44,13 +41,15 @@ class LoginViewModel {
             let accessTokenResponse = try await gitHubService.exchangeToken(code: code)
             print("DEBUG: Access Token is received: \(accessTokenResponse.accessToken)")
             keychain.set(accessTokenResponse.accessToken, forKey: "Access Token")
+            
+            DispatchQueue.main.async {
+                self.coordinator?.goToContainer()
+            }
         }
-        coordinator?.goToContainer()
     }
     
     //MARK: - Helpers
     
->>>>>>> Stashed changes
     func goToLogin() {
         coordinator?.goToLoginOnSafari()
     }

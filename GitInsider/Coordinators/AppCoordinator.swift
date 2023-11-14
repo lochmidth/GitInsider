@@ -30,7 +30,7 @@ class AppCoordinator: Coordinator {
     }
     
     func start() {
-        if let accessToken = keychain.get("Access Token"), accessToken.isEmpty {
+        if let accessToken = keychain.get("Access Token"), !accessToken.isEmpty {
             print("DEBUG: Access token in keychain is \(accessToken)")
             goToContainer()
         } else {
@@ -63,7 +63,7 @@ class AppCoordinator: Coordinator {
     }
     
     func goToSignUpOnSafari() {
-        guard let url = URL(string: "https://github.com/signup") else { return }
+        guard let url = URL(string: gitHubSignupLink) else { return }
         UIApplication.shared.open(url)
     }
 }

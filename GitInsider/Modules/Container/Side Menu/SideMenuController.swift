@@ -15,7 +15,7 @@ class SideMenuController: UIViewController {
     var viewModel: SideMenuViewModel
     
     lazy var sideMenuHeader: SideMenuHeader = {
-        let frame = CGRect(x: 0, y: 0, width: self.view.frame.width - 180, height: 180)
+        let frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 150)
         let header = SideMenuHeader(frame: frame)
         return header
     }()
@@ -23,7 +23,6 @@ class SideMenuController: UIViewController {
     private let tableView: UITableView = {
        let tv = UITableView()
         tv.backgroundColor = .githubGrey
-        tv.separatorStyle = .none
         tv.isScrollEnabled = false
         tv.rowHeight = 60
         tv.register(UITableViewCell.self, forCellReuseIdentifier: menuCellIdentifier)
@@ -44,17 +43,19 @@ class SideMenuController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureUI()
+        view.backgroundColor = .githubGrey
+        configureTableView()
         configureSideMenuHeader()
     }
     
     //MARK: - Helpers
     
-    func configureUI() {
+    func configureTableView() {
         view.addSubview(tableView)
-        tableView.frame = view.frame
+        tableView.frame = CGRect(x: -5, y: 0, width: view.bounds.width - 260, height: view.bounds.height)
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.tableHeaderView = sideMenuHeader
     }
     
     private func configureSideMenuHeader() {
@@ -74,8 +75,9 @@ extension SideMenuController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: menuCellIdentifier, for: indexPath)
         cell.backgroundColor = .githubGrey
-        cell.selectionStyle = .none
-        cell.textLabel?.text = "Deneme"
+        
+        cell.textLabel?.text = "Your Repositories"
+        cell.textLabel?.textColor = .githubLightGray
         return cell
     }
     
@@ -83,11 +85,9 @@ extension SideMenuController: UITableViewDelegate, UITableViewDataSource {
         print("DEBUG: \(indexPath.row). row selected.")
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return sideMenuHeader
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 80
-    }
+//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+//        let footer = UIView()
+//        footer.
+//        return
+//    }
 }

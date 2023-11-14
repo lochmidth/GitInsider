@@ -24,6 +24,7 @@ class GitHubService {
                 switch result {
                 case .success(let response):
                     do {
+                        self.decoder.keyDecodingStrategy = .convertFromSnakeCase
                         let accessTokenResponse = try self.decoder.decode(AccessTokenResponse.self, from: response.data)
                         continuation.resume(with: .success(accessTokenResponse))
                     } catch {

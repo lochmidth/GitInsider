@@ -25,6 +25,10 @@ class SideMenuHeaderViewModel {
         user.name
     }
     
+    var statsText: String {
+        "followers: \(user.followers)\nfollowing: \(user.following)"
+    }
+    
     init(user: User) {
         self.user = user
     }

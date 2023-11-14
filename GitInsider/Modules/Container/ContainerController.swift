@@ -7,6 +7,15 @@
 
 import UIKit
 
+enum ActionButtonConfiguration {
+    case showMenu
+    case dismissActionView
+    
+    init() {
+        self = .showMenu
+    }
+}
+
 class ContainerController: UIViewController {
     //MARK: - Properties
     
@@ -17,7 +26,16 @@ class ContainerController: UIViewController {
     private var isExpanded = false
     private let blackView = UIView()
     
-    private lazy var xOrigin = self.view.frame.width - 80
+    private lazy var xOrigin = self.view.frame.width - 260
+    
+    private var actionButtonConfig = ActionButtonConfiguration()
+    
+    private lazy var actionButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(named: "menu")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(actionButtonPressed), for: .touchUpInside)
+        return button
+    }()
     
     //MARK: - Lifecycle
     
@@ -49,7 +67,20 @@ class ContainerController: UIViewController {
     @objc func dismissMenu() {
         isExpanded = false
         animateSideMenu(shouldExpand: isExpanded)
-        homeController.configureActionButton(config: .showMenu)
+        configureActionButton(config: .showMenu)
+    }
+    
+    @objc func actionButtonPressed() {
+        switch actionButtonConfig {
+        case .showMenu:
+            isExpanded.toggle()
+            configureActionButton(config: .dismissActionView)
+            animateSideMenu(shouldExpand: isExpanded)
+        case .dismissActionView:
+            isExpanded.toggle()
+            configureActionButton(config: .showMenu)
+            animateSideMenu(shouldExpand: isExpanded)
+        }
     }
     
     //MARK: - Helpers
@@ -60,6 +91,10 @@ class ContainerController: UIViewController {
         configureHomeController()
         configureSideMenuController()
         configureBlackView()
+        
+        view.addSubview(actionButton)
+        actionButton.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor,
+                            paddingTop: 16, paddingLeft: 20, width: 30, height: 30)
     }
     
     func configureNavigationBar() {
@@ -67,10 +102,9 @@ class ContainerController: UIViewController {
     }
     
     private func configureHomeController() {
-        homeController = HomeController(viewModel: HomeViewModel())
+        homeController = HomeController()
         homeController.addShadow()
         addChild(homeController)
-        homeController.delegate = self
         homeController.didMove(toParent: self)
         view.addSubview(homeController.view)
     }
@@ -83,7 +117,7 @@ class ContainerController: UIViewController {
     }
     
     private func configureBlackView() {
-        blackView.frame = CGRect(x: xOrigin, y: 0, width: 80, height: self.view.frame.height)
+        blackView.frame = CGRect(x: xOrigin, y: 0, width: 260, height: self.view.frame.height)
         blackView.backgroundColor = UIColor(white: 0, alpha: 0.5)
         blackView.alpha = 0
         view.addSubview(blackView)
@@ -92,17 +126,30 @@ class ContainerController: UIViewController {
         blackView.addGestureRecognizer(tap)
     }
     
+    func configureActionButton(config: ActionButtonConfiguration) {
+        switch config {
+        case .showMenu:
+            actionButton.isHidden = false
+            actionButtonConfig = .showMenu
+        case .dismissActionView:
+            actionButton.isHidden = true
+            actionButtonConfig = .dismissActionView
+        }
+    }
+    
     func animateSideMenu(shouldExpand: Bool) {
         animateStatusBar()
         if shouldExpand {
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut) {
-                self.homeController.view.frame.origin.x = self.xOrigin
                 self.blackView.alpha = 1
+                self.homeController.view.frame.origin.x = self.xOrigin
+                self.actionButton.transform = CGAffineTransform(translationX: 250, y: 0)
             }
         } else {
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut) {
                 self.blackView.alpha = 0
                 self.homeController.view.frame.origin.x = 0
+                self.actionButton.transform = .identity
             }
         }
     }
@@ -111,14 +158,5 @@ class ContainerController: UIViewController {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut) {
             self.setNeedsStatusBarAppearanceUpdate()
         }
-    }
-}
-
-//MARK: - HomeControllerDelegate
-
-extension ContainerController: HomeControllerDelegate {
-    func handleMenuToggle() {
-        isExpanded.toggle()
-        animateSideMenu(shouldExpand: isExpanded)
     }
 }
