@@ -9,4 +9,19 @@ import Foundation
 
 class ContainerViewModel {
     
+    //MARK: - Properties
+    
+    weak var coordinator: AppCoordinator?
+    
+    var user: User?
+    let gitHubService: GitHubService
+    
+    init(gitHubService: GitHubService = GitHubService()) {
+        self.gitHubService = gitHubService
+        
+    }
+    
+    //MARK: - Helpers
+
+    
 }

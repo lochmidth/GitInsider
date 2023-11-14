@@ -10,7 +10,7 @@ import UIKit
 class LoginController: UIViewController {
     //MARK: - Properties
     
-    var viewModel: LoginViewModel! {
+    var viewModel: LoginViewModel? {
         didSet {
             configureViewModel()
         }
@@ -48,22 +48,23 @@ class LoginController: UIViewController {
         super.viewDidLoad()
         
         configureUI()
+        configureNavigationBar()
     }
     
     //MARK: - Actions
     
     @objc func handleLogin() {
-        viewModel.goToLogin()
+        viewModel?.goToLogin()
     }
     
     @objc func handleShowSignUp() {
-        viewModel.goToSignUp()
+        viewModel?.goToSignUp()
     }
     
     //MARK: - Helpers
     
     func configureViewModel() {
-//        guard let viewModel else { return }
+        //        guard let viewModel else { return }
     }
     
     private func configureUI() {
@@ -84,6 +85,10 @@ class LoginController: UIViewController {
         view.addSubview(dontHaveAccountButton)
         dontHaveAccountButton.anchor(left: view.leftAnchor,bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor,
                                      paddingLeft: 40, paddingRight: 40)
+    }
+    
+    func configureNavigationBar() {
+        navigationController?.navigationBar.isHidden = true
     }
 }
 

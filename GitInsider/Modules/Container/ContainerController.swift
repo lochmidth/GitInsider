@@ -21,7 +21,7 @@ class ContainerController: UIViewController {
     
     //MARK: - Lifecycle
     
-    init(viewModel: ContainerViewModel = ContainerViewModel()) {
+    init(viewModel: ContainerViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -34,6 +34,7 @@ class ContainerController: UIViewController {
         super.viewDidLoad()
         
         configureUI()
+        configureNavigationBar()
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -61,8 +62,13 @@ class ContainerController: UIViewController {
         configureBlackView()
     }
     
+    func configureNavigationBar() {
+        navigationController?.navigationBar.isHidden = true
+    }
+    
     private func configureHomeController() {
-        homeController = HomeController()
+        homeController = HomeController(viewModel: HomeViewModel())
+        homeController.addShadow()
         addChild(homeController)
         homeController.delegate = self
         homeController.didMove(toParent: self)
@@ -70,8 +76,7 @@ class ContainerController: UIViewController {
     }
     
     private func configureSideMenuController() {
-        sideMenuController = SideMenuController()
-        sideMenuController.sideMenuHeader = SideMenuHeader()
+        sideMenuController = SideMenuController(viewModel: SideMenuViewModel())
         addChild(sideMenuController)
         sideMenuController.didMove(toParent: self)
         view.insertSubview(sideMenuController.view, at: 0)
@@ -88,6 +93,7 @@ class ContainerController: UIViewController {
     }
     
     func animateSideMenu(shouldExpand: Bool) {
+        animateStatusBar()
         if shouldExpand {
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut) {
                 self.homeController.view.frame.origin.x = self.xOrigin
@@ -99,7 +105,6 @@ class ContainerController: UIViewController {
                 self.homeController.view.frame.origin.x = 0
             }
         }
-        animateStatusBar()
     }
     
     private func animateStatusBar() {

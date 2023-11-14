@@ -23,6 +23,7 @@ protocol HomeControllerDelegate: AnyObject {
 class HomeController: UIViewController {
     //MARK: - Properties
     
+<<<<<<< Updated upstream
     weak var delegate: HomeControllerDelegate?
     
     private var actionButtonConfig = ActionButtonConfiguration()
@@ -33,8 +34,20 @@ class HomeController: UIViewController {
         button.addTarget(self, action: #selector(actionButtonPressed), for: .touchUpInside)
         return button
     }()
+=======
+    var viewModel: HomeViewModel
+>>>>>>> Stashed changes
     
     //MARK: - Lifecycle
+    
+    init(viewModel: HomeViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +73,7 @@ class HomeController: UIViewController {
     
     func configureUI() {
         view.backgroundColor = .gitHubWhite
+<<<<<<< Updated upstream
         
         view.addSubview(actionButton)
         actionButton.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor,
@@ -75,5 +89,7 @@ class HomeController: UIViewController {
             actionButton.setImage(UIImage(named: "arrow_left"), for: .normal)
             actionButtonConfig = .dismissActionView
         }
+=======
+>>>>>>> Stashed changes
     }
 }
