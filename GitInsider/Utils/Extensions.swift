@@ -7,6 +7,7 @@
 
 
 import UIKit
+import Kingfisher
 
 extension UIColor {
     static func rgb(red: CGFloat, green: CGFloat, blue: CGFloat) -> UIColor {
@@ -171,6 +172,24 @@ extension UIView {
         guard let view = superview else { return }
         anchor(top: view.topAnchor, left: view.leftAnchor,
                bottom: view.bottomAnchor, right: view.rightAnchor)
+    }
+}
+
+extension UIImage {
+    static func downloadImage(url: URL?, completion: @escaping (UIImage?) -> Void) {
+        guard let url = url else {
+            completion(nil)
+            return
+        }
+        let resource = KF.ImageResource(downloadURL: url)
+        KingfisherManager.shared.retrieveImage(with: resource, options: [.cacheOriginalImage]) { result in
+            switch result {
+            case .success(let value):
+                completion(value.image)
+            case .failure:
+                completion(nil)
+            }
+        }
     }
 }
 

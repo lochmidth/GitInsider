@@ -20,18 +20,19 @@ class LoginController: UIViewController {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
+        iv.setDimensions(height: 150, width: 150)
         iv.image = UIImage(named: "GitHub_logo")
         return iv
     }()
     
     private lazy var loginButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Log In", for: .normal)
+        button.setTitle("Sign in with GitHub", for: .normal)
         button.layer.cornerRadius = 5
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.backgroundColor = .black
         button.setTitleColor(.white, for: .normal)
-        button.setHeight(50)
+        button.setDimensions(height: 50, width: 150)
         button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
         return button
     }()
@@ -49,6 +50,10 @@ class LoginController: UIViewController {
         
         configureUI()
         configureNavigationBar()
+    }
+    
+    deinit {
+        print("DEBUG: \(self) deinitialized.")
     }
     
     //MARK: - Actions
@@ -70,17 +75,13 @@ class LoginController: UIViewController {
     private func configureUI() {
         view.backgroundColor = .githubBlack
         
-        view.addSubview(logoImageView)
-        logoImageView.centerX(inView: view, topAnchor: view.safeAreaLayoutGuide.topAnchor)
-        logoImageView.setDimensions(height: 150, width: 150)
-        
-        let stack = UIStackView(arrangedSubviews: [loginButton])
+        let stack = UIStackView(arrangedSubviews: [logoImageView, loginButton])
         stack.axis = .vertical
-        stack.distribution = .fillEqually
+        stack.alignment = .center
         stack.spacing = 20
         
         view.addSubview(stack)
-        stack.anchor(top: logoImageView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 32, paddingLeft: 32, paddingRight: 32)
+        stack.center(inView: view, yConstant: -25)
         
         view.addSubview(dontHaveAccountButton)
         dontHaveAccountButton.anchor(left: view.leftAnchor,bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor,

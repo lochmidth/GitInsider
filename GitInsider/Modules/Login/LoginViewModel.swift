@@ -43,7 +43,9 @@ class LoginViewModel {
             keychain.set(accessTokenResponse.accessToken, forKey: "Access Token")
             
             DispatchQueue.main.async {
-                self.coordinator?.goToContainer()
+                self.getCurrentUser { [weak self] user in
+                    self?.coordinator?.goToHome(withUser: user)
+                }
             }
         }
     }
@@ -58,5 +60,15 @@ class LoginViewModel {
         coordinator?.goToSignUpOnSafari()
     }
     
+    private func getCurrentUser(completion: @escaping(User) -> Void) {
+        gitHubService.getCurrentUser { result in
+            switch result {
+            case .success(let user):
+                completion(user)
+            case .failure(let error):
+                print("DEBUG: Error while fetching user data, \(error.localizedDescription)")
+            }
+        }
+    }
     
 }
