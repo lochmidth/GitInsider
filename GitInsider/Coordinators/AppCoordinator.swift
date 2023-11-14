@@ -39,16 +39,11 @@ class AppCoordinator: Coordinator {
     }
     
     func goToContainer() {
-<<<<<<< Updated upstream
-        let containerController = ContainerController()
-        navigationController.pushViewController(containerController, animated: true)
-=======
         let containerViewModel = ContainerViewModel()
         containerViewModel.coordinator = self
         let containerController = ContainerController(viewModel: containerViewModel)
         containerController.modalPresentationStyle = .fullScreen
         navigationController.show(containerController, sender: self)
->>>>>>> Stashed changes
     }
     
     func goToLoginPage() {
@@ -60,16 +55,11 @@ class AppCoordinator: Coordinator {
     }
     
     func goToLoginOnSafari() {
-<<<<<<< Updated upstream
-        guard let url = URL(string: "https://github.com/login/oauth/authorize?client_id=38fecaa5dc828643d268") else { return }
-        UIApplication.shared.open(url)
-=======
         guard let url = URL(string: gitHubAuthLink) else { return }
 //        UIApplication.shared.open(url)
         let safari = SFSafariViewController(url: url)
 //        safari.modalPresentationStyle = .pageSheet
         navigationController.show(safari, sender: self)
->>>>>>> Stashed changes
     }
     
     func goToSignUpOnSafari() {

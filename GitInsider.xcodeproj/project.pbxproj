@@ -402,11 +402,8 @@
 				C2D592952AFBC08800B2D271 /* Extensions.swift in Sources */,
 				C2D592AC2AFC50AD00B2D271 /* ContainerViewModel.swift in Sources */,
 				C2D592AA2AFC50A300B2D271 /* ContainerController.swift in Sources */,
-<<<<<<< Updated upstream
-=======
 				C2EAEBB92B010207008A1A10 /* Constants.swift in Sources */,
 				C265DA432B028F310006EF39 /* User.swift in Sources */,
->>>>>>> Stashed changes
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

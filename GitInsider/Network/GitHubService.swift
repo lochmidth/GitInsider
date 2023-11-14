@@ -12,20 +12,6 @@ class GitHubService {
     let provider = MoyaProvider<GitHubAPI>()
     let decoder: JSONDecoder
     
-<<<<<<< Updated upstream
-    func exchangeToken(clientId: String, clientSecret: String, code: String, redirectUri: String, completion: @escaping (Result<String, Error>) -> Void) {
-        
-        let request = GitHubAPI.exchangeToken(clientId: clientId, clientSecret: clientSecret, code: code, redirectUri: redirectUri)
-        provider.request(request) { result in
-            switch result {
-            case .success(let response):
-                do {
-                    let accessTokenResponse = try JSONDecoder().decode(AccessTokenResponse.self, from: response.data)
-                    let accessToken = accessTokenResponse.accessToken
-                    completion(.success(accessToken))
-                } catch {
-                    completion(.failure(error))
-=======
     init(decoder: JSONDecoder = JSONDecoder()) {
         self.decoder = decoder
     }
@@ -45,10 +31,7 @@ class GitHubService {
                     }
                 case .failure(let error):
                     continuation.resume(with: .failure(error))
->>>>>>> Stashed changes
                 }
-            case .failure(let error):
-                completion(.failure(error))
             }
         }
     }
