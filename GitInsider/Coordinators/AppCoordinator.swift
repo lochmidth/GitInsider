@@ -6,29 +6,44 @@
 //
 
 import UIKit
+import SafariServices
+import KeychainSwift
 
 protocol Coordinator: AnyObject {
-    var children: [Coordinator] { get set }
+    var child: [Coordinator] { get set }
     var navigationController : UINavigationController { get set }
     
     func start()
 }
 
 class AppCoordinator: Coordinator {
-    var children: [Coordinator] = []
+    var child: [Coordinator] = []
     var navigationController: UINavigationController
+    let keychain = KeychainSwift()
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
     
+    deinit {
+        print("DEBUG: Deallocating \(self)")
+    }
+    
     func start() {
-        goToLoginPage()
+        if let accessToken = keychain.get("Access Token"), !accessToken.isEmpty {
+            print("DEBUG: Access token in keychain is \(accessToken)")
+            goToContainer()
+        } else {
+            goToLoginPage()
+        }
     }
     
     func goToContainer() {
-        let containerController = ContainerController()
-        navigationController.pushViewController(containerController, animated: true)
+        let containerViewModel = ContainerViewModel()
+        containerViewModel.coordinator = self
+        let containerController = ContainerController(viewModel: containerViewModel)
+        containerController.modalPresentationStyle = .fullScreen
+        navigationController.show(containerController, sender: self)
     }
     
     func goToLoginPage() {
@@ -36,17 +51,19 @@ class AppCoordinator: Coordinator {
         let loginViewModel = LoginViewModel()
         loginViewModel.coordinator = self
         loginController.viewModel = loginViewModel
-        
-        navigationController.pushViewController(loginController, animated: true)
+        navigationController.show(loginController, sender: self)
     }
     
     func goToLoginOnSafari() {
-        guard let url = URL(string: "https://github.com/login/oauth/authorize?client_id=38fecaa5dc828643d268") else { return }
-        UIApplication.shared.open(url)
+        guard let url = URL(string: gitHubAuthLink) else { return }
+//        UIApplication.shared.open(url)
+        let safari = SFSafariViewController(url: url)
+//        safari.modalPresentationStyle = .pageSheet
+        navigationController.show(safari, sender: self)
     }
     
     func goToSignUpOnSafari() {
-        guard let url = URL(string: "https://github.com/signup") else { return }
+        guard let url = URL(string: gitHubSignupLink) else { return }
         UIApplication.shared.open(url)
     }
 }

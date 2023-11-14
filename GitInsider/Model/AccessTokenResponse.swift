@@ -8,12 +8,11 @@
 import Foundation
 
 // MARK: - AccessTokenResponse
-struct AccessTokenResponse: Codable {
-    let accessToken, tokenType, scope: String
 
-    enum CodingKeys: String, CodingKey {
-        case accessToken = "access_token"
-        case tokenType = "token_type"
-        case scope
-    }
+struct AccessTokenResponse: Codable {
+    let accessToken: String
+    let expiresIn: Int // 8-hours, will be used for authenticate navigation (skip login if it is not expired)
+    let refreshToken: String
+    let refreshTokenExpiresIn: Int
+    let tokenType, scope: String
 }

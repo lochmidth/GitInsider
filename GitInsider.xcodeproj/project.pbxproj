@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C265DA432B028F310006EF39 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C265DA422B028F310006EF39 /* User.swift */; };
+		C265DA472B02C04F0006EF39 /* SideMenuHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C265DA462B02C04F0006EF39 /* SideMenuHeaderViewModel.swift */; };
+		C265DA492B038C960006EF39 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C265DA482B038C960006EF39 /* Constants.swift */; };
+		C265DA4C2B0391900006EF39 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C265DA4B2B0391900006EF39 /* KeychainSwift */; };
 		C2D592652AFBC03D00B2D271 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D592642AFBC03D00B2D271 /* AppDelegate.swift */; };
 		C2D5926C2AFBC03D00B2D271 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2D5926A2AFBC03D00B2D271 /* Main.storyboard */; };
 		C2D5926E2AFBC03F00B2D271 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2D5926D2AFBC03F00B2D271 /* Assets.xcassets */; };
@@ -50,6 +54,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C265DA422B028F310006EF39 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		C265DA462B02C04F0006EF39 /* SideMenuHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuHeaderViewModel.swift; sourceTree = "<group>"; };
+		C265DA482B038C960006EF39 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C2D592612AFBC03D00B2D271 /* GitInsider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitInsider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2D592642AFBC03D00B2D271 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C2D5926B2AFBC03D00B2D271 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -82,6 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C265DA4C2B0391900006EF39 /* KeychainSwift in Frameworks */,
 				C2D592BB2AFD841100B2D271 /* Kingfisher in Frameworks */,
 				C2D592B82AFD83FA00B2D271 /* Moya in Frameworks */,
 			);
@@ -145,6 +153,7 @@
 			children = (
 				C2D592942AFBC08800B2D271 /* Extensions.swift */,
 				C2D5929F2AFBC47F00B2D271 /* Utilities.swift */,
+				C265DA482B038C960006EF39 /* Constants.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -217,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				C2D592C32AFE836400B2D271 /* AccessTokenResponse.swift */,
+				C265DA422B028F310006EF39 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -225,6 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				C2D592B42AFCECC500B2D271 /* SideMenuHeader.swift */,
+				C265DA462B02C04F0006EF39 /* SideMenuHeaderViewModel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -258,6 +269,7 @@
 			packageProductDependencies = (
 				C2D592B72AFD83FA00B2D271 /* Moya */,
 				C2D592BA2AFD841100B2D271 /* Kingfisher */,
+				C265DA4B2B0391900006EF39 /* KeychainSwift */,
 			);
 			productName = GitInsider;
 			productReference = C2D592612AFBC03D00B2D271 /* GitInsider.app */;
@@ -334,6 +346,7 @@
 			packageReferences = (
 				C2D592B62AFD83FA00B2D271 /* XCRemoteSwiftPackageReference "Moya" */,
 				C2D592B92AFD841100B2D271 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				C265DA4A2B0391900006EF39 /* XCRemoteSwiftPackageReference "keychain-swift" */,
 			);
 			productRefGroup = C2D592622AFBC03D00B2D271 /* Products */;
 			projectDirPath = "";
@@ -389,12 +402,15 @@
 				C2D592A82AFC4EDB00B2D271 /* HomeViewModel.swift in Sources */,
 				C2D5929C2AFBC3CB00B2D271 /* LoginController.swift in Sources */,
 				C2D592972AFBC0B500B2D271 /* AppCoordinator.swift in Sources */,
+				C265DA472B02C04F0006EF39 /* SideMenuHeaderViewModel.swift in Sources */,
 				C2D592B52AFCECC500B2D271 /* SideMenuHeader.swift in Sources */,
 				C2D592C02AFE7BF800B2D271 /* OAuthManager.swift in Sources */,
 				C2D5929E2AFBC3D100B2D271 /* LoginViewModel.swift in Sources */,
+				C265DA492B038C960006EF39 /* Constants.swift in Sources */,
 				C2D592952AFBC08800B2D271 /* Extensions.swift in Sources */,
 				C2D592AC2AFC50AD00B2D271 /* ContainerViewModel.swift in Sources */,
 				C2D592AA2AFC50A300B2D271 /* ContainerController.swift in Sources */,
+				C265DA432B028F310006EF39 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -738,6 +754,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		C265DA4A2B0391900006EF39 /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/keychain-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 20.0.0;
+			};
+		};
 		C2D592B62AFD83FA00B2D271 /* XCRemoteSwiftPackageReference "Moya" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Moya/Moya.git";
@@ -757,6 +781,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		C265DA4B2B0391900006EF39 /* KeychainSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C265DA4A2B0391900006EF39 /* XCRemoteSwiftPackageReference "keychain-swift" */;
+			productName = KeychainSwift;
+		};
 		C2D592B72AFD83FA00B2D271 /* Moya */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C2D592B62AFD83FA00B2D271 /* XCRemoteSwiftPackageReference "Moya" */;

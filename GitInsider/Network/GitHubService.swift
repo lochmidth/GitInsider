@@ -10,17 +10,42 @@ import Moya
 
 class GitHubService {
     let provider = MoyaProvider<GitHubAPI>()
+    let decoder: JSONDecoder
     
-    func exchangeToken(clientId: String, clientSecret: String, code: String, redirectUri: String, completion: @escaping (Result<String, Error>) -> Void) {
+    init(decoder: JSONDecoder = JSONDecoder()) {
+        self.decoder = decoder
+    }
+    
+    func exchangeToken(code: String) async throws -> AccessTokenResponse {
+        let request = GitHubAPI.exchangeToken(code: code)
         
-        let request = GitHubAPI.exchangeToken(clientId: clientId, clientSecret: clientSecret, code: code, redirectUri: redirectUri)
+        return try await withCheckedThrowingContinuation { continuation in
+            provider.request(request) { result in
+                switch result {
+                case .success(let response):
+                    do {
+                        self.decoder.keyDecodingStrategy = .convertFromSnakeCase
+                        let accessTokenResponse = try self.decoder.decode(AccessTokenResponse.self, from: response.data)
+                        continuation.resume(with: .success(accessTokenResponse))
+                    } catch {
+                        continuation.resume(with: .failure(error))
+                    }
+                case .failure(let error):
+                    continuation.resume(with: .failure(error))
+                }
+            }
+        }
+    }
+    
+    func getCurrentUser(completion: @escaping(Result<User, Error>) -> Void) {
+        let request = GitHubAPI.getCurrentUser
         provider.request(request) { result in
             switch result {
             case .success(let response):
                 do {
-                    let accessTokenResponse = try JSONDecoder().decode(AccessTokenResponse.self, from: response.data)
-                    let accessToken = accessTokenResponse.accessToken
-                    completion(.success(accessToken))
+                    self.decoder.keyDecodingStrategy = .convertFromSnakeCase
+                    let user = try self.decoder.decode(User.self, from: response.data)
+                    completion(.success(user))
                 } catch {
                     completion(.failure(error))
                 }

@@ -7,6 +7,10 @@
 
 import UIKit
 
+extension Notification.Name {
+    static let didReceiveURL = Notification.Name("DidReceiveURLNotification")
+}
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -17,25 +21,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         let navigationController = UINavigationController()
         appCoordinator = AppCoordinator(navigationController: navigationController)
-        appCoordinator!.start()
-        window!.rootViewController = navigationController
-        window!.makeKeyAndVisible()
+        appCoordinator?.start()
+      
+        window?.rootViewController = navigationController
+        window?.makeKeyAndVisible()
         return true
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        Task {
-            let code = try await OAuthManager.shared.handleCallBack(withUrl: url)
-            print("DEBUG: Callback code is \(code)")
-            GitHubService().exchangeToken(clientId: "38fecaa5dc828643d268", clientSecret: "d3920ab39a9da67eebd47c7b0c2f736458b46641", code: code, redirectUri: "gitinsider://github/callback") { result in
-                switch result {
-                case .success(let accessToken):
-                    print("DEBUG: Access token is \(accessToken)")
-                case .failure(let error):
-                    print("DEBUG: Error while exchanging code with Access Token. \(error.localizedDescription)")
-                }
-            }
-        }
+        NotificationCenter.default.post(name: .didReceiveURL, object: nil, userInfo: ["url": url])
         return false
     }
 }
