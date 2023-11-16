@@ -5,11 +5,19 @@
 //  Created by Alphan Ogün on 16.11.2023.
 //
 
-import Foundation
+import UIKit
+
+public enum EditButtonConfig {
+    case editProfile
+    case notFollowing
+    case following
+}
 
 class ProfileHeaderViewModel {
     
     var user: User
+    var followingStatus: Bool
+    var config: EditButtonConfig
     
     var profileImageUrl: URL? {
         URL(string: user.avatarUrl ?? "")
@@ -20,7 +28,7 @@ class ProfileHeaderViewModel {
     }
     
     var usernameText: String {
-        user.login ?? ""
+        user.login
     }
     
     var bioText: String {
@@ -39,7 +47,32 @@ class ProfileHeaderViewModel {
         "\(user.publicRepos)\nRepositories"
     }
     
-    init(user: User) {
+    var editButtonColor: UIColor {
+        switch config {
+        case .editProfile:
+            return .darkGray
+        case .notFollowing:
+            return .darkGray
+        case .following:
+            return .gitHubGreen
+        }
+    }
+    
+    var editButtonText: String {
+        switch config {
+        case .editProfile:
+            return "✎"
+        case .notFollowing:
+            return "✚"
+        case .following:
+            return "✓"
+        }
+        
+    }
+    
+    init(user: User, followingStatus: Bool, config: EditButtonConfig? = nil) {
         self.user = user
+        self.followingStatus = followingStatus
+        self.config = config ?? (followingStatus ? .following : .notFollowing)
     }
 }

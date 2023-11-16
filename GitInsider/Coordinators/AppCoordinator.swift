@@ -37,9 +37,9 @@ class AppCoordinator: Coordinator {
         navigationController.pushViewController(homeController, animated: true)
     }
     
-    func goToProfile(withUser user: User) {
+    func goToProfile(withUser user: User, authLogin: String) {
         let profileController = ProfileController()
-        let profileViewModel = ProfileViewModel(user: user)
+        let profileViewModel = ProfileViewModel(user: user, authLogin: authLogin)
         profileViewModel.coordinator = self
         profileController.viewModel = profileViewModel
         navigationController.pushViewController(profileController, animated: true)

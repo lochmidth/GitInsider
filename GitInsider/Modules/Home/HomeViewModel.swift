@@ -16,6 +16,10 @@ class HomeViewModel {
     let gitHubService: GitHubService
     weak var coordinator: AppCoordinator?
     
+    var authLogin: String {
+        user?.login ?? ""
+    }
+    
     var profileImageUrl: URL? {
         URL(string: user?.avatarUrl ?? "")
     }
@@ -56,8 +60,8 @@ class HomeViewModel {
         coordinator?.signOut()
     }
     
-    func goToProfile(withUser user: User) {
-        coordinator?.goToProfile(withUser: user)
+    func goToProfile(withUser user: User, authLogin: String) {
+        coordinator?.goToProfile(withUser: user, authLogin: authLogin)
     }
     
     func getUser(forUsername username: String, completion: @escaping(User) -> Void) {
@@ -83,5 +87,4 @@ class HomeViewModel {
             }
         }
     }
-    
 }

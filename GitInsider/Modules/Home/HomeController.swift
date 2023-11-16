@@ -55,6 +55,14 @@ class HomeController: UIViewController {
         return searchBar
     }()
     
+    private let noCellImage: UIImageView = {
+        let iv = UIImageView()
+        iv.image = UIImage(named: "github_cat_search")?.withRenderingMode(.alwaysOriginal)
+        iv.alpha = 0.4
+        iv.setDimensions(height: 300, width: 300)
+        return iv
+    }()
+    
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 100, height: 120)
@@ -73,6 +81,9 @@ class HomeController: UIViewController {
         
         view.addSubview(collectionView)
         collectionView.fillSuperview()
+        
+        view.addSubview(noCellImage)
+        noCellImage.center(inView: view)
         
         return view
     }()
@@ -93,7 +104,7 @@ class HomeController: UIViewController {
     
     @objc func didTapProfileImage() {
         guard let user = viewModel?.user else { return }
-        viewModel?.goToProfile(withUser: user)
+        viewModel?.goToProfile(withUser: user, authLogin: viewModel?.authLogin ?? "")
     }
     
     @objc func handleKeayboardDismiss() {
@@ -195,7 +206,14 @@ extension HomeController: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if (viewModel?.users?.items.isEmpty == false) {
+            noCellImage.isHidden = true
+        } else {
+            noCellImage.isHidden = false
+        }
+        
         return viewModel?.users?.items.count ?? 0
+    
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -209,7 +227,7 @@ extension HomeController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let username = viewModel?.users?.items[indexPath.item].login else { return }
         viewModel?.getUser(forUsername: username, completion: { [weak self] user in
-            self?.viewModel?.goToProfile(withUser: user)
+            self?.viewModel?.goToProfile(withUser: user, authLogin: self?.viewModel?.authLogin ?? "")
         })
     }
     

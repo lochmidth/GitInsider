@@ -14,6 +14,9 @@ enum GitHubAPI {
     case getCurrentUser
     case getUser(username: String)
     case searchUser(query: String)
+    case checkIfUserFollowing(username: String)
+    case follow(username: String)
+    case unfollow(username: String)
 }
 
 extension GitHubAPI: TargetType {
@@ -26,6 +29,12 @@ extension GitHubAPI: TargetType {
         case .getUser:
             return URL(string: "https://api.github.com")!
         case .searchUser:
+            return URL(string: "https://api.github.com")!
+        case .checkIfUserFollowing:
+            return URL(string: "https://api.github.com")!
+        case .follow:
+            return URL(string: "https://api.github.com")!
+        case . unfollow:
             return URL(string: "https://api.github.com")!
         }
     }
@@ -40,6 +49,12 @@ extension GitHubAPI: TargetType {
             return "/users/\(username)"
         case .searchUser:
             return "/search/users"
+        case .checkIfUserFollowing(let username):
+            return "/user/following/\(username)"
+        case .follow(let username):
+            return "/user/following/\(username)"
+        case .unfollow(let username):
+            return "/user/following/\(username)"
         }
     }
     
@@ -53,6 +68,12 @@ extension GitHubAPI: TargetType {
             return .get
         case .searchUser:
             return .get
+        case .checkIfUserFollowing:
+            return .get
+        case .follow:
+            return .put
+        case .unfollow:
+            return .delete
         }
     }
     
@@ -76,6 +97,12 @@ extension GitHubAPI: TargetType {
             return .requestPlain
         case .searchUser(let query):
             return .requestParameters(parameters: ["q": query], encoding: URLEncoding.queryString)
+        case .checkIfUserFollowing:
+            return .requestPlain
+        case .follow:
+            return .requestPlain
+        case .unfollow:
+            return .requestPlain
         }
     }
     
@@ -107,6 +134,35 @@ extension GitHubAPI: TargetType {
                 "Authorization": "Bearer \(accessToken ?? "")",
                 "X-GitHub-Api-Version": "2022-11-28"
             ]
+        case .checkIfUserFollowing:
+            let keychain = KeychainSwift()
+            let accessToken = keychain.get("Access Token")
+            return [
+                "Accept": "application/vnd.github+json",
+                "Authorization": "Bearer \(accessToken ?? "")",
+                "X-GitHub-Api-Version": "2022-11-28"
+            ]
+        case .follow:
+            let keychain = KeychainSwift()
+            let accessToken = keychain.get("Access Token")
+            return [
+                "Accept": "application/vnd.github+json",
+                "Authorization": "Bearer \(accessToken ?? "")",
+                "Content-Length": "0",
+                "X-GitHub-Api-Version": "2022-11-28"
+            ]
+        case .unfollow:
+            let keychain = KeychainSwift()
+            let accessToken = keychain.get("Access Token")
+            return [
+                "Accept": "application/vnd.github+json",
+                "Authorization": "Bearer \(accessToken ?? "")",
+                "X-GitHub-Api-Version": "2022-11-28"
+            ]
         }
     }
+    
+//    var validationType: ValidationType {
+//            return .successAndRedirectCodes
+//        }
 }
