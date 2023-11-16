@@ -25,25 +25,32 @@ class AppCoordinator: Coordinator {
         self.navigationController = navigationController
     }
     
-    deinit {
-        print("DEBUG: Deallocating \(self)")
-    }
-    
     func start() {
-        if let accessToken = keychain.get("Access Token"), !accessToken.isEmpty {
-            print("DEBUG: Access token in keychain is \(accessToken)")
-            goToContainer()
-        } else {
-            goToLoginPage()
-        }
+        goToSplash()
     }
     
-    func goToContainer() {
-        let containerViewModel = ContainerViewModel()
-        containerViewModel.coordinator = self
-        let containerController = ContainerController(viewModel: containerViewModel)
-        containerController.modalPresentationStyle = .fullScreen
-        navigationController.show(containerController, sender: self)
+    func goToHome(withUser user: User) {
+        let homeController = HomeController()
+        let homeViewModel = HomeViewModel(user: user)
+        homeViewModel.coordinator = self
+        homeController.viewModel = homeViewModel
+        navigationController.pushViewController(homeController, animated: true)
+    }
+    
+    func goToProfile(withUser user: User) {
+        let profileController = ProfileController()
+        let profileViewModel = ProfileViewModel(user: user)
+        profileViewModel.coordinator = self
+        profileController.viewModel = profileViewModel
+        navigationController.pushViewController(profileController, animated: true)
+    }
+    
+    func goToSplash() {
+        let splashController = SplashController()
+        let splashViewModel = SplashViewModel()
+        splashViewModel.coordinator = self
+        splashController.viewModel = splashViewModel
+        navigationController.pushViewController(splashController, animated: false)
     }
     
     func goToLoginPage() {
@@ -51,15 +58,19 @@ class AppCoordinator: Coordinator {
         let loginViewModel = LoginViewModel()
         loginViewModel.coordinator = self
         loginController.viewModel = loginViewModel
-        navigationController.show(loginController, sender: self)
+        navigationController.pushViewController(loginController, animated: false)
+    }
+    
+    func signOut() {
+        navigationController.popToRootViewController(animated: false)
     }
     
     func goToLoginOnSafari() {
         guard let url = URL(string: gitHubAuthLink) else { return }
-//        UIApplication.shared.open(url)
+        //        UIApplication.shared.open(url)
         let safari = SFSafariViewController(url: url)
-//        safari.modalPresentationStyle = .pageSheet
-        navigationController.show(safari, sender: self)
+        //        safari.modalPresentationStyle = .pageSheet
+        navigationController.pushViewController(safari, animated: true)
     }
     
     func goToSignUpOnSafari() {

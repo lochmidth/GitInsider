@@ -12,6 +12,8 @@ import KeychainSwift
 enum GitHubAPI {
     case exchangeToken(code: String)
     case getCurrentUser
+    case getUser(username: String)
+    case searchUser(query: String)
 }
 
 extension GitHubAPI: TargetType {
@@ -20,6 +22,10 @@ extension GitHubAPI: TargetType {
         case .exchangeToken:
             return URL(string: "https://github.com")!
         case .getCurrentUser:
+            return URL(string: "https://api.github.com")!
+        case .getUser:
+            return URL(string: "https://api.github.com")!
+        case .searchUser:
             return URL(string: "https://api.github.com")!
         }
     }
@@ -30,6 +36,10 @@ extension GitHubAPI: TargetType {
             return "/login/oauth/access_token"
         case .getCurrentUser:
             return "/user"
+        case .getUser(let username):
+            return "/users/\(username)"
+        case .searchUser:
+            return "/search/users"
         }
     }
     
@@ -38,6 +48,10 @@ extension GitHubAPI: TargetType {
         case .exchangeToken:
             return .post
         case .getCurrentUser:
+            return .get
+        case .getUser:
+            return .get
+        case .searchUser:
             return .get
         }
     }
@@ -58,6 +72,10 @@ extension GitHubAPI: TargetType {
             return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
         case .getCurrentUser:
             return .requestPlain
+        case .getUser:
+            return .requestPlain
+        case .searchUser(let query):
+            return .requestParameters(parameters: ["q": query], encoding: URLEncoding.queryString)
         }
     }
     
@@ -66,6 +84,22 @@ extension GitHubAPI: TargetType {
         case .exchangeToken:
             return ["Accept": "application/json"]
         case .getCurrentUser:
+            let keychain = KeychainSwift()
+            let accessToken = keychain.get("Access Token")
+            return [
+                "Accept": "application/vnd.github+json",
+                "Authorization": "Bearer \(accessToken ?? "")",
+                "X-GitHub-Api-Version": "2022-11-28"
+            ]
+        case .getUser:
+            let keychain = KeychainSwift()
+            let accessToken = keychain.get("Access Token")
+            return [
+                "Accept": "application/vnd.github+json",
+                "Authorization": "Bearer \(accessToken ?? "")",
+                "X-GitHub-Api-Version": "2022-11-28"
+            ]
+        case .searchUser:
             let keychain = KeychainSwift()
             let accessToken = keychain.get("Access Token")
             return [
