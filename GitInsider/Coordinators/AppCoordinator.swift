@@ -37,6 +37,14 @@ class AppCoordinator: Coordinator {
         navigationController.pushViewController(homeController, animated: true)
     }
     
+    func goToProfile(withUser user: User) {
+        let profileController = ProfileController()
+        let profileViewModel = ProfileViewModel(user: user)
+        profileViewModel.coordinator = self
+        profileController.viewModel = profileViewModel
+        navigationController.pushViewController(profileController, animated: true)
+    }
+    
     func goToSplash() {
         let splashController = SplashController()
         let splashViewModel = SplashViewModel()
@@ -51,6 +59,10 @@ class AppCoordinator: Coordinator {
         loginViewModel.coordinator = self
         loginController.viewModel = loginViewModel
         navigationController.pushViewController(loginController, animated: false)
+    }
+    
+    func signOut() {
+        navigationController.popToRootViewController(animated: false)
     }
     
     func goToLoginOnSafari() {

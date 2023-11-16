@@ -52,10 +52,6 @@ class SplashController: UIViewController {
         animateLogoAndCheckAuth()
     }
     
-    deinit {
-        print("DEBUG: \(self) deinitialized.")
-    }
-    
     //MARK: - Helpers
     
     private func configureUI() {

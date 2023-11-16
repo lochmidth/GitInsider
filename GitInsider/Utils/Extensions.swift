@@ -175,24 +175,6 @@ extension UIView {
     }
 }
 
-extension UIImage {
-    static func downloadImage(url: URL?, completion: @escaping (UIImage?) -> Void) {
-        guard let url = url else {
-            completion(nil)
-            return
-        }
-        let resource = KF.ImageResource(downloadURL: url)
-        KingfisherManager.shared.retrieveImage(with: resource, options: [.cacheOriginalImage]) { result in
-            switch result {
-            case .success(let value):
-                completion(value.image)
-            case .failure:
-                completion(nil)
-            }
-        }
-    }
-}
-
 extension UITableViewCell {
     var selectionColor: UIColor {
         set {

@@ -8,6 +8,10 @@
 import Foundation
 import Moya
 
+enum GitHubError: Error {
+    case emptyUsername
+}
+
 class GitHubService {
     let provider = MoyaProvider<GitHubAPI>()
     let decoder: JSONDecoder
@@ -46,6 +50,48 @@ class GitHubService {
                     self.decoder.keyDecodingStrategy = .convertFromSnakeCase
                     let user = try self.decoder.decode(User.self, from: response.data)
                     completion(.success(user))
+                } catch {
+                    completion(.failure(error))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func getUser(forUsername username: String, completion: @escaping(Result<User, Error>) -> Void) {
+        let request = GitHubAPI.getUser(username: username)
+        provider.request(request) { result in
+            switch result {
+            case .success(let respone):
+                print(respone)
+                do {
+                    self.decoder.keyDecodingStrategy = .convertFromSnakeCase
+                    let user = try self.decoder.decode(User.self, from: respone.data)
+                    completion(.success(user))
+                } catch {
+                    completion(.failure(error))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func searchUser(forUsername username: String, completion: @escaping(Result<Users, Error>) -> Void) {
+        
+        if username == "" {
+            completion(.failure(GitHubError.emptyUsername))
+        }
+        
+        let request = GitHubAPI.searchUser(query: username)
+        provider.request(request) { result in
+            switch result {
+            case .success(let response):
+                do {
+                    self.decoder.keyDecodingStrategy = .convertFromSnakeCase
+                    let users = try self.decoder.decode(Users.self, from: response.data)
+                    completion(.success(users))
                 } catch {
                     completion(.failure(error))
                 }
