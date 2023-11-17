@@ -8,17 +8,9 @@
 import UIKit
 import Kingfisher
 
-protocol ProfileHeaderDelegate: AnyObject {
-    func follow(username: String)
-    func unfollow(username: String)
-    func editProfile()
-}
-
 class ProfileHeader: UIView {
     
     //MARK: - Properties
-    
-    weak var delegate: ProfileHeaderDelegate?
     
     var viewModel: ProfileHeaderViewModel? {
         didSet { configureViewModel() }
@@ -33,17 +25,11 @@ class ProfileHeader: UIView {
         return iv
     }()
     
-    private lazy var editButton: UIButton = {
+    private let editButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setDimensions(height: 30, width: 30)
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
         button.layer.cornerRadius = 30 / 2
-        button.layer.borderColor = UIColor.white.cgColor
-        button.layer.borderWidth = 2
-        
-        button.addTarget(self, action: #selector(didTapEditFollowButton), for: .touchUpInside)
-        
+        button.backgroundColor = .lightGray
         return button
     }()
     
@@ -109,27 +95,11 @@ class ProfileHeader: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - Actions
-    
-    @objc func didTapEditFollowButton() {
-        guard let viewModel = viewModel else { return }
-        switch viewModel.config {
-        case .editProfile:
-            delegate?.editProfile()
-        case .notFollowing:
-            delegate?.follow(username: viewModel.user.login)
-        case .following:
-            delegate?.unfollow(username: viewModel.user.login)
-        }
-    }
-    
     //MARK: - Helpers
     
-    func configureViewModel() {
+    private func configureViewModel() {
         guard let viewModel = viewModel else { return }
         profileImageView.kf.setImage(with: viewModel.profileImageUrl)
-        editButton.backgroundColor = viewModel.editButtonColor
-        editButton.setTitle(viewModel.editButtonText, for: .normal)
         fullnameLabel.text = viewModel.fullnameText
         usernameLabel.text = viewModel.usernameText
         bioLabel.text = viewModel.bioText

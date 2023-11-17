@@ -9,8 +9,8 @@ import Foundation
 
 // MARK: - User
 struct User: Codable {
-    let login: String
-    let id: Int
+    let login: String?
+    let id: Int?
     let nodeId: String?
     let avatarUrl: String?
     let url, htmlUrl, followersUrl: String?

@@ -9,8 +9,8 @@ import Foundation
 
 // MARK: - Users
 struct Users: Codable {
-    let totalCount: Int
-    let incompleteResults: Bool
+    let totalCount: Int?
+    let incompleteResults: Bool?
     let items: [Item]
 }
 

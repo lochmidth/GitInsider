@@ -18,7 +18,6 @@ class GitHubService {
     
     init(decoder: JSONDecoder = JSONDecoder()) {
         self.decoder = decoder
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
     }
     
     func exchangeToken(code: String) async throws -> AccessTokenResponse {
@@ -29,6 +28,7 @@ class GitHubService {
                 switch result {
                 case .success(let response):
                     do {
+                        self.decoder.keyDecodingStrategy = .convertFromSnakeCase
                         let accessTokenResponse = try self.decoder.decode(AccessTokenResponse.self, from: response.data)
                         continuation.resume(with: .success(accessTokenResponse))
                     } catch {
@@ -47,6 +47,7 @@ class GitHubService {
             switch result {
             case .success(let response):
                 do {
+                    self.decoder.keyDecodingStrategy = .convertFromSnakeCase
                     let user = try self.decoder.decode(User.self, from: response.data)
                     completion(.success(user))
                 } catch {
@@ -65,6 +66,7 @@ class GitHubService {
             case .success(let respone):
                 print(respone)
                 do {
+                    self.decoder.keyDecodingStrategy = .convertFromSnakeCase
                     let user = try self.decoder.decode(User.self, from: respone.data)
                     completion(.success(user))
                 } catch {
@@ -90,69 +92,6 @@ class GitHubService {
                     self.decoder.keyDecodingStrategy = .convertFromSnakeCase
                     let users = try self.decoder.decode(Users.self, from: response.data)
                     completion(.success(users))
-                } catch {
-                    completion(.failure(error))
-                }
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
-    }
-    
-    func checkIfUserFollowing(username: String, completion: @escaping(Result<Bool, Error>) -> Void) {
-        let request = GitHubAPI.checkIfUserFollowing(username: username)
-        provider.request(request) { result in
-            switch result {
-            case .success(let response):
-                if response.statusCode == 204 {
-                    completion(.success(true))
-                } else if response.statusCode == 404 {
-                    completion(.success(false))
-                } else {
-                    completion(.success(false))
-                }
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
-    }
-    
-    func follow(username: String, completion: @escaping(Result<Void, Error>) -> Void) {
-        let request = GitHubAPI.follow(username: username)
-        provider.request(request) { result in
-            switch result {
-            case .success(let response):
-                if response.statusCode == 204 {
-                    completion(.success(()))
-                }
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
-    }
-    
-    func unfollow(username: String, completion: @escaping(Result<Void, Error>) -> Void) {
-        let request = GitHubAPI.unfollow(username: username)
-        provider.request(request) { result in
-            switch result {
-            case .success(let response):
-                if response.statusCode == 204 {
-                    completion(.success(()))
-                }
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
-    }
-    
-    func getUserRepos(username: String, completion: @escaping(Result<[Repo], Error>) -> Void) {
-        let request = GitHubAPI.getUserRepos(username: username)
-        provider.request(request) { result in
-            switch result {
-            case .success(let response):
-                do {
-                    let repos = try self.decoder.decode([Repo].self, from: response.data)
-                    completion(.success(repos))
                 } catch {
                     completion(.failure(error))
                 }

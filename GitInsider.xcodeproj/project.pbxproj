@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C25572392B07D01600B10DF9 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25572382B07D01600B10DF9 /* NetworkManager.swift */; };
 		C265DA432B028F310006EF39 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C265DA422B028F310006EF39 /* User.swift */; };
 		C265DA492B038C960006EF39 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C265DA482B038C960006EF39 /* Constants.swift */; };
 		C265DA4C2B0391900006EF39 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C265DA4B2B0391900006EF39 /* KeychainSwift */; };
@@ -40,7 +39,6 @@
 		C2EF76C72B0645E400A7DEDA /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EF76C62B0645E400A7DEDA /* ProfileViewModel.swift */; };
 		C2EF76CD2B0646D200A7DEDA /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EF76CC2B0646D200A7DEDA /* ProfileHeader.swift */; };
 		C2EF76CF2B06563400A7DEDA /* ProfileHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EF76CE2B06563400A7DEDA /* ProfileHeaderViewModel.swift */; };
-		C2EF76D12B07945600A7DEDA /* Repo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EF76D02B07945600A7DEDA /* Repo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,7 +59,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C25572382B07D01600B10DF9 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		C265DA422B028F310006EF39 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C265DA482B038C960006EF39 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C265DA4E2B03D5080006EF39 /* SplashController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashController.swift; sourceTree = "<group>"; };
@@ -95,7 +92,6 @@
 		C2EF76C62B0645E400A7DEDA /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		C2EF76CC2B0646D200A7DEDA /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
 		C2EF76CE2B06563400A7DEDA /* ProfileHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderViewModel.swift; sourceTree = "<group>"; };
-		C2EF76D02B07945600A7DEDA /* Repo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,7 +239,6 @@
 				C2D592C32AFE836400B2D271 /* AccessTokenResponse.swift */,
 				C265DA422B028F310006EF39 /* User.swift */,
 				C2EF76C12B062A2F00A7DEDA /* Users.swift */,
-				C2EF76D02B07945600A7DEDA /* Repo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -263,7 +258,6 @@
 				C2D592BD2AFD8C2E00B2D271 /* GitHubAPI.swift */,
 				C2D592BF2AFE7BF800B2D271 /* OAuthManager.swift */,
 				C2D592C12AFE825800B2D271 /* GitHubService.swift */,
-				C25572382B07D01600B10DF9 /* NetworkManager.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -436,7 +430,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C25572392B07D01600B10DF9 /* NetworkManager.swift in Sources */,
 				C2D592A02AFBC47F00B2D271 /* Utilities.swift in Sources */,
 				C2EF76C02B05469A00A7DEDA /* UserCellViewModel.swift in Sources */,
 				C2D592C22AFE825800B2D271 /* GitHubService.swift in Sources */,
@@ -460,7 +453,6 @@
 				C265DA492B038C960006EF39 /* Constants.swift in Sources */,
 				C265DA5B2B03FE230006EF39 /* SafariViewModel.swift in Sources */,
 				C2D592952AFBC08800B2D271 /* Extensions.swift in Sources */,
-				C2EF76D12B07945600A7DEDA /* Repo.swift in Sources */,
 				C265DA432B028F310006EF39 /* User.swift in Sources */,
 				C265DA542B03E54C0006EF39 /* HomeController.swift in Sources */,
 			);

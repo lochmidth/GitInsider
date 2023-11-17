@@ -16,10 +16,6 @@ class HomeViewModel {
     let gitHubService: GitHubService
     weak var coordinator: AppCoordinator?
     
-    var authLogin: String {
-        user?.login ?? ""
-    }
-    
     var profileImageUrl: URL? {
         URL(string: user?.avatarUrl ?? "")
     }
@@ -28,7 +24,7 @@ class HomeViewModel {
         if let name = user?.name?.components(separatedBy: " ").first {
             return "Hi \(name)!"
         }
-        return "Hi \(user?.login ?? "User")!"
+        return "Hi \(user?.login ?? "User")!" 
     }
     
     var greetingText: String {
@@ -60,8 +56,8 @@ class HomeViewModel {
         coordinator?.signOut()
     }
     
-    func goToProfile(withUser user: User, authLogin: String) {
-        coordinator?.goToProfile(withUser: user, authLogin: authLogin)
+    func goToProfile(withUser user: User) {
+        coordinator?.goToProfile(withUser: user)
     }
     
     func getUser(forUsername username: String, completion: @escaping(User) -> Void) {
@@ -88,10 +84,4 @@ class HomeViewModel {
         }
     }
     
-    func didSelectItemAt(index: Int) {
-        guard let username = users?.items[index].login else { return }
-        getUser(forUsername: username, completion: { [weak self] user in
-            self?.goToProfile(withUser: user, authLogin: self?.authLogin ?? "")
-        })
-    }
 }

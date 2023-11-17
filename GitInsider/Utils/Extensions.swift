@@ -7,7 +7,7 @@
 
 
 import UIKit
-import SkeletonView
+import Kingfisher
 
 extension UIColor {
     static func rgb(red: CGFloat, green: CGFloat, blue: CGFloat) -> UIColor {
@@ -19,7 +19,7 @@ extension UIColor {
     static let githubLightGray = rgb(red: 250, green: 251, blue: 252)
     static let gitHubWhite = rgb(red: 255, green: 255, blue: 255)
     static let gitHubGreen = rgb(red: 45, green: 186, blue: 78)
-    
+
 }
 
 extension UIViewController {
@@ -39,14 +39,6 @@ extension UIViewController {
 }
 
 extension UIView {
-    
-    func setSkeletonableRecursively() {
-           self.isSkeletonable = true
-
-           for subview in subviews {
-               subview.setSkeletonableRecursively()
-           }
-       }
     
     func inputContainerView(image: UIImage?, textField: UITextField? = nil, segmentedControl: UISegmentedControl? = nil ) -> UIView {
         let view = UIView()
@@ -162,7 +154,7 @@ extension UIView {
         layer.shadowOpacity = 0.55
         layer.shadowOffset = CGSize(width: 0.5, height: 0.5)
         layer.masksToBounds = false
-        
+
     }
     
     func setHeight(_ height: CGFloat) {
