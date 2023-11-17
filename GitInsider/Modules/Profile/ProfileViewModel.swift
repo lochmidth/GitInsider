@@ -53,16 +53,8 @@ class ProfileViewModel {
         }
     }
     
-    func getUserRepos(username: String, completion: @escaping() -> Void) {
-        gitHubService.getUserRepos(username: username) { [weak self] result in
-            switch result {
-            case .success(let repos):
-                self?.repos = repos
-                completion()
-            case .failure(let error):
-                print("DEBUG: Error while feetching repos, \(error.localizedDescription)")
-            }
-        }
+    func getUserRepos() async throws {
+        self.repos = try await gitHubService.getUserRepos(username: user.login)
     }
     
 }

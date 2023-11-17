@@ -13,7 +13,7 @@ private let reuseIdentifier = "UserCell"
 class HomeController: UIViewController {
     //MARK: - Properties
     
-    private var searchTimer: Timer?
+    var searchTimer: Timer?
     
     var viewModel: HomeViewModel? {
         didSet { configureViewModel() }
@@ -188,9 +188,10 @@ extension HomeController: UISearchBarDelegate {
         searchTimer?.invalidate()
         
         searchTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { [weak self] _ in
-            self?.viewModel?.searchUser(forUsername: searchText, completion: {
+            Task {
+                try await self?.viewModel?.searchUser(forUsername: searchText)
                 self?.collectionView.reloadData()
-            })
+            }
         })
     }
     

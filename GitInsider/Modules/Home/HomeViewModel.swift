@@ -68,17 +68,27 @@ class HomeViewModel {
         return try await gitHubService.getUser(forUsername: username)
     }
     
-    func searchUser(forUsername username: String, completion: @escaping() -> Void) {
-        gitHubService.searchUser(forUsername: username) { [weak self] result in
-            switch result {
-            case .success(let users):
-                self?.users = users
-                completion()
-            case .failure:
-                self?.users = nil
-                completion()
-            }
+//    func searchUser(forUsername username: String, completion: @escaping() -> Void) {
+//        gitHubService.searchUser(forUsername: username) { [weak self] result in
+//            switch result {
+//            case .success(let users):
+//                self?.users = users
+//                completion()
+//            case .failure:
+//                self?.users = nil
+//                completion()
+//            }
+//        }
+//    }
+    
+    func searchUser(forUsername username: String) async throws {
+        if username == "" {
+            self.users = nil
+        } else {
+            self.users = try await gitHubService.searchUser(forUsername: username)
         }
+        
+        
     }
     
     func didSelectItemAt(index: Int) {

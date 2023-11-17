@@ -94,27 +94,31 @@ class GitHubService {
     }
     
     
-    func searchUser(forUsername username: String, completion: @escaping(Result<Users, Error>) -> Void) {
-        
-        if username == "" {
-            completion(.failure(GitHubError.emptyUsername))
-        }
-        
+//    func searchUser(forUsername username: String, completion: @escaping(Result<Users, Error>) -> Void) {
+//        if username == "" {
+//            completion(.failure(GitHubError.emptyUsername))
+//        }
+//
+//        let request = GitHubAPI.searchUser(query: username)
+//        provider.request(MultiTarget(request)) { result in
+//            switch result {
+//            case .success(let response):
+//                do {
+//                    self.decoder.keyDecodingStrategy = .convertFromSnakeCase
+//                    let users = try self.decoder.decode(Users.self, from: response.data)
+//                    completion(.success(users))
+//                } catch {
+//                    completion(.failure(error))
+//                }
+//            case .failure(let error):
+//                completion(.failure(error))
+//            }
+//        }
+//    }
+    
+    func searchUser(forUsername username: String) async throws -> Users {
         let request = GitHubAPI.searchUser(query: username)
-        provider.request(MultiTarget(request)) { result in
-            switch result {
-            case .success(let response):
-                do {
-                    self.decoder.keyDecodingStrategy = .convertFromSnakeCase
-                    let users = try self.decoder.decode(Users.self, from: response.data)
-                    completion(.success(users))
-                } catch {
-                    completion(.failure(error))
-                }
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
+        return try await networkManager.request(request)
     }
     
     func checkIfUserFollowing(username: String, completion: @escaping(Result<Bool, Error>) -> Void) {
@@ -163,20 +167,25 @@ class GitHubService {
         }
     }
     
-    func getUserRepos(username: String, completion: @escaping(Result<[Repo], Error>) -> Void) {
+//    func getUserRepos(username: String, completion: @escaping(Result<[Repo], Error>) -> Void) {
+//        let request = GitHubAPI.getUserRepos(username: username)
+//        provider.request(MultiTarget(request)) { result in
+//            switch result {
+//            case .success(let response):
+//                do {
+//                    let repos = try self.decoder.decode([Repo].self, from: response.data)
+//                    completion(.success(repos))
+//                } catch {
+//                    completion(.failure(error))
+//                }
+//            case .failure(let error):
+//                completion(.failure(error))
+//            }
+//        }
+//    }
+    
+    func getUserRepos(username: String) async throws -> [Repo] {
         let request = GitHubAPI.getUserRepos(username: username)
-        provider.request(MultiTarget(request)) { result in
-            switch result {
-            case .success(let response):
-                do {
-                    let repos = try self.decoder.decode([Repo].self, from: response.data)
-                    completion(.success(repos))
-                } catch {
-                    completion(.failure(error))
-                }
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
+        return try await networkManager.request(request)
     }
 }

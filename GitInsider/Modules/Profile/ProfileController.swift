@@ -98,9 +98,10 @@ class ProfileController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "repoCell")
-        viewModel?.getUserRepos(username: viewModel?.user.login ?? "", completion: {
-            self.tableView.reloadData()
-        })
+        Task {
+            try await viewModel?.getUserRepos()
+            tableView.reloadData()
+        }
     }
 }
 
