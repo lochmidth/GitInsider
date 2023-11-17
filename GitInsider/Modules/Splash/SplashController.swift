@@ -64,8 +64,8 @@ class SplashController: UIViewController {
     private func animateLogoAndCheckAuth() {
         UIView.animate(withDuration: 3.0) {
             self.stack.alpha = 1
-        } completion: { _ in
-            self.viewModel?.checkForAuth()
+        } completion: { [weak self] _ in
+            self?.viewModel?.checkForAuth()
         }
 
     }

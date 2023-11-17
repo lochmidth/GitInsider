@@ -60,19 +60,12 @@ class HomeViewModel {
         coordinator?.signOut()
     }
     
-    func goToProfile(withUser user: User, authLogin: String) {
-        coordinator?.goToProfile(withUser: user, authLogin: authLogin)
+    func goToProfile(withUser user: User) {
+        coordinator?.goToProfile(withUser: user)
     }
     
-    func getUser(forUsername username: String, completion: @escaping(User) -> Void) {
-        gitHubService.getUser(forUsername: username) { result in
-            switch result {
-            case .success(let user):
-                completion(user)
-            case .failure(let error):
-                print("DEBUG: Error while fetching user with username, \(error.localizedDescription)")
-            }
-        }
+    func getUser(forUsername username: String) async throws -> User {
+        return try await gitHubService.getUser(forUsername: username)
     }
     
     func searchUser(forUsername username: String, completion: @escaping() -> Void) {
@@ -90,8 +83,11 @@ class HomeViewModel {
     
     func didSelectItemAt(index: Int) {
         guard let username = users?.items[index].login else { return }
-        getUser(forUsername: username, completion: { [weak self] user in
-            self?.goToProfile(withUser: user, authLogin: self?.authLogin ?? "")
-        })
+        Task {
+            let user = try await getUser(forUsername: username)
+            DispatchQueue.main.async {
+                self.goToProfile(withUser: user)
+            }
+        }
     }
 }

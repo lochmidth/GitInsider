@@ -104,7 +104,7 @@ class HomeController: UIViewController {
     
     @objc func didTapProfileImage() {
         guard let user = viewModel?.user else { return }
-        viewModel?.goToProfile(withUser: user, authLogin: viewModel?.authLogin ?? "")
+        viewModel?.goToProfile(withUser: user)
     }
     
     @objc func handleKeayboardDismiss() {

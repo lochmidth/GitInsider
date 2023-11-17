@@ -8,6 +8,10 @@
 import Foundation
 import Moya
 
+enum NetworkError: Error {
+    case invlalidData
+}
+
 class NetworkManager {
     private let provider: MoyaProvider<MultiTarget>
     private let decoder: JSONDecoder
@@ -19,13 +23,25 @@ class NetworkManager {
         decoder.keyDecodingStrategy = .convertFromSnakeCase
     }
     
-    func request<T: Codable>(_ target: MultiTarget) async throws -> T {
+    func request<T: Codable>(_ target: TargetType) async throws -> T {
         return try await withCheckedThrowingContinuation({ continuation in
-            provider.request(target) { result in
+            provider.request(MultiTarget(target)) { result in
                 switch result {
-                case .success(let response)
+                case .success(let response):
+                    do {
+                        let value = try self.decoder.decode(T.self, from: response.data)
+                        continuation.resume(with: .success(value))
+                    } catch {
+                        continuation.resume(with: .failure(NetworkError.invlalidData))
+                    }
+                case .failure(let error):
+                    continuation.resume(with: .failure(error))
                 }
             }
         })
     }
+    
+    
+    
+    
 }

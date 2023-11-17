@@ -14,10 +14,10 @@ class ProfileViewModel {
     var authLogin: String
     var coordinator: AppCoordinator?
     
-    init(user: User, authLogin: String, gitHubService: GitHubService = GitHubService()) {
+    init(user: User, gitHubService: GitHubService = GitHubService()) {
         self.user = user
         self.gitHubService = gitHubService
-        self.authLogin = authLogin
+        self.authLogin = UserDefaults.standard.object(forKey: "Authenticated username") as! String
     }
     
     func checkIfUserFollowing(username: String, completion: @escaping(Bool) -> Void) {
