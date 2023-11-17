@@ -225,10 +225,7 @@ extension HomeController: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let username = viewModel?.users?.items[indexPath.item].login else { return }
-        viewModel?.getUser(forUsername: username, completion: { [weak self] user in
-            self?.viewModel?.goToProfile(withUser: user, authLogin: self?.viewModel?.authLogin ?? "")
-        })
+        viewModel?.didSelectItemAt(index: indexPath.item)
     }
     
     

@@ -17,6 +17,7 @@ enum GitHubAPI {
     case checkIfUserFollowing(username: String)
     case follow(username: String)
     case unfollow(username: String)
+    case getUserRepos(username: String)
 }
 
 extension GitHubAPI: TargetType {
@@ -24,17 +25,7 @@ extension GitHubAPI: TargetType {
         switch self {
         case .exchangeToken:
             return URL(string: "https://github.com")!
-        case .getCurrentUser:
-            return URL(string: "https://api.github.com")!
-        case .getUser:
-            return URL(string: "https://api.github.com")!
-        case .searchUser:
-            return URL(string: "https://api.github.com")!
-        case .checkIfUserFollowing:
-            return URL(string: "https://api.github.com")!
-        case .follow:
-            return URL(string: "https://api.github.com")!
-        case . unfollow:
+        default:
             return URL(string: "https://api.github.com")!
         }
     }
@@ -55,6 +46,8 @@ extension GitHubAPI: TargetType {
             return "/user/following/\(username)"
         case .unfollow(let username):
             return "/user/following/\(username)"
+        case .getUserRepos(let username):
+            return "/users/\(username)/repos"
         }
     }
     
@@ -62,18 +55,12 @@ extension GitHubAPI: TargetType {
         switch self {
         case .exchangeToken:
             return .post
-        case .getCurrentUser:
-            return .get
-        case .getUser:
-            return .get
-        case .searchUser:
-            return .get
-        case .checkIfUserFollowing:
-            return .get
         case .follow:
             return .put
         case .unfollow:
             return .delete
+        default:
+            return .get
         }
     }
     
@@ -91,17 +78,9 @@ extension GitHubAPI: TargetType {
                 "redirect_uri": gitHubRedirectUri
             ]
             return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
-        case .getCurrentUser:
-            return .requestPlain
-        case .getUser:
-            return .requestPlain
         case .searchUser(let query):
             return .requestParameters(parameters: ["q": query], encoding: URLEncoding.queryString)
-        case .checkIfUserFollowing:
-            return .requestPlain
-        case .follow:
-            return .requestPlain
-        case .unfollow:
+        default:
             return .requestPlain
         }
     }
@@ -110,48 +89,7 @@ extension GitHubAPI: TargetType {
         switch self {
         case .exchangeToken:
             return ["Accept": "application/json"]
-        case .getCurrentUser:
-            let keychain = KeychainSwift()
-            let accessToken = keychain.get("Access Token")
-            return [
-                "Accept": "application/vnd.github+json",
-                "Authorization": "Bearer \(accessToken ?? "")",
-                "X-GitHub-Api-Version": "2022-11-28"
-            ]
-        case .getUser:
-            let keychain = KeychainSwift()
-            let accessToken = keychain.get("Access Token")
-            return [
-                "Accept": "application/vnd.github+json",
-                "Authorization": "Bearer \(accessToken ?? "")",
-                "X-GitHub-Api-Version": "2022-11-28"
-            ]
-        case .searchUser:
-            let keychain = KeychainSwift()
-            let accessToken = keychain.get("Access Token")
-            return [
-                "Accept": "application/vnd.github+json",
-                "Authorization": "Bearer \(accessToken ?? "")",
-                "X-GitHub-Api-Version": "2022-11-28"
-            ]
-        case .checkIfUserFollowing:
-            let keychain = KeychainSwift()
-            let accessToken = keychain.get("Access Token")
-            return [
-                "Accept": "application/vnd.github+json",
-                "Authorization": "Bearer \(accessToken ?? "")",
-                "X-GitHub-Api-Version": "2022-11-28"
-            ]
-        case .follow:
-            let keychain = KeychainSwift()
-            let accessToken = keychain.get("Access Token")
-            return [
-                "Accept": "application/vnd.github+json",
-                "Authorization": "Bearer \(accessToken ?? "")",
-                "Content-Length": "0",
-                "X-GitHub-Api-Version": "2022-11-28"
-            ]
-        case .unfollow:
+        default:
             let keychain = KeychainSwift()
             let accessToken = keychain.get("Access Token")
             return [
@@ -161,8 +99,4 @@ extension GitHubAPI: TargetType {
             ]
         }
     }
-    
-//    var validationType: ValidationType {
-//            return .successAndRedirectCodes
-//        }
 }

@@ -28,7 +28,7 @@ class HomeViewModel {
         if let name = user?.name?.components(separatedBy: " ").first {
             return "Hi \(name)!"
         }
-        return "Hi \(user?.login ?? "User")!" 
+        return "Hi \(user?.login ?? "User")!"
     }
     
     var greetingText: String {
@@ -86,5 +86,12 @@ class HomeViewModel {
                 completion()
             }
         }
+    }
+    
+    func didSelectItemAt(index: Int) {
+        guard let username = users?.items[index].login else { return }
+        getUser(forUsername: username, completion: { [weak self] user in
+            self?.goToProfile(withUser: user, authLogin: self?.authLogin ?? "")
+        })
     }
 }

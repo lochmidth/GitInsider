@@ -10,6 +10,7 @@ import Foundation
 class ProfileViewModel {
     let gitHubService: GitHubService
     var user: User
+    var repos = [Repo]()
     var authLogin: String
     var coordinator: AppCoordinator?
     
@@ -48,6 +49,18 @@ class ProfileViewModel {
                 completion()
             case .failure(let error):
                 print("DEBUG: Error while unfollowing the user, \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func getUserRepos(username: String, completion: @escaping() -> Void) {
+        gitHubService.getUserRepos(username: username) { [weak self] result in
+            switch result {
+            case .success(let repos):
+                self?.repos = repos
+                completion()
+            case .failure(let error):
+                print("DEBUG: Error while feetching repos, \(error.localizedDescription)")
             }
         }
     }
