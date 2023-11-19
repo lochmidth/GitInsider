@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - AccessTokenResponse
+// MARK: - Access Token Response
 
 struct AccessTokenResponse: Codable {
     let accessToken: String
@@ -15,4 +15,10 @@ struct AccessTokenResponse: Codable {
     let refreshToken: String
     let refreshTokenExpiresIn: Int
     let tokenType, scope: String
+}
+
+//MARK: - Empty Response
+
+struct EmptyResponse: Codable {  //Check if auth. user following
+    let message: String?
 }

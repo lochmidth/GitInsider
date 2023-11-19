@@ -81,16 +81,24 @@ class ProfileController: UIViewController {
                          paddingTop: 4, paddingLeft: 18, paddingRight: 18)
     }
     
+//    private func configureProfileHeader() {
+//        guard let viewModel = viewModel else { return }
+//        viewModel.checkIfUserFollowing(username: viewModel.user.login) { [weak self] followingStatus in
+//            if viewModel.authLogin == viewModel.user.login {
+//                self?.profileHeader.viewModel = ProfileHeaderViewModel(user: viewModel.user, followingStatus: followingStatus, config: .editProfile)
+//                self?.profileHeader.delegate = self
+//            } else {
+//                self?.profileHeader.viewModel = ProfileHeaderViewModel(user: viewModel.user, followingStatus: followingStatus)
+//                self?.profileHeader.delegate = self
+//            }
+//        }
+//    }
+    
     private func configureProfileHeader() {
         guard let viewModel = viewModel else { return }
-        viewModel.checkIfUserFollowing(username: viewModel.user.login) { [weak self] followingStatus in
-            if viewModel.authLogin == viewModel.user.login {
-                self?.profileHeader.viewModel = ProfileHeaderViewModel(user: viewModel.user, followingStatus: followingStatus, config: .editProfile)
-                self?.profileHeader.delegate = self
-            } else {
-                self?.profileHeader.viewModel = ProfileHeaderViewModel(user: viewModel.user, followingStatus: followingStatus)
-                self?.profileHeader.delegate = self
-            }
+        Task {
+            self.profileHeader.viewModel = try await viewModel.configureProfileHeaderViewModel()
+            self.profileHeader.delegate = self
         }
     }
     
@@ -131,26 +139,27 @@ extension ProfileController: UITableViewDelegate, UITableViewDataSource {
 
 extension ProfileController: ProfileHeaderDelegate {
     func follow(username: String) {
-        viewModel?.follow(username: username, completion: {
+        Task {
+            try await viewModel?.follow(username: username)
             print("DEBUG: \(username) followed.")
-            self.profileHeader.viewModel?.config = .following
+            profileHeader.viewModel?.config = .following
             
             UIView.animate(withDuration: 0.5) {
                 self.profileHeader.configureViewModel()
             }
-        })
+        }
     }
     
     func unfollow(username: String) {
-        print("DEBUG: unfollow pressed")
-        viewModel?.unfollow(username: username, completion: {
+        Task {
+            try await viewModel?.unfollow(username: username)
             print("DEBUG: \(username) unfollowed.")
             self.profileHeader.viewModel?.config = .notFollowing
             
             UIView.animate(withDuration: 0.5) {
                 self.profileHeader.configureViewModel()
             }
-        })
+        }
     }
     
     func editProfile() {

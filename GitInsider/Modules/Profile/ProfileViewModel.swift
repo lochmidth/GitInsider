@@ -20,37 +20,27 @@ class ProfileViewModel {
         self.authLogin = UserDefaults.standard.object(forKey: "Authenticated username") as! String
     }
     
-    func checkIfUserFollowing(username: String, completion: @escaping(Bool) -> Void) {
-        gitHubService.checkIfUserFollowing(username: username) { result in
-            switch result {
-            case .success(let followingStatus):
-                completion(followingStatus)
-            case .failure(let error):
-                print("DEBUG: Error while fecthing following information, \(error.localizedDescription)")
-            }
+    func configureProfileHeaderViewModel() async throws -> ProfileHeaderViewModel {
+        if user.login == authLogin {
+            return ProfileHeaderViewModel(user: user, followingStatus: false, config: .editProfile)
+        } else {
+            let isFollowing = try await checkIfUserFollowing()
+            return ProfileHeaderViewModel(user: user, followingStatus: isFollowing)
         }
     }
     
-    func follow(username: String, completion: @escaping() -> Void) {
-        gitHubService.follow(username: username) { result in
-            switch result {
-            case .success:
-                completion()
-            case .failure(let error):
-                print("DEBUG: Error while following the user, \(error.localizedDescription)")
-            }
-        }
+    func checkIfUserFollowing() async throws -> Bool {
+        return try await gitHubService.checkIfUserFollowing(username: user.login)
     }
     
-    func unfollow(username: String, completion: @escaping() -> Void) {
-        gitHubService.unfollow(username: username) { result in
-            switch result {
-            case .success:
-                completion()
-            case .failure(let error):
-                print("DEBUG: Error while unfollowing the user, \(error.localizedDescription)")
-            }
-        }
+    func follow(username: String) async throws {
+        try await gitHubService.follow(username: username)
+        return
+    }
+    
+    func unfollow(username: String) async throws {
+        try await gitHubService.unfollow(username: username)
+        return
     }
     
     func getUserRepos() async throws {

@@ -10,6 +10,8 @@ import Moya
 
 enum GitHubError: Error {
     case emptyUsername
+    case followFailed
+    case unfollowFailed
 }
 
 class GitHubService {
@@ -121,49 +123,48 @@ class GitHubService {
         return try await networkManager.request(request)
     }
     
-    func checkIfUserFollowing(username: String, completion: @escaping(Result<Bool, Error>) -> Void) {
+//    func checkIfUserFollowing(username: String, completion: @escaping(Result<Bool, Error>) -> Void) {
+//        let request = GitHubAPI.checkIfUserFollowing(username: username)
+//        provider.request(MultiTarget(request)) { result in
+//            switch result {
+//            case .success(let response):
+//                print(response.data)
+//                if response.statusCode == 204 {
+//                    completion(.success(true))
+//                } else if response.statusCode == 404 {
+//                    completion(.success(false))
+//                } else {
+//                    completion(.success(false))
+//                }
+//            case .failure(let error):
+//                completion(.failure(error))
+//            }
+//        }
+//    }
+    
+    func checkIfUserFollowing(username: String) async throws -> Bool {
         let request = GitHubAPI.checkIfUserFollowing(username: username)
-        provider.request(MultiTarget(request)) { result in
-            switch result {
-            case .success(let response):
-                if response.statusCode == 204 {
-                    completion(.success(true))
-                } else if response.statusCode == 404 {
-                    completion(.success(false))
-                } else {
-                    completion(.success(false))
-                }
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
+        return try await networkManager.requestIsStatusValid(request)
     }
     
-    func follow(username: String, completion: @escaping(Result<Void, Error>) -> Void) {
+    
+    func follow(username: String) async throws {
         let request = GitHubAPI.follow(username: username)
-        provider.request(MultiTarget(request)) { result in
-            switch result {
-            case .success(let response):
-                if response.statusCode == 204 {
-                    completion(.success(()))
-                }
-            case .failure(let error):
-                completion(.failure(error))
-            }
+        let success = try await networkManager.requestIsStatusValid(request)
+        if success {
+            return
+        } else {
+            throw GitHubError.followFailed
         }
     }
     
-    func unfollow(username: String, completion: @escaping(Result<Void, Error>) -> Void) {
+    func unfollow(username: String) async throws {
         let request = GitHubAPI.unfollow(username: username)
-        provider.request(MultiTarget(request)) { result in
-            switch result {
-            case .success(let response):
-                if response.statusCode == 204 {
-                    completion(.success(()))
-                }
-            case .failure(let error):
-                completion(.failure(error))
-            }
+        let success = try await networkManager.requestIsStatusValid(request)
+        if success {
+            return
+        } else {
+            throw GitHubError.unfollowFailed
         }
     }
     

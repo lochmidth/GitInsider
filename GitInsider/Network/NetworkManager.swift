@@ -41,7 +41,22 @@ class NetworkManager {
         })
     }
     
-    
+    func requestIsStatusValid(_ target: TargetType) async throws -> Bool {
+        return try await withCheckedThrowingContinuation({ continuation in
+            provider.request(MultiTarget(target)) { result in
+                switch result {
+                case .success(let response):
+                    if response.statusCode == 204 {
+                        continuation.resume(with: .success(true))
+                    } else {
+                        continuation.resume(with: .success(false))
+                    }
+                case .failure(let error):
+                    continuation.resume(with: .failure(error))
+                }
+            }
+        })
+    }
     
     
 }
