@@ -7,10 +7,6 @@
 
 import UIKit
 
-extension Notification.Name {
-    static let didReceiveURL = Notification.Name("DidReceiveURLNotification")
-}
-
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -26,11 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
         return true
-    }
-    
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        NotificationCenter.default.post(name: .didReceiveURL, object: nil, userInfo: ["url": url])
-        return false
     }
 }
 

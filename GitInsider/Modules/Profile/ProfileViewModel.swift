@@ -47,4 +47,9 @@ class ProfileViewModel {
         self.repos = try await gitHubService.getUserRepos(username: user.login)
     }
     
+    func didSelectRowAt(index: Int) {
+        guard let url = URL(string: repos[index].htmlUrl) else { return }
+        coordinator?.goToSafari(withUrl: url)
+    }
+    
 }

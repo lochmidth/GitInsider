@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import SkeletonView
 
 protocol ProfileHeaderDelegate: AnyObject {
     func follow(username: String)
@@ -30,6 +31,7 @@ class ProfileHeader: UIView {
         iv.setDimensions(height: 100, width: 100)
         iv.layer.cornerRadius = 100 / 2
         iv.layer.masksToBounds = true
+        iv.isSkeletonable = true
         return iv
     }()
     
@@ -41,6 +43,7 @@ class ProfileHeader: UIView {
         button.layer.cornerRadius = 30 / 2
         button.layer.borderColor = UIColor.white.cgColor
         button.layer.borderWidth = 2
+        button.isSkeletonable = true
         
         button.addTarget(self, action: #selector(didTapEditFollowButton), for: .touchUpInside)
         
@@ -51,6 +54,7 @@ class ProfileHeader: UIView {
         let label = UILabel()
         label.textColor = .white
         label.font = UIFont.boldSystemFont(ofSize: 30)
+        label.isSkeletonable = true
         return label
     }()
     
@@ -58,6 +62,7 @@ class ProfileHeader: UIView {
         let label = UILabel()
         label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 18)
+        label.isSkeletonable = true
         return label
     }()
     
@@ -67,6 +72,7 @@ class ProfileHeader: UIView {
         label.numberOfLines = 0
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 14)
+        label.isSkeletonable = true
         return label
     }()
     
@@ -76,6 +82,7 @@ class ProfileHeader: UIView {
         label.numberOfLines = 2
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.isSkeletonable = true
         return label
     }()
     
@@ -85,6 +92,7 @@ class ProfileHeader: UIView {
         label.numberOfLines = 2
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.isSkeletonable = true
         return label
     }()
     
@@ -94,6 +102,7 @@ class ProfileHeader: UIView {
         label.numberOfLines = 2
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.isSkeletonable = true
         return label
     }()
     
@@ -126,6 +135,7 @@ class ProfileHeader: UIView {
     //MARK: - Helpers
     
     func configureViewModel() {
+        showSkeletonGradientAnimation(false)
         guard let viewModel = viewModel else { return }
         profileImageView.kf.setImage(with: viewModel.profileImageUrl)
         editButton.backgroundColor = viewModel.editButtonColor
@@ -139,26 +149,45 @@ class ProfileHeader: UIView {
     }
     
     private func configureUI() {
+        isSkeletonable = true
         backgroundColor = .githubGrey
         
         addSubview(editButton)
         editButton.anchor(top: topAnchor, right: rightAnchor, paddingTop: 4, paddingRight: 4)
         
         let nameStack = UIStackView(arrangedSubviews: [profileImageView, fullnameLabel, usernameLabel, bioLabel])
+        nameStack.isSkeletonable = true
         nameStack.axis = .vertical
         nameStack.alignment = .center
         
         let statsStack = UIStackView(arrangedSubviews: [followersLabel, followingLabel, repoLabel])
         statsStack.axis = .horizontal
+        statsStack.isSkeletonable = true
         statsStack.alignment = .center
         statsStack.distribution = .fill
         
         let stack = UIStackView(arrangedSubviews: [nameStack, statsStack])
+        stack.isSkeletonable = true
         stack.axis = .vertical
         stack.spacing = 18
         
         addSubview(stack)
         stack.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor,
                      paddingTop: 24, paddingLeft: 12, paddingBottom: 24, paddingRight: 12)
+        
+        showSkeletonGradientAnimation(true)
+    }
+    
+    private func showSkeletonGradientAnimation(_ value: Bool) {
+        for subview in subviews {
+            if subview.isSkeletonable {
+                switch value {
+                case true:
+                    subview.showAnimatedGradientSkeleton(usingGradient: .init(baseColor: .githubGrey), transition: .crossDissolve(0.25))
+                case false:
+                    subview.hideSkeleton(transition: .crossDissolve(1))
+                }
+            }
+        }
     }
 }

@@ -17,7 +17,7 @@ enum OAuthError: Error {
 class OAuthManager {
     static let shared = OAuthManager()
     
-    func handleCallBack(withUrl url: URL) async throws -> String {
+    func handleCallBack(fromUrl url: URL) async throws -> String {
         guard url.scheme == "gitinsider" else { throw OAuthError.invalidScheme }
         guard url.host() == "github" && url.path() == "/callback" else { throw OAuthError.invalidHost}
         guard let query = URLComponents(url: url, resolvingAgainstBaseURL: true) else { throw OAuthError.invalidQueryItem}

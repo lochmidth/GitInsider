@@ -14,18 +14,16 @@ class LoginViewModel {
     
     weak var coordinator: AppCoordinator?
     
-    let oAuthManager: OAuthManager
     let gitHubService: GitHubService
     let keychain: KeychainSwift
     
     //MARK: - Lifecycle
     
-    init(oAuthManager: OAuthManager = OAuthManager(), gitHubService: GitHubService = GitHubService(), keychain: KeychainSwift = KeychainSwift()) {
-        self.oAuthManager = oAuthManager
+    init(gitHubService: GitHubService = GitHubService(), keychain: KeychainSwift = KeychainSwift()) {
         self.gitHubService = gitHubService
         self.keychain = keychain
         
-        NotificationCenter.default.addObserver(self, selector: #selector(handleReceivedUrl(_:)), name: .didReceiveURL, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleReceiveCode(_:)), name: .didReceiveCode, object: nil)
     }
     
     deinit {
@@ -34,10 +32,9 @@ class LoginViewModel {
     
     //MARK: - Actions
     
-    @objc func handleReceivedUrl(_ notification: Notification) {
-        guard let url = notification.userInfo?["url"] as? URL else { return }
+    @objc func handleReceiveCode(_ notification: Notification) {
+        guard let code = notification.userInfo?["code"] as? String else { return }
         Task {
-            let code = try await oAuthManager.handleCallBack(withUrl: url)
             let accessTokenResponse = try await gitHubService.exchangeToken(code: code)
             print("DEBUG: Access Token is received: \(accessTokenResponse.accessToken)")
             keychain.set(accessTokenResponse.accessToken, forKey: "Access Token")

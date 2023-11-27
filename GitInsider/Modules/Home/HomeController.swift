@@ -183,6 +183,8 @@ class HomeController: UIViewController {
     }
 }
 
+//MARK: - UISearchBarDelegate
+
 extension HomeController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchTimer?.invalidate()
@@ -200,6 +202,8 @@ extension HomeController: UISearchBarDelegate {
         searchBar.resignFirstResponder()
     }
 }
+
+//MARK: - UICollectionViewDelegate/DataSource
 
 extension HomeController: UICollectionViewDelegate, UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {

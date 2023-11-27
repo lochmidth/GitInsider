@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		C25572392B07D01600B10DF9 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25572382B07D01600B10DF9 /* NetworkManager.swift */; };
+		C255723C2B0E470D00B10DF9 /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = C255723B2B0E470D00B10DF9 /* SkeletonView */; };
+		C25572422B0FE71700B10DF9 /* WebController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25572412B0FE71700B10DF9 /* WebController.swift */; };
+		C25572442B14C18000B10DF9 /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25572432B14C18000B10DF9 /* WebViewModel.swift */; };
 		C265DA432B028F310006EF39 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C265DA422B028F310006EF39 /* User.swift */; };
 		C265DA492B038C960006EF39 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C265DA482B038C960006EF39 /* Constants.swift */; };
 		C265DA4C2B0391900006EF39 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C265DA4B2B0391900006EF39 /* KeychainSwift */; };
@@ -15,8 +18,6 @@
 		C265DA512B03D5150006EF39 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C265DA502B03D5150006EF39 /* SplashViewModel.swift */; };
 		C265DA542B03E54C0006EF39 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C265DA532B03E54C0006EF39 /* HomeController.swift */; };
 		C265DA562B03E5520006EF39 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C265DA552B03E5520006EF39 /* HomeViewModel.swift */; };
-		C265DA592B03FE1B0006EF39 /* SafariController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C265DA582B03FE1B0006EF39 /* SafariController.swift */; };
-		C265DA5B2B03FE230006EF39 /* SafariViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C265DA5A2B03FE230006EF39 /* SafariViewModel.swift */; };
 		C2D592652AFBC03D00B2D271 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D592642AFBC03D00B2D271 /* AppDelegate.swift */; };
 		C2D5926C2AFBC03D00B2D271 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2D5926A2AFBC03D00B2D271 /* Main.storyboard */; };
 		C2D5926E2AFBC03F00B2D271 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2D5926D2AFBC03F00B2D271 /* Assets.xcassets */; };
@@ -62,14 +63,14 @@
 
 /* Begin PBXFileReference section */
 		C25572382B07D01600B10DF9 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		C25572412B0FE71700B10DF9 /* WebController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebController.swift; sourceTree = "<group>"; };
+		C25572432B14C18000B10DF9 /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
 		C265DA422B028F310006EF39 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C265DA482B038C960006EF39 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C265DA4E2B03D5080006EF39 /* SplashController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashController.swift; sourceTree = "<group>"; };
 		C265DA502B03D5150006EF39 /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
 		C265DA532B03E54C0006EF39 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		C265DA552B03E5520006EF39 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		C265DA582B03FE1B0006EF39 /* SafariController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariController.swift; sourceTree = "<group>"; };
-		C265DA5A2B03FE230006EF39 /* SafariViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariViewModel.swift; sourceTree = "<group>"; };
 		C2D592612AFBC03D00B2D271 /* GitInsider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitInsider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2D592642AFBC03D00B2D271 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C2D5926B2AFBC03D00B2D271 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -103,6 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C255723C2B0E470D00B10DF9 /* SkeletonView in Frameworks */,
 				C265DA4C2B0391900006EF39 /* KeychainSwift in Frameworks */,
 				C2D592BB2AFD841100B2D271 /* Kingfisher in Frameworks */,
 				C2D592B82AFD83FA00B2D271 /* Moya in Frameworks */,
@@ -144,13 +146,13 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
-		C265DA572B03FE0E0006EF39 /* Safari */ = {
+		C265DA572B03FE0E0006EF39 /* Web */ = {
 			isa = PBXGroup;
 			children = (
-				C265DA582B03FE1B0006EF39 /* SafariController.swift */,
-				C265DA5A2B03FE230006EF39 /* SafariViewModel.swift */,
+				C25572412B0FE71700B10DF9 /* WebController.swift */,
+				C25572432B14C18000B10DF9 /* WebViewModel.swift */,
 			);
-			path = Safari;
+			path = Web;
 			sourceTree = "<group>";
 		};
 		C2D592582AFBC03D00B2D271 = {
@@ -175,8 +177,8 @@
 		C2D592632AFBC03D00B2D271 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				C265DA572B03FE0E0006EF39 /* Safari */,
 				C265DA4D2B03D4FF0006EF39 /* Splash */,
+				C265DA572B03FE0E0006EF39 /* Web */,
 				C2D5929A2AFBC3C000B2D271 /* Login */,
 				C265DA522B03E53E0006EF39 /* Home */,
 				C2EF76C32B0645C500A7DEDA /* Profile */,
@@ -315,6 +317,7 @@
 				C2D592B72AFD83FA00B2D271 /* Moya */,
 				C2D592BA2AFD841100B2D271 /* Kingfisher */,
 				C265DA4B2B0391900006EF39 /* KeychainSwift */,
+				C255723B2B0E470D00B10DF9 /* SkeletonView */,
 			);
 			productName = GitInsider;
 			productReference = C2D592612AFBC03D00B2D271 /* GitInsider.app */;
@@ -392,6 +395,7 @@
 				C2D592B62AFD83FA00B2D271 /* XCRemoteSwiftPackageReference "Moya" */,
 				C2D592B92AFD841100B2D271 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				C265DA4A2B0391900006EF39 /* XCRemoteSwiftPackageReference "keychain-swift" */,
+				C255723A2B0E470D00B10DF9 /* XCRemoteSwiftPackageReference "SkeletonView" */,
 			);
 			productRefGroup = C2D592622AFBC03D00B2D271 /* Products */;
 			projectDirPath = "";
@@ -436,6 +440,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C25572422B0FE71700B10DF9 /* WebController.swift in Sources */,
+				C25572442B14C18000B10DF9 /* WebViewModel.swift in Sources */,
 				C25572392B07D01600B10DF9 /* NetworkManager.swift in Sources */,
 				C2D592A02AFBC47F00B2D271 /* Utilities.swift in Sources */,
 				C2EF76C02B05469A00A7DEDA /* UserCellViewModel.swift in Sources */,
@@ -456,9 +462,7 @@
 				C2EF76C22B062A2F00A7DEDA /* Users.swift in Sources */,
 				C2EF76C72B0645E400A7DEDA /* ProfileViewModel.swift in Sources */,
 				C2D5929E2AFBC3D100B2D271 /* LoginViewModel.swift in Sources */,
-				C265DA592B03FE1B0006EF39 /* SafariController.swift in Sources */,
 				C265DA492B038C960006EF39 /* Constants.swift in Sources */,
-				C265DA5B2B03FE230006EF39 /* SafariViewModel.swift in Sources */,
 				C2D592952AFBC08800B2D271 /* Extensions.swift in Sources */,
 				C2EF76D12B07945600A7DEDA /* Repo.swift in Sources */,
 				C265DA432B028F310006EF39 /* User.swift in Sources */,
@@ -812,6 +816,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		C255723A2B0E470D00B10DF9 /* XCRemoteSwiftPackageReference "SkeletonView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Juanpe/SkeletonView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		C265DA4A2B0391900006EF39 /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/evgenyneu/keychain-swift.git";
@@ -839,6 +851,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		C255723B2B0E470D00B10DF9 /* SkeletonView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C255723A2B0E470D00B10DF9 /* XCRemoteSwiftPackageReference "SkeletonView" */;
+			productName = SkeletonView;
+		};
 		C265DA4B2B0391900006EF39 /* KeychainSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C265DA4A2B0391900006EF39 /* XCRemoteSwiftPackageReference "keychain-swift" */;

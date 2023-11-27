@@ -10,14 +10,14 @@ import SafariServices
 import KeychainSwift
 
 protocol Coordinator: AnyObject {
-    var child: [Coordinator] { get set }
+    var children: [Coordinator] { get set }
     var navigationController : UINavigationController { get set }
     
     func start()
 }
 
 class AppCoordinator: Coordinator {
-    var child: [Coordinator] = []
+    var children: [Coordinator] = []
     var navigationController: UINavigationController
     let keychain = KeychainSwift()
     
@@ -67,14 +67,18 @@ class AppCoordinator: Coordinator {
     
     func goToLoginOnSafari() {
         guard let url = URL(string: gitHubAuthLink) else { return }
-        //        UIApplication.shared.open(url)
-        let safari = SFSafariViewController(url: url)
-        //        safari.modalPresentationStyle = .pageSheet
+        let safari = WebController(url: url)
         navigationController.pushViewController(safari, animated: true)
     }
     
     func goToSignUpOnSafari() {
         guard let url = URL(string: gitHubSignupLink) else { return }
-        UIApplication.shared.open(url)
+        let safari = WebController(url: url)
+        navigationController.pushViewController(safari, animated: true)
+    }
+    
+    func goToSafari(withUrl url: URL) {
+        let safari = WebController(url: url)
+        navigationController.pushViewController(safari, animated: true)
     }
 }
