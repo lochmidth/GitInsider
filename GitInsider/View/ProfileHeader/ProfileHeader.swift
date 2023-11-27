@@ -38,11 +38,11 @@ class ProfileHeader: UIView {
     private lazy var editButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setDimensions(height: 30, width: 30)
+        button.backgroundColor = .clear
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
-        button.layer.cornerRadius = 30 / 2
-        button.layer.borderColor = UIColor.white.cgColor
-        button.layer.borderWidth = 2
+        button.contentHorizontalAlignment = .fill
+        button.contentVerticalAlignment = .fill
         button.isSkeletonable = true
         
         button.addTarget(self, action: #selector(didTapEditFollowButton), for: .touchUpInside)
@@ -127,8 +127,10 @@ class ProfileHeader: UIView {
             delegate?.editProfile()
         case .notFollowing:
             delegate?.follow(username: viewModel.user.login)
+            viewModel.user.followers += 1
         case .following:
             delegate?.unfollow(username: viewModel.user.login)
+            viewModel.user.followers -= 1
         }
     }
     
@@ -138,8 +140,7 @@ class ProfileHeader: UIView {
         showSkeletonGradientAnimation(false)
         guard let viewModel = viewModel else { return }
         profileImageView.kf.setImage(with: viewModel.profileImageUrl)
-        editButton.backgroundColor = viewModel.editButtonColor
-        editButton.setTitle(viewModel.editButtonText, for: .normal)
+        editButton.setImage(viewModel.editButtonImage, for: .normal)
         fullnameLabel.text = viewModel.fullnameText
         usernameLabel.text = viewModel.usernameText
         bioLabel.text = viewModel.bioText
@@ -153,7 +154,7 @@ class ProfileHeader: UIView {
         backgroundColor = .githubGrey
         
         addSubview(editButton)
-        editButton.anchor(top: topAnchor, right: rightAnchor, paddingTop: 4, paddingRight: 4)
+        editButton.anchor(top: topAnchor, right: rightAnchor, paddingTop: 8, paddingRight: 8)
         
         let nameStack = UIStackView(arrangedSubviews: [profileImageView, fullnameLabel, usernameLabel, bioLabel])
         nameStack.isSkeletonable = true

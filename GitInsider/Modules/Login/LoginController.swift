@@ -55,7 +55,7 @@ class LoginController: UIViewController {
     }
     
     deinit {
-        print("DEBUG: \(self) deinitialized.")
+        print("DEBUG: \(self) deallocated.")
     }
     
     //MARK: - Actions

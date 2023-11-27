@@ -11,7 +11,7 @@ import WebKit
 class WebController: UIViewController {
     //MARK: - Properties
     
-    var viewModel: WebViewModel
+    var viewModel: WebViewModel?
     
     let url: URL
     
@@ -23,14 +23,13 @@ class WebController: UIViewController {
     
     //MARK: - Lifecycle
     
-    init(url: URL, viewModel: WebViewModel = WebViewModel()) {
+    init(url: URL) {
         self.url = url
-        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
     deinit {
-        print("DEBUG: \(self) deinitialized.")
+        print("DEBUG: \(self) deallocated.")
     }
     
     required init?(coder: NSCoder) {
@@ -49,7 +48,7 @@ class WebController: UIViewController {
 extension WebController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction) async -> WKNavigationActionPolicy {
         if let url = navigationAction.request.url, url.absoluteString.contains(gitHubRedirectUri) {
-            viewModel.handleCallback(fromUrl: url)
+            viewModel?.handleCallback(fromUrl: url)
         }
         return .allow
     }

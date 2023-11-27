@@ -100,6 +100,10 @@ class HomeController: UIViewController {
         configureCollectionView()
     }
     
+    deinit {
+        print("DEBUG: \(self) deallocated.")
+    }
+    
     //MARK: - Actions
     
     @objc func didTapProfileImage() {
@@ -107,7 +111,7 @@ class HomeController: UIViewController {
         viewModel?.goToProfile(withUser: user)
     }
     
-    @objc func handleKeayboardDismiss() {
+    @objc func handleKeyboardDismissal() {
         view.endEditing(true)
     }
     
@@ -165,11 +169,12 @@ class HomeController: UIViewController {
     
     private func configureSearchBar() {
         searchBar.delegate = self
+        searchBar.returnKeyType = .done
         searchBar.setDimensions(height: 70, width: self.view.frame.width)
     }
     
     private func configureDismissKeyboard() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(handleKeayboardDismiss))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleKeyboardDismissal))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
@@ -197,8 +202,12 @@ extension HomeController: UISearchBarDelegate {
         })
     }
     
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         collectionView.reloadData()
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
     }
 }
@@ -211,13 +220,10 @@ extension HomeController: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if (viewModel?.users?.items.isEmpty == false) {
-            noCellImage.isHidden = true
-        } else {
-            noCellImage.isHidden = false
-        }
+        guard let viewModel = viewModel else { return 0}
+        noCellImage.isHidden = viewModel.handleCellImageVisibility()
         
-        return viewModel?.users?.items.count ?? 0
+        return viewModel.users?.items.count ?? 0
     
     }
     

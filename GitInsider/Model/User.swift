@@ -18,5 +18,5 @@ struct User: Codable {
     let name: String?
     let bio: String?
     let twitterUsername: String?
-    let publicRepos, publicGists, followers, following: Int
+    var publicRepos, publicGists, followers, following: Int
 }

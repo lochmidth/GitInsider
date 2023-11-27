@@ -12,7 +12,7 @@ class LoginViewModel {
     
     //MARK: - Properties
     
-    weak var coordinator: AppCoordinator?
+    weak var coordinator: AuthCoordinator?
     
     let gitHubService: GitHubService
     let keychain: KeychainSwift
@@ -38,11 +38,11 @@ class LoginViewModel {
             let accessTokenResponse = try await gitHubService.exchangeToken(code: code)
             print("DEBUG: Access Token is received: \(accessTokenResponse.accessToken)")
             keychain.set(accessTokenResponse.accessToken, forKey: "Access Token")
-            
+
             let user = try await getCurrentUser()
             UserDefaults.standard.set(user.login, forKey: "Authenticated username")
             DispatchQueue.main.async {
-                self.coordinator?.goToHome(withUser: user)
+                self.coordinator?.didFinishAuth(withUser: user)
             }
         }
     }
@@ -60,5 +60,4 @@ class LoginViewModel {
     private func getCurrentUser() async throws -> User {
         return try await gitHubService.getCurrentUser()
     }
-    
 }

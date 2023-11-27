@@ -12,7 +12,7 @@ class ProfileViewModel {
     var user: User
     var repos = [Repo]()
     var authLogin: String
-    var coordinator: AppCoordinator?
+    var coordinator: HomeCoordinator?
     
     init(user: User, gitHubService: GitHubService = GitHubService()) {
         self.user = user

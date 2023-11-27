@@ -47,27 +47,15 @@ class ProfileHeaderViewModel {
         "\(user.publicRepos)\nRepositories"
     }
     
-    var editButtonColor: UIColor {
+    var editButtonImage: UIImage? {
         switch config {
         case .editProfile:
-            return .darkGray
+            return UIImage(systemName: "square.and.pencil")?.withTintColor(.gitHubWhite, renderingMode: .alwaysOriginal)
         case .notFollowing:
-            return .darkGray
+            return UIImage(systemName: "person.badge.plus")?.withTintColor(.gitHubGreen, renderingMode: .alwaysOriginal)
         case .following:
-            return .gitHubGreen
+            return UIImage(systemName: "person.badge.minus")?.withTintColor(.gitHubRed, renderingMode: .alwaysOriginal)
         }
-    }
-    
-    var editButtonText: String {
-        switch config {
-        case .editProfile:
-            return "✎"
-        case .notFollowing:
-            return "✚"
-        case .following:
-            return "✓"
-        }
-        
     }
     
     init(user: User, followingStatus: Bool, config: EditButtonConfig? = nil) {

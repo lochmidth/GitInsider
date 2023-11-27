@@ -7,10 +7,15 @@
 
 import Foundation
 
+protocol WebViewModelDelegate: AnyObject {
+    func didReceiveCode(_ code: String)
+}
+
 class WebViewModel {
     //MARK: - Properties
     
     let oAuthManager: OAuthManager
+    var coordinator: Coordinator?
     
     init(oAuthManager: OAuthManager = OAuthManager()) {
         self.oAuthManager = oAuthManager

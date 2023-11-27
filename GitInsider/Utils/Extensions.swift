@@ -18,7 +18,8 @@ extension UIColor {
     static let githubGrey = rgb(red: 43, green: 49, blue: 55)
     static let githubLightGray = rgb(red: 250, green: 251, blue: 252)
     static let gitHubWhite = rgb(red: 255, green: 255, blue: 255)
-    static let gitHubGreen = rgb(red: 45, green: 186, blue: 78)
+    static let gitHubGreen = rgb(red: 0, green: 200, blue: 0)
+    static let gitHubRed = rgb(red: 200, green: 0, blue: 0)
     
 }
 

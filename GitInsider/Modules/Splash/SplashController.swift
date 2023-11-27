@@ -48,13 +48,18 @@ class SplashController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         animateLogoAndCheckAuth()
+    }
+    
+    deinit {
+        print("DEBUG: \(self) deallocated.")
     }
     
     //MARK: - Helpers
     
     private func configureUI() {
+        navigationController?.navigationBar.isHidden = true
         view.backgroundColor = .githubBlack
         
         view.addSubview(stack)

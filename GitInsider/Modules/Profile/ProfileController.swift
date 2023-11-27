@@ -63,6 +63,10 @@ class ProfileController: UIViewController {
         configureTableView()
     }
     
+    deinit {
+        print("DEBUG: \(self) deallocated.")
+    }
+    
     //MARK: - Helpers
     
     private func configureUI() {
@@ -131,12 +135,6 @@ extension ProfileController: UITableViewDelegate, SkeletonTableViewDataSource {
         cell.backgroundColor = .lightGray
         return cell
     }
-    
-//    func collectionSkeletonView(_ skeletonView: UITableView, skeletonCellForRowAt indexPath: IndexPath) -> UITableViewCell? {
-//        let cell = skeletonView.dequeueReusableCell(withIdentifier: "repoCell", for: indexPath)
-//        cell.textLabel?.isHidden = indexPath.row == 0
-//        return cell
-//    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel?.didSelectRowAt(index: indexPath.item)

@@ -9,7 +9,7 @@ import UIKit
 import KeychainSwift
 
 class SplashViewModel {
-    var coordinator: AppCoordinator?
+    var coordinator: AuthCoordinator?
     let keychain: KeychainSwift
     let gitHubService: GitHubService
     
@@ -24,7 +24,7 @@ class SplashViewModel {
                 let user = try await getCurrentUser()
                 UserDefaults.standard.set(user.login, forKey: "Authenticated username")
                 DispatchQueue.main.async {
-                    self.coordinator?.goToHome(withUser: user)
+                    self.coordinator?.didFinishAuth(withUser: user)
                 }
             }
         } else {

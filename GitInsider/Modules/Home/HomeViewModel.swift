@@ -14,7 +14,7 @@ class HomeViewModel {
     var users: Users?
     let keychain: KeychainSwift
     let gitHubService: GitHubService
-    weak var coordinator: AppCoordinator?
+    weak var coordinator: HomeCoordinator?
     
     var authLogin: String {
         user?.login ?? ""
@@ -68,18 +68,13 @@ class HomeViewModel {
         return try await gitHubService.getUser(forUsername: username)
     }
     
-//    func searchUser(forUsername username: String, completion: @escaping() -> Void) {
-//        gitHubService.searchUser(forUsername: username) { [weak self] result in
-//            switch result {
-//            case .success(let users):
-//                self?.users = users
-//                completion()
-//            case .failure:
-//                self?.users = nil
-//                completion()
-//            }
-//        }
-//    }
+    func handleCellImageVisibility() -> Bool {
+        if users?.items.isEmpty == false {
+            return true
+        } else {
+            return false
+        }
+    }
     
     func searchUser(forUsername username: String) async throws {
         if username == "" {
