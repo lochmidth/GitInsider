@@ -16,9 +16,3 @@ struct AccessTokenResponse: Codable {
     let refreshTokenExpiresIn: Int
     let tokenType, scope: String
 }
-
-//MARK: - Empty Response
-
-struct EmptyResponse: Codable {  //Check if auth. user following
-    let message: String?
-}

@@ -238,6 +238,4 @@ extension HomeController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         viewModel?.didSelectItemAt(index: indexPath.item)
     }
-    
-    
 }

@@ -37,10 +37,11 @@ class LoginViewModel {
         Task {
             let accessTokenResponse = try await gitHubService.exchangeToken(code: code)
             print("DEBUG: Access Token is received: \(accessTokenResponse.accessToken)")
-            keychain.set(accessTokenResponse.accessToken, forKey: "Access Token")
+            keychain.set(accessTokenResponse.accessToken, forKey: accessTokenInKeychain)
+            setExpirationDate()
 
             let user = try await getCurrentUser()
-            UserDefaults.standard.set(user.login, forKey: "Authenticated username")
+            UserDefaults.standard.set(user.login, forKey: authUsername)
             DispatchQueue.main.async {
                 self.coordinator?.didFinishAuth(withUser: user)
             }
@@ -59,5 +60,10 @@ class LoginViewModel {
     
     private func getCurrentUser() async throws -> User {
         return try await gitHubService.getCurrentUser()
+    }
+    
+    private func setExpirationDate() {
+        let expirationDate = Date().addingTimeInterval(TimeInterval(8 * 60 * 60))
+        UserDefaults.standard.set(expirationDate, forKey: accessTokenExpirationKeyInDefaults)
     }
 }

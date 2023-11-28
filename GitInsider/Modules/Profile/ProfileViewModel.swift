@@ -17,7 +17,7 @@ class ProfileViewModel {
     init(user: User, gitHubService: GitHubService = GitHubService()) {
         self.user = user
         self.gitHubService = gitHubService
-        self.authLogin = UserDefaults.standard.object(forKey: "Authenticated username") as! String
+        self.authLogin = UserDefaults.standard.object(forKey: authUsername) as! String
     }
     
     func configureProfileHeaderViewModel() async throws -> ProfileHeaderViewModel {
