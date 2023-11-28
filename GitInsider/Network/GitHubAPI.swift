@@ -91,7 +91,7 @@ extension GitHubAPI: TargetType {
             return ["Accept": "application/json"]
         default:
             let keychain = KeychainSwift()
-            let accessToken = keychain.get("Access Token")
+            let accessToken = keychain.get(accessTokenInKeychain)
             return [
                 "Accept": "application/vnd.github+json",
                 "Authorization": "Bearer \(accessToken ?? "")",

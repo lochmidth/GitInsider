@@ -56,7 +56,8 @@ class HomeViewModel {
     //MARK: - Helpers
     
     func handleSignOut() {
-        keychain.delete("Access Token")
+        keychain.delete(accessTokenInKeychain)
+        UserDefaults.standard.removeObject(forKey: accessTokenExpirationKeyInDefaults)
         coordinator?.signOut()
     }
     

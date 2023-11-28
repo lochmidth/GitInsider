@@ -24,7 +24,6 @@
 		C2D5926C2AFBC03D00B2D271 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2D5926A2AFBC03D00B2D271 /* Main.storyboard */; };
 		C2D5926E2AFBC03F00B2D271 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2D5926D2AFBC03F00B2D271 /* Assets.xcassets */; };
 		C2D592712AFBC03F00B2D271 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2D5926F2AFBC03F00B2D271 /* LaunchScreen.storyboard */; };
-		C2D5927C2AFBC03F00B2D271 /* GitInsiderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D5927B2AFBC03F00B2D271 /* GitInsiderTests.swift */; };
 		C2D592952AFBC08800B2D271 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D592942AFBC08800B2D271 /* Extensions.swift */; };
 		C2D592972AFBC0B500B2D271 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D592962AFBC0B500B2D271 /* AppCoordinator.swift */; };
 		C2D5929C2AFBC3CB00B2D271 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D5929B2AFBC3CB00B2D271 /* LoginController.swift */; };
@@ -82,7 +81,6 @@
 		C2D592702AFBC03F00B2D271 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C2D592722AFBC03F00B2D271 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C2D592772AFBC03F00B2D271 /* GitInsiderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitInsiderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C2D5927B2AFBC03F00B2D271 /* GitInsiderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitInsiderTests.swift; sourceTree = "<group>"; };
 		C2D592812AFBC03F00B2D271 /* GitInsiderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitInsiderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2D592942AFBC08800B2D271 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		C2D592962AFBC0B500B2D271 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
@@ -193,7 +191,6 @@
 		C2D5927A2AFBC03F00B2D271 /* GitInsiderTests */ = {
 			isa = PBXGroup;
 			children = (
-				C2D5927B2AFBC03F00B2D271 /* GitInsiderTests.swift */,
 			);
 			path = GitInsiderTests;
 			sourceTree = "<group>";
@@ -482,7 +479,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C2D5927C2AFBC03F00B2D271 /* GitInsiderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
