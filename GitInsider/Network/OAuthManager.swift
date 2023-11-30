@@ -14,7 +14,11 @@ enum OAuthError: Error {
     case invalidCode
 }
 
-class OAuthManager {
+protocol OAuthManaging {
+    func handleCallBack(fromUrl url: URL) async throws -> String
+}
+
+class OAuthManager: OAuthManaging {
     static let shared = OAuthManager()
     
     func handleCallBack(fromUrl url: URL) async throws -> String {

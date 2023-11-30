@@ -8,13 +8,13 @@
 import Foundation
 
 class ProfileViewModel {
-    let gitHubService: GitHubService
+    let gitHubService: GitHubServicing
     var user: User
     var repos = [Repo]()
     var authLogin: String
     var coordinator: HomeCoordinator?
     
-    init(user: User, gitHubService: GitHubService = GitHubService()) {
+    init(user: User, gitHubService: GitHubServicing = GitHubService()) {
         self.user = user
         self.gitHubService = gitHubService
         self.authLogin = UserDefaults.standard.object(forKey: authUsername) as! String

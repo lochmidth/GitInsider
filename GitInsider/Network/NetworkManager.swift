@@ -12,7 +12,12 @@ enum NetworkError: Error {
     case invlalidData
 }
 
-class NetworkManager {
+protocol NetworkManaging {
+    func request<T: Codable>(_ target: TargetType) async throws -> T
+    func requestIsStatusValid(_ target: TargetType) async throws -> Bool
+}
+
+class NetworkManager: NetworkManaging {
     private let provider: MoyaProvider<MultiTarget>
     private let decoder: JSONDecoder
     

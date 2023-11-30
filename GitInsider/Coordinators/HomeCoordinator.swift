@@ -40,7 +40,7 @@ class HomeCoordinator: Coordinator {
     func goToSafari(withUrl url: URL) {
         let webController = WebController(url: url)
         let webViewModel = WebViewModel()
-        webViewModel.coordinator = self
+//        webViewModel.coordinator = self
         webController.viewModel = webViewModel
         navigationController.pushViewController(webController, animated: true)
     }

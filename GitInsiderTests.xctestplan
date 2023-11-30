@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "AB77685B-D08D-474F-8027-E9BBF10386AE",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:GitInsider.xcodeproj",
+        "identifier" : "C2D592762AFBC03F00B2D271",
+        "name" : "GitInsiderTests"
+      }
+    }
+  ],
+  "version" : 1
+}

@@ -14,18 +14,20 @@ protocol WebViewModelDelegate: AnyObject {
 class WebViewModel {
     //MARK: - Properties
     
-    let oAuthManager: OAuthManager
-    var coordinator: Coordinator?
+    let oAuthManager: OAuthManaging
+    let notificationCenter: NotificationCenter
+//    var coordinator: Coordinator?
     
-    init(oAuthManager: OAuthManager = OAuthManager()) {
+    init(oAuthManager: OAuthManaging = OAuthManager(), notificationCenter: NotificationCenter = NotificationCenter.default) {
         self.oAuthManager = oAuthManager
+        self.notificationCenter = notificationCenter
     }
     
     func handleCallback(fromUrl url: URL) {
         Task {
             let code = try await oAuthManager.handleCallBack(fromUrl: url)
             print("DEBUG: Code in webview is \(code)")
-            NotificationCenter.default.post(name: .didReceiveCode, object: nil, userInfo: ["code": code])
+            notificationCenter.post(name: .didReceiveCode, object: nil, userInfo: ["code": code])
         }
     }
 }

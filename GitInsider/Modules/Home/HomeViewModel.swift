@@ -13,7 +13,7 @@ class HomeViewModel {
     var user: User?
     var users: Users?
     let keychain: KeychainSwift
-    let gitHubService: GitHubService
+    let gitHubService: GitHubServicing
     weak var coordinator: HomeCoordinator?
     
     var authLogin: String {
@@ -47,7 +47,7 @@ class HomeViewModel {
     
     //MARK: - Lifecycle
     
-    init(user: User?, gitHubService: GitHubService = GitHubService(), keychain: KeychainSwift = KeychainSwift()) {
+    init(user: User?, gitHubService: GitHubServicing = GitHubService(), keychain: KeychainSwift = KeychainSwift()) {
         self.gitHubService = gitHubService
         self.user = user
         self.keychain = keychain

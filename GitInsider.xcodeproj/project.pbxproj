@@ -13,6 +13,17 @@
 		C25572442B14C18000B10DF9 /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25572432B14C18000B10DF9 /* WebViewModel.swift */; };
 		C25572482B14ED1300B10DF9 /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25572472B14ED1300B10DF9 /* AuthCoordinator.swift */; };
 		C255724A2B14ED1A00B10DF9 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25572492B14ED1A00B10DF9 /* HomeCoordinator.swift */; };
+		C255724D2B16544D00B10DF9 /* MockModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C255724C2B16544D00B10DF9 /* MockModels.swift */; };
+		C255724F2B16578800B10DF9 /* MockNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C255724E2B16578800B10DF9 /* MockNetworkManager.swift */; };
+		C25572522B1675BE00B10DF9 /* GitHubServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25572512B1675BE00B10DF9 /* GitHubServiceTests.swift */; };
+		C25572572B1787A800B10DF9 /* MockOAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25572562B1787A700B10DF9 /* MockOAuthManager.swift */; };
+		C255725F2B17C23E00B10DF9 /* SplashViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C255725E2B17C23E00B10DF9 /* SplashViewModelTests.swift */; };
+		C25572612B17C2E500B10DF9 /* MockGitHubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25572602B17C2E500B10DF9 /* MockGitHubService.swift */; };
+		C25572652B17DFA300B10DF9 /* MockUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25572642B17DFA300B10DF9 /* MockUserDefaults.swift */; };
+		C25572672B17E03F00B10DF9 /* MockKeychainSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25572662B17E03F00B10DF9 /* MockKeychainSwift.swift */; };
+		C25572692B18BB7C00B10DF9 /* MockAuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25572682B18BB7C00B10DF9 /* MockAuthCoordinator.swift */; };
+		C255726B2B18DC3200B10DF9 /* WebViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C255726A2B18DC3200B10DF9 /* WebViewModelTests.swift */; };
+		C255726D2B18DE0D00B10DF9 /* MockNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C255726C2B18DE0D00B10DF9 /* MockNotificationCenter.swift */; };
 		C265DA432B028F310006EF39 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C265DA422B028F310006EF39 /* User.swift */; };
 		C265DA492B038C960006EF39 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C265DA482B038C960006EF39 /* Constants.swift */; };
 		C265DA4C2B0391900006EF39 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C265DA4B2B0391900006EF39 /* KeychainSwift */; };
@@ -20,6 +31,8 @@
 		C265DA512B03D5150006EF39 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C265DA502B03D5150006EF39 /* SplashViewModel.swift */; };
 		C265DA542B03E54C0006EF39 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C265DA532B03E54C0006EF39 /* HomeController.swift */; };
 		C265DA562B03E5520006EF39 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C265DA552B03E5520006EF39 /* HomeViewModel.swift */; };
+		C2C2A1142B18E21400BFD97B /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2A1132B18E21400BFD97B /* LoginViewModelTests.swift */; };
+		C2C2A1162B18F3D500BFD97B /* HomeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2A1152B18F3D500BFD97B /* HomeViewModelTests.swift */; };
 		C2D592652AFBC03D00B2D271 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D592642AFBC03D00B2D271 /* AppDelegate.swift */; };
 		C2D5926C2AFBC03D00B2D271 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2D5926A2AFBC03D00B2D271 /* Main.storyboard */; };
 		C2D5926E2AFBC03F00B2D271 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2D5926D2AFBC03F00B2D271 /* Assets.xcassets */; };
@@ -68,12 +81,26 @@
 		C25572432B14C18000B10DF9 /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
 		C25572472B14ED1300B10DF9 /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
 		C25572492B14ED1A00B10DF9 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
+		C255724C2B16544D00B10DF9 /* MockModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockModels.swift; sourceTree = "<group>"; };
+		C255724E2B16578800B10DF9 /* MockNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkManager.swift; sourceTree = "<group>"; };
+		C25572512B1675BE00B10DF9 /* GitHubServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubServiceTests.swift; sourceTree = "<group>"; };
+		C25572552B175A3200B10DF9 /* GitInsiderTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = GitInsiderTests.xctestplan; sourceTree = "<group>"; };
+		C25572562B1787A700B10DF9 /* MockOAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockOAuthManager.swift; sourceTree = "<group>"; };
+		C255725E2B17C23E00B10DF9 /* SplashViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModelTests.swift; sourceTree = "<group>"; };
+		C25572602B17C2E500B10DF9 /* MockGitHubService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGitHubService.swift; sourceTree = "<group>"; };
+		C25572642B17DFA300B10DF9 /* MockUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserDefaults.swift; sourceTree = "<group>"; };
+		C25572662B17E03F00B10DF9 /* MockKeychainSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockKeychainSwift.swift; sourceTree = "<group>"; };
+		C25572682B18BB7C00B10DF9 /* MockAuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthCoordinator.swift; sourceTree = "<group>"; };
+		C255726A2B18DC3200B10DF9 /* WebViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModelTests.swift; sourceTree = "<group>"; };
+		C255726C2B18DE0D00B10DF9 /* MockNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNotificationCenter.swift; sourceTree = "<group>"; };
 		C265DA422B028F310006EF39 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C265DA482B038C960006EF39 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C265DA4E2B03D5080006EF39 /* SplashController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashController.swift; sourceTree = "<group>"; };
 		C265DA502B03D5150006EF39 /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
 		C265DA532B03E54C0006EF39 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		C265DA552B03E5520006EF39 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		C2C2A1132B18E21400BFD97B /* LoginViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
+		C2C2A1152B18F3D500BFD97B /* HomeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTests.swift; sourceTree = "<group>"; };
 		C2D592612AFBC03D00B2D271 /* GitInsider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitInsider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2D592642AFBC03D00B2D271 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C2D5926B2AFBC03D00B2D271 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -130,6 +157,80 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C255724B2B16543B00B10DF9 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				C255724C2B16544D00B10DF9 /* MockModels.swift */,
+				C255724E2B16578800B10DF9 /* MockNetworkManager.swift */,
+				C25572562B1787A700B10DF9 /* MockOAuthManager.swift */,
+				C25572602B17C2E500B10DF9 /* MockGitHubService.swift */,
+				C25572642B17DFA300B10DF9 /* MockUserDefaults.swift */,
+				C25572662B17E03F00B10DF9 /* MockKeychainSwift.swift */,
+				C25572682B18BB7C00B10DF9 /* MockAuthCoordinator.swift */,
+				C255726C2B18DE0D00B10DF9 /* MockNotificationCenter.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		C25572502B1675A300B10DF9 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				C25572512B1675BE00B10DF9 /* GitHubServiceTests.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		C25572582B17895700B10DF9 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				C25572592B17C1DE00B10DF9 /* Splash */,
+				C255725A2B17C1E300B10DF9 /* Web */,
+				C255725B2B17C1F000B10DF9 /* Login */,
+				C255725C2B17C1F500B10DF9 /* Home */,
+				C255725D2B17C1F900B10DF9 /* Profile */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		C25572592B17C1DE00B10DF9 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				C255725E2B17C23E00B10DF9 /* SplashViewModelTests.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		C255725A2B17C1E300B10DF9 /* Web */ = {
+			isa = PBXGroup;
+			children = (
+				C255726A2B18DC3200B10DF9 /* WebViewModelTests.swift */,
+			);
+			path = Web;
+			sourceTree = "<group>";
+		};
+		C255725B2B17C1F000B10DF9 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				C2C2A1132B18E21400BFD97B /* LoginViewModelTests.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		C255725C2B17C1F500B10DF9 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				C2C2A1152B18F3D500BFD97B /* HomeViewModelTests.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		C255725D2B17C1F900B10DF9 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		C265DA4D2B03D4FF0006EF39 /* Splash */ = {
 			isa = PBXGroup;
 			children = (
@@ -160,6 +261,7 @@
 		C2D592582AFBC03D00B2D271 = {
 			isa = PBXGroup;
 			children = (
+				C25572552B175A3200B10DF9 /* GitInsiderTests.xctestplan */,
 				C2D592A12AFBCC6E00B2D271 /* GitInsider */,
 				C2D5927A2AFBC03F00B2D271 /* GitInsiderTests */,
 				C2D592622AFBC03D00B2D271 /* Products */,
@@ -191,6 +293,9 @@
 		C2D5927A2AFBC03F00B2D271 /* GitInsiderTests */ = {
 			isa = PBXGroup;
 			children = (
+				C255724B2B16543B00B10DF9 /* Mocks */,
+				C25572582B17895700B10DF9 /* Modules */,
+				C25572502B1675A300B10DF9 /* Network */,
 			);
 			path = GitInsiderTests;
 			sourceTree = "<group>";
@@ -377,6 +482,7 @@
 					};
 					C2D592762AFBC03F00B2D271 = {
 						CreatedOnToolsVersion = 14.3.1;
+						LastSwiftMigration = 1430;
 						TestTargetID = C2D592602AFBC03D00B2D271;
 					};
 					C2D592802AFBC03F00B2D271 = {
@@ -479,6 +585,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2C2A1162B18F3D500BFD97B /* HomeViewModelTests.swift in Sources */,
+				C2C2A1142B18E21400BFD97B /* LoginViewModelTests.swift in Sources */,
+				C255724F2B16578800B10DF9 /* MockNetworkManager.swift in Sources */,
+				C255725F2B17C23E00B10DF9 /* SplashViewModelTests.swift in Sources */,
+				C25572692B18BB7C00B10DF9 /* MockAuthCoordinator.swift in Sources */,
+				C25572612B17C2E500B10DF9 /* MockGitHubService.swift in Sources */,
+				C25572522B1675BE00B10DF9 /* GitHubServiceTests.swift in Sources */,
+				C255724D2B16544D00B10DF9 /* MockModels.swift in Sources */,
+				C25572672B17E03F00B10DF9 /* MockKeychainSwift.swift in Sources */,
+				C255726D2B18DE0D00B10DF9 /* MockNotificationCenter.swift in Sources */,
+				C255726B2B18DC3200B10DF9 /* WebViewModelTests.swift in Sources */,
+				C25572652B17DFA300B10DF9 /* MockUserDefaults.swift in Sources */,
+				C25572572B1787A800B10DF9 /* MockOAuthManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -654,6 +773,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -686,6 +806,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -707,6 +828,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6Y92LH56N8;
@@ -715,9 +837,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alphanogn.GitInsiderTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GitInsider.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/GitInsider";
 			};
 			name = Debug;
@@ -727,6 +853,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6Y92LH56N8;
@@ -735,9 +862,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alphanogn.GitInsiderTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GitInsider.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/GitInsider";
 			};
 			name = Release;

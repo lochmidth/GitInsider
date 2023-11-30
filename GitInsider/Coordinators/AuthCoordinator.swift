@@ -39,7 +39,7 @@ class AuthCoordinator: Coordinator {
         guard let url = URL(string: gitHubAuthLink) else { return }
         let webController = WebController(url: url)
         let webViewModel = WebViewModel()
-        webViewModel.coordinator = self
+//        webViewModel.coordinator = self
         webController.viewModel = webViewModel
         navigationController.present(webController, animated: true)
     }
@@ -48,7 +48,7 @@ class AuthCoordinator: Coordinator {
         guard let url = URL(string: gitHubSignupLink) else { return }
         let webController = WebController(url: url)
         let webViewModel = WebViewModel()
-        webViewModel.coordinator = self
+//        webViewModel.coordinator = self
         webController.viewModel = webViewModel
         navigationController.present(webController, animated: true)
     }

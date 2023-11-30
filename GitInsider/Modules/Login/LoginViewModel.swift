@@ -14,20 +14,24 @@ class LoginViewModel {
     
     weak var coordinator: AuthCoordinator?
     
-    let gitHubService: GitHubService
+    let gitHubService: GitHubServicing
     let keychain: KeychainSwift
+    let notificationCenter: NotificationCenter
+    let userDefaults: UserDefaults
     
     //MARK: - Lifecycle
     
-    init(gitHubService: GitHubService = GitHubService(), keychain: KeychainSwift = KeychainSwift()) {
+    init(gitHubService: GitHubServicing = GitHubService(), keychain: KeychainSwift = KeychainSwift(), notificationCenter: NotificationCenter = NotificationCenter.default, userDefaults: UserDefaults = UserDefaults.standard) {
         self.gitHubService = gitHubService
         self.keychain = keychain
+        self.notificationCenter = notificationCenter
+        self.userDefaults = userDefaults
         
-        NotificationCenter.default.addObserver(self, selector: #selector(handleReceiveCode(_:)), name: .didReceiveCode, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(handleReceiveCode(_:)), name: .didReceiveCode, object: nil)
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self)
+        notificationCenter.removeObserver(self)
     }
     
     //MARK: - Actions
@@ -41,7 +45,7 @@ class LoginViewModel {
             setExpirationDate()
 
             let user = try await getCurrentUser()
-            UserDefaults.standard.set(user.login, forKey: authUsername)
+            userDefaults.set(user.login, forKey: authUsername)
             DispatchQueue.main.async {
                 self.coordinator?.didFinishAuth(withUser: user)
             }
@@ -64,6 +68,6 @@ class LoginViewModel {
     
     private func setExpirationDate() {
         let expirationDate = Date().addingTimeInterval(TimeInterval(8 * 60 * 60))
-        UserDefaults.standard.set(expirationDate, forKey: accessTokenExpirationKeyInDefaults)
+        userDefaults.set(expirationDate, forKey: accessTokenExpirationKeyInDefaults)
     }
 }
