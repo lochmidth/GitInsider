@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C2218F322B19844A00FE14AC /* AppCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2218F312B19844A00FE14AC /* AppCoordinatorTests.swift */; };
+		C2218F342B19877E00FE14AC /* AuthCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2218F332B19877E00FE14AC /* AuthCoordinatorTests.swift */; };
+		C2218F362B198F0800FE14AC /* HomeCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2218F352B198F0800FE14AC /* HomeCoordinatorTests.swift */; };
 		C25572392B07D01600B10DF9 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25572382B07D01600B10DF9 /* NetworkManager.swift */; };
 		C255723C2B0E470D00B10DF9 /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = C255723B2B0E470D00B10DF9 /* SkeletonView */; };
 		C25572422B0FE71700B10DF9 /* WebController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25572412B0FE71700B10DF9 /* WebController.swift */; };
@@ -80,6 +83,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C2218F312B19844A00FE14AC /* AppCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorTests.swift; sourceTree = "<group>"; };
+		C2218F332B19877E00FE14AC /* AuthCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinatorTests.swift; sourceTree = "<group>"; };
+		C2218F352B198F0800FE14AC /* HomeCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinatorTests.swift; sourceTree = "<group>"; };
 		C25572382B07D01600B10DF9 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		C25572412B0FE71700B10DF9 /* WebController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebController.swift; sourceTree = "<group>"; };
 		C25572432B14C18000B10DF9 /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
@@ -165,6 +171,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C2218F302B19836300FE14AC /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				C2218F312B19844A00FE14AC /* AppCoordinatorTests.swift */,
+				C2218F332B19877E00FE14AC /* AuthCoordinatorTests.swift */,
+				C2218F352B198F0800FE14AC /* HomeCoordinatorTests.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
 		C255724B2B16543B00B10DF9 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
@@ -354,6 +370,7 @@
 			children = (
 				C255724B2B16543B00B10DF9 /* Mocks */,
 				C2C2A11E2B19376A00BFD97B /* View */,
+				C2218F302B19836300FE14AC /* Coordinators */,
 				C25572582B17895700B10DF9 /* Modules */,
 				C25572502B1675A300B10DF9 /* Network */,
 			);
@@ -646,6 +663,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C2C2A1162B18F3D500BFD97B /* HomeViewModelTests.swift in Sources */,
+				C2218F362B198F0800FE14AC /* HomeCoordinatorTests.swift in Sources */,
 				C2C2A1142B18E21400BFD97B /* LoginViewModelTests.swift in Sources */,
 				C255724F2B16578800B10DF9 /* MockNetworkManager.swift in Sources */,
 				C255725F2B17C23E00B10DF9 /* SplashViewModelTests.swift in Sources */,
@@ -653,6 +671,7 @@
 				C25572612B17C2E500B10DF9 /* MockGitHubService.swift in Sources */,
 				C25572522B1675BE00B10DF9 /* GitHubServiceTests.swift in Sources */,
 				C255724D2B16544D00B10DF9 /* MockModels.swift in Sources */,
+				C2218F322B19844A00FE14AC /* AppCoordinatorTests.swift in Sources */,
 				C25572672B17E03F00B10DF9 /* MockKeychainSwift.swift in Sources */,
 				C255726D2B18DE0D00B10DF9 /* MockNotificationCenter.swift in Sources */,
 				C2C2A11A2B191E3A00BFD97B /* ProfileViewModelTests.swift in Sources */,
@@ -660,6 +679,7 @@
 				C25572652B17DFA300B10DF9 /* MockUserDefaults.swift in Sources */,
 				C25572572B1787A800B10DF9 /* MockOAuthManager.swift in Sources */,
 				C2C2A1182B19110D00BFD97B /* MockHomeCoordinator.swift in Sources */,
+				C2218F342B19877E00FE14AC /* AuthCoordinatorTests.swift in Sources */,
 				C2C2A1222B1937A300BFD97B /* ProfileHeaderViewModelTests.swift in Sources */,
 				C2C2A1262B195AB500BFD97B /* UserCellViewModelTests.swift in Sources */,
 			);

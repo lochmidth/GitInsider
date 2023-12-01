@@ -10,6 +10,7 @@ import UIKit
 class AuthCoordinator: Coordinator {
     var navigationController: UINavigationController
     weak var parentCoordinator: AppCoordinator?
+    var isViewPresented = false
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -42,6 +43,7 @@ class AuthCoordinator: Coordinator {
 //        webViewModel.coordinator = self
         webController.viewModel = webViewModel
         navigationController.present(webController, animated: true)
+        isViewPresented = true
     }
     
     func goToSignUpOnSafari() {
@@ -51,6 +53,7 @@ class AuthCoordinator: Coordinator {
 //        webViewModel.coordinator = self
         webController.viewModel = webViewModel
         navigationController.present(webController, animated: true)
+        isViewPresented = true
     }
     
     func didFinishAuth(withUser user: User) {
