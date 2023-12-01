@@ -11,12 +11,12 @@ import Foundation
 struct User: Codable {
     let login: String
     let id: Int
-    let nodeId: String?
-    let avatarUrl: String?
-    let url, htmlUrl, followersUrl: String?
-    let followingUrl, gistsUrl, starredUrl: String?
-    let name: String?
-    let bio: String?
-    let twitterUsername: String?
+    var nodeId: String?
+    var avatarUrl: String?
+    var url, htmlUrl, followersUrl: String?
+    var followingUrl, gistsUrl, starredUrl: String?
+    var name: String?
+    var bio: String?
+    var twitterUsername: String?
     var publicRepos, publicGists, followers, following: Int
 }

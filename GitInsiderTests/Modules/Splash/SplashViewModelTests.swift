@@ -13,7 +13,7 @@ final class SplashViewModelTests: XCTestCase {
     func test_givenNothing_whenGetCurrentUser_thenSuccessWithUser() async {
         //GIVEN
         let mockService = MockGitHubService()
-        mockService.resultForUser = .success(mockUser1)
+        mockService.resultForCurrentUser = .success(mockUser1)
         
         let sut = SplashViewModel(gitHubService: mockService)
         
@@ -74,7 +74,7 @@ final class SplashViewModelTests: XCTestCase {
         
         let _ = mockKeychain.set("123456789abc", forKey: accessTokenInKeychain)
         
-        mockService.resultForUser = .success(mockUser1)
+        mockService.resultForCurrentUser = .success(mockUser1)
         
         let sut = SplashViewModel(keychain: mockKeychain, gitHubService: mockService, userDefaults: mockUserDefaults)
         sut.coordinator = mockCoordinator

@@ -29,11 +29,11 @@ class MockGitHubService: GitHubServicing {
     }
     
     var isGetCurrentUserCalled = false
-    var resultForUser: Result<User, Error>?
+    var resultForCurrentUser: Result<User, Error>?
     func getCurrentUser() async throws -> User {
         isGetCurrentUserCalled = true
         
-        if let result = resultForUser {
+        if let result = resultForCurrentUser {
             switch result {
             case .success(let user):
                 return user

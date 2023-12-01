@@ -29,7 +29,7 @@ class ProfileViewModel {
         }
     }
     
-    func checkIfUserFollowing() async throws -> Bool {
+    private func checkIfUserFollowing() async throws -> Bool {
         return try await gitHubService.checkIfUserFollowing(username: user.login)
     }
     

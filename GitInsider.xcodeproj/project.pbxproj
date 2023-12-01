@@ -33,6 +33,10 @@
 		C265DA562B03E5520006EF39 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C265DA552B03E5520006EF39 /* HomeViewModel.swift */; };
 		C2C2A1142B18E21400BFD97B /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2A1132B18E21400BFD97B /* LoginViewModelTests.swift */; };
 		C2C2A1162B18F3D500BFD97B /* HomeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2A1152B18F3D500BFD97B /* HomeViewModelTests.swift */; };
+		C2C2A1182B19110D00BFD97B /* MockHomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2A1172B19110D00BFD97B /* MockHomeCoordinator.swift */; };
+		C2C2A11A2B191E3A00BFD97B /* ProfileViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2A1192B191E3A00BFD97B /* ProfileViewModelTests.swift */; };
+		C2C2A1222B1937A300BFD97B /* ProfileHeaderViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2A1212B1937A300BFD97B /* ProfileHeaderViewModelTests.swift */; };
+		C2C2A1262B195AB500BFD97B /* UserCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2A1252B195AB500BFD97B /* UserCellViewModelTests.swift */; };
 		C2D592652AFBC03D00B2D271 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D592642AFBC03D00B2D271 /* AppDelegate.swift */; };
 		C2D5926C2AFBC03D00B2D271 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2D5926A2AFBC03D00B2D271 /* Main.storyboard */; };
 		C2D5926E2AFBC03F00B2D271 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2D5926D2AFBC03F00B2D271 /* Assets.xcassets */; };
@@ -101,6 +105,10 @@
 		C265DA552B03E5520006EF39 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		C2C2A1132B18E21400BFD97B /* LoginViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
 		C2C2A1152B18F3D500BFD97B /* HomeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTests.swift; sourceTree = "<group>"; };
+		C2C2A1172B19110D00BFD97B /* MockHomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHomeCoordinator.swift; sourceTree = "<group>"; };
+		C2C2A1192B191E3A00BFD97B /* ProfileViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModelTests.swift; sourceTree = "<group>"; };
+		C2C2A1212B1937A300BFD97B /* ProfileHeaderViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderViewModelTests.swift; sourceTree = "<group>"; };
+		C2C2A1252B195AB500BFD97B /* UserCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCellViewModelTests.swift; sourceTree = "<group>"; };
 		C2D592612AFBC03D00B2D271 /* GitInsider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitInsider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2D592642AFBC03D00B2D271 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C2D5926B2AFBC03D00B2D271 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -160,14 +168,9 @@
 		C255724B2B16543B00B10DF9 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
-				C255724C2B16544D00B10DF9 /* MockModels.swift */,
-				C255724E2B16578800B10DF9 /* MockNetworkManager.swift */,
-				C25572562B1787A700B10DF9 /* MockOAuthManager.swift */,
-				C25572602B17C2E500B10DF9 /* MockGitHubService.swift */,
-				C25572642B17DFA300B10DF9 /* MockUserDefaults.swift */,
-				C25572662B17E03F00B10DF9 /* MockKeychainSwift.swift */,
-				C25572682B18BB7C00B10DF9 /* MockAuthCoordinator.swift */,
-				C255726C2B18DE0D00B10DF9 /* MockNotificationCenter.swift */,
+				C2C2A11B2B19371C00BFD97B /* Models */,
+				C2C2A11D2B19374900BFD97B /* Coordinators */,
+				C2C2A11C2B19372700BFD97B /* Service */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -227,6 +230,7 @@
 		C255725D2B17C1F900B10DF9 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				C2C2A1192B191E3A00BFD97B /* ProfileViewModelTests.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -256,6 +260,61 @@
 				C25572432B14C18000B10DF9 /* WebViewModel.swift */,
 			);
 			path = Web;
+			sourceTree = "<group>";
+		};
+		C2C2A11B2B19371C00BFD97B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C255724C2B16544D00B10DF9 /* MockModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C2C2A11C2B19372700BFD97B /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				C255724E2B16578800B10DF9 /* MockNetworkManager.swift */,
+				C25572562B1787A700B10DF9 /* MockOAuthManager.swift */,
+				C25572602B17C2E500B10DF9 /* MockGitHubService.swift */,
+				C25572642B17DFA300B10DF9 /* MockUserDefaults.swift */,
+				C25572662B17E03F00B10DF9 /* MockKeychainSwift.swift */,
+				C255726C2B18DE0D00B10DF9 /* MockNotificationCenter.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		C2C2A11D2B19374900BFD97B /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				C25572682B18BB7C00B10DF9 /* MockAuthCoordinator.swift */,
+				C2C2A1172B19110D00BFD97B /* MockHomeCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		C2C2A11E2B19376A00BFD97B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C2C2A1202B19378600BFD97B /* ProfileHeader */,
+				C2C2A11F2B19378000BFD97B /* UserCell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C2C2A11F2B19378000BFD97B /* UserCell */ = {
+			isa = PBXGroup;
+			children = (
+				C2C2A1252B195AB500BFD97B /* UserCellViewModelTests.swift */,
+			);
+			path = UserCell;
+			sourceTree = "<group>";
+		};
+		C2C2A1202B19378600BFD97B /* ProfileHeader */ = {
+			isa = PBXGroup;
+			children = (
+				C2C2A1212B1937A300BFD97B /* ProfileHeaderViewModelTests.swift */,
+			);
+			path = ProfileHeader;
 			sourceTree = "<group>";
 		};
 		C2D592582AFBC03D00B2D271 = {
@@ -294,6 +353,7 @@
 			isa = PBXGroup;
 			children = (
 				C255724B2B16543B00B10DF9 /* Mocks */,
+				C2C2A11E2B19376A00BFD97B /* View */,
 				C25572582B17895700B10DF9 /* Modules */,
 				C25572502B1675A300B10DF9 /* Network */,
 			);
@@ -595,9 +655,13 @@
 				C255724D2B16544D00B10DF9 /* MockModels.swift in Sources */,
 				C25572672B17E03F00B10DF9 /* MockKeychainSwift.swift in Sources */,
 				C255726D2B18DE0D00B10DF9 /* MockNotificationCenter.swift in Sources */,
+				C2C2A11A2B191E3A00BFD97B /* ProfileViewModelTests.swift in Sources */,
 				C255726B2B18DC3200B10DF9 /* WebViewModelTests.swift in Sources */,
 				C25572652B17DFA300B10DF9 /* MockUserDefaults.swift in Sources */,
 				C25572572B1787A800B10DF9 /* MockOAuthManager.swift in Sources */,
+				C2C2A1182B19110D00BFD97B /* MockHomeCoordinator.swift in Sources */,
+				C2C2A1222B1937A300BFD97B /* ProfileHeaderViewModelTests.swift in Sources */,
+				C2C2A1262B195AB500BFD97B /* UserCellViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,7 +14,7 @@ final class LoginViewModelTests: XCTestCase {
         //GIVEN
         let mockService = MockGitHubService()
         mockService.result = .success(mockAccessTokenResponse)
-        mockService.resultForUser = .success(mockUser1)
+        mockService.resultForCurrentUser = .success(mockUser1)
         let mockKeychain = MockKeychainSwift()
         let mockUserDefaults = MockUserDefaults()
         let mockNotificationCenter = MockNotificationCenter()

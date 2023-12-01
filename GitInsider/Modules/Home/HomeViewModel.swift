@@ -12,6 +12,7 @@ class HomeViewModel {
     //MARK: - Properties
     var user: User?
     var users: Users?
+    let userDefaults: UserDefaults
     let keychain: KeychainSwift
     let gitHubService: GitHubServicing
     weak var coordinator: HomeCoordinator?
@@ -47,17 +48,18 @@ class HomeViewModel {
     
     //MARK: - Lifecycle
     
-    init(user: User?, gitHubService: GitHubServicing = GitHubService(), keychain: KeychainSwift = KeychainSwift()) {
+    init(user: User?, gitHubService: GitHubServicing = GitHubService(), keychain: KeychainSwift = KeychainSwift(), userDefaults: UserDefaults = UserDefaults.standard) {
         self.gitHubService = gitHubService
         self.user = user
         self.keychain = keychain
+        self.userDefaults = userDefaults
     }
     
     //MARK: - Helpers
     
     func handleSignOut() {
         keychain.delete(accessTokenInKeychain)
-        UserDefaults.standard.removeObject(forKey: accessTokenExpirationKeyInDefaults)
+        userDefaults.removeObject(forKey: accessTokenExpirationKeyInDefaults)
         coordinator?.signOut()
     }
     

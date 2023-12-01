@@ -10,7 +10,7 @@ import Foundation
 
 //MARK: - User
 
-let mockUser1 = User(
+var mockUser1 = User(
     login: "john_doe",
     id: 123456,
     nodeId: "abc123",
@@ -30,7 +30,7 @@ let mockUser1 = User(
     following: 50
 )
 
-let mockUser2 = User(
+var mockUser2 = User(
     login: "jane_smith",
     id: 789012,
     nodeId: "xyz789",
