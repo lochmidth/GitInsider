@@ -9,33 +9,42 @@ import UIKit
 import KeychainSwift
 
 class SplashViewModel {
-    var coordinator: AppCoordinator?
+    var coordinator: AuthCoordinator?
     let keychain: KeychainSwift
-    let gitHubService: GitHubService
+    let gitHubService: GitHubServicing
+    let userDefaults: UserDefaults
     
-    init(keychain: KeychainSwift = KeychainSwift(), gitHubService: GitHubService = GitHubService()) {
+    init(keychain: KeychainSwift = KeychainSwift(), gitHubService: GitHubServicing = GitHubService(), userDefaults: UserDefaults = UserDefaults.standard) {
         self.keychain = keychain
         self.gitHubService = gitHubService
+        self.userDefaults = userDefaults
     }
     
     func checkForAuth() {
-        if let accessToken = keychain.get("Access Token"), !accessToken.isEmpty {
-            getCurrentUser { [weak self] user in
-                self?.coordinator?.goToHome(withUser: user)
+        checkAndRemoveExpiredAccessToken()
+        
+        if let accessToken = keychain.get(accessTokenInKeychain), !accessToken.isEmpty {
+            Task {
+                let user = try await getCurrentUser()
+                userDefaults.set(user.login, forKey: authUsername)
+                DispatchQueue.main.async {
+                    self.coordinator?.didFinishAuth(withUser: user)
+                }
             }
         } else {
             coordinator?.goToLoginPage()
         }
     }
     
-    private func getCurrentUser(completion: @escaping(User) -> Void) {
-        gitHubService.getCurrentUser { result in
-            switch result {
-            case .success(let user):
-                completion(user)
-            case .failure(let error):
-                print("DEBUG: Error while fetching user data, \(error.localizedDescription)")
-            }
+    func getCurrentUser() async throws -> User {
+        return try await gitHubService.getCurrentUser()
+    }
+    
+    func checkAndRemoveExpiredAccessToken() {
+        if let expirationDate = userDefaults.value(forKey: accessTokenExpirationKeyInDefaults) as? Date,
+           expirationDate < Date() {
+            keychain.delete(accessTokenInKeychain)
+            userDefaults.removeObject(forKey: accessTokenExpirationKeyInDefaults)
         }
     }
     

@@ -13,7 +13,7 @@ private let reuseIdentifier = "UserCell"
 class HomeController: UIViewController {
     //MARK: - Properties
     
-    private var searchTimer: Timer?
+    var searchTimer: Timer?
     
     var viewModel: HomeViewModel? {
         didSet { configureViewModel() }
@@ -100,14 +100,18 @@ class HomeController: UIViewController {
         configureCollectionView()
     }
     
+    deinit {
+        print("DEBUG: \(self) deallocated.")
+    }
+    
     //MARK: - Actions
     
     @objc func didTapProfileImage() {
         guard let user = viewModel?.user else { return }
-        viewModel?.goToProfile(withUser: user, authLogin: viewModel?.authLogin ?? "")
+        viewModel?.goToProfile(withUser: user)
     }
     
-    @objc func handleKeayboardDismiss() {
+    @objc func handleKeyboardDismissal() {
         view.endEditing(true)
     }
     
@@ -165,11 +169,12 @@ class HomeController: UIViewController {
     
     private func configureSearchBar() {
         searchBar.delegate = self
+        searchBar.returnKeyType = .done
         searchBar.setDimensions(height: 70, width: self.view.frame.width)
     }
     
     private func configureDismissKeyboard() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(handleKeayboardDismiss))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleKeyboardDismissal))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
@@ -183,22 +188,31 @@ class HomeController: UIViewController {
     }
 }
 
+//MARK: - UISearchBarDelegate
+
 extension HomeController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchTimer?.invalidate()
         
         searchTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { [weak self] _ in
-            self?.viewModel?.searchUser(forUsername: searchText, completion: {
+            Task {
+                try await self?.viewModel?.searchUser(forUsername: searchText)
                 self?.collectionView.reloadData()
-            })
+            }
         })
     }
     
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         collectionView.reloadData()
         searchBar.resignFirstResponder()
     }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
 }
+
+//MARK: - UICollectionViewDelegate/DataSource
 
 extension HomeController: UICollectionViewDelegate, UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -206,13 +220,10 @@ extension HomeController: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if (viewModel?.users?.items.isEmpty == false) {
-            noCellImage.isHidden = true
-        } else {
-            noCellImage.isHidden = false
-        }
+        guard let viewModel = viewModel else { return 0}
+        noCellImage.isHidden = viewModel.handleCellImageVisibility()
         
-        return viewModel?.users?.items.count ?? 0
+        return viewModel.users?.items.count ?? 0
     
     }
     
@@ -227,6 +238,4 @@ extension HomeController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         viewModel?.didSelectItemAt(index: indexPath.item)
     }
-    
-    
 }

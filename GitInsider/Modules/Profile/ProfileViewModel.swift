@@ -8,61 +8,48 @@
 import Foundation
 
 class ProfileViewModel {
-    let gitHubService: GitHubService
+    let gitHubService: GitHubServicing
     var user: User
     var repos = [Repo]()
     var authLogin: String
-    var coordinator: AppCoordinator?
+    var coordinator: HomeCoordinator?
     
-    init(user: User, authLogin: String, gitHubService: GitHubService = GitHubService()) {
+    init(user: User, gitHubService: GitHubServicing = GitHubService()) {
         self.user = user
         self.gitHubService = gitHubService
-        self.authLogin = authLogin
+        self.authLogin = UserDefaults.standard.object(forKey: authUsername) as! String
     }
     
-    func checkIfUserFollowing(username: String, completion: @escaping(Bool) -> Void) {
-        gitHubService.checkIfUserFollowing(username: username) { result in
-            switch result {
-            case .success(let followingStatus):
-                completion(followingStatus)
-            case .failure(let error):
-                print("DEBUG: Error while fecthing following information, \(error.localizedDescription)")
-            }
+    func configureProfileHeaderViewModel() async throws -> ProfileHeaderViewModel {
+        if user.login == authLogin {
+            return ProfileHeaderViewModel(user: user, followingStatus: false, config: .editProfile)
+        } else {
+            let isFollowing = try await checkIfUserFollowing()
+            return ProfileHeaderViewModel(user: user, followingStatus: isFollowing)
         }
     }
     
-    func follow(username: String, completion: @escaping() -> Void) {
-        gitHubService.follow(username: username) { result in
-            switch result {
-            case .success:
-                completion()
-            case .failure(let error):
-                print("DEBUG: Error while following the user, \(error.localizedDescription)")
-            }
-        }
+    private func checkIfUserFollowing() async throws -> Bool {
+        return try await gitHubService.checkIfUserFollowing(username: user.login)
     }
     
-    func unfollow(username: String, completion: @escaping() -> Void) {
-        gitHubService.unfollow(username: username) { result in
-            switch result {
-            case .success:
-                completion()
-            case .failure(let error):
-                print("DEBUG: Error while unfollowing the user, \(error.localizedDescription)")
-            }
-        }
+    func follow(username: String) async throws {
+        try await gitHubService.follow(username: username)
+        return
     }
     
-    func getUserRepos(username: String, completion: @escaping() -> Void) {
-        gitHubService.getUserRepos(username: username) { [weak self] result in
-            switch result {
-            case .success(let repos):
-                self?.repos = repos
-                completion()
-            case .failure(let error):
-                print("DEBUG: Error while feetching repos, \(error.localizedDescription)")
-            }
-        }
+    func unfollow(username: String) async throws {
+        try await gitHubService.unfollow(username: username)
+        return
+    }
+    
+    func getUserRepos() async throws {
+        self.repos = try await gitHubService.getUserRepos(username: user.login)
+    }
+    
+    func didSelectRowAt(index: Int) {
+        guard let url = URL(string: repos[index].htmlUrl) else { return }
+        coordinator?.goToSafari(withUrl: url)
     }
     
 }

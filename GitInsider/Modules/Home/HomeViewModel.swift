@@ -12,9 +12,10 @@ class HomeViewModel {
     //MARK: - Properties
     var user: User?
     var users: Users?
+    let userDefaults: UserDefaults
     let keychain: KeychainSwift
-    let gitHubService: GitHubService
-    weak var coordinator: AppCoordinator?
+    let gitHubService: GitHubServicing
+    weak var coordinator: HomeCoordinator?
     
     var authLogin: String {
         user?.login ?? ""
@@ -47,51 +48,54 @@ class HomeViewModel {
     
     //MARK: - Lifecycle
     
-    init(user: User?, gitHubService: GitHubService = GitHubService(), keychain: KeychainSwift = KeychainSwift()) {
+    init(user: User?, gitHubService: GitHubServicing = GitHubService(), keychain: KeychainSwift = KeychainSwift(), userDefaults: UserDefaults = UserDefaults.standard) {
         self.gitHubService = gitHubService
         self.user = user
         self.keychain = keychain
+        self.userDefaults = userDefaults
     }
     
     //MARK: - Helpers
     
     func handleSignOut() {
-        keychain.delete("Access Token")
+        keychain.delete(accessTokenInKeychain)
+        userDefaults.removeObject(forKey: accessTokenExpirationKeyInDefaults)
         coordinator?.signOut()
     }
     
-    func goToProfile(withUser user: User, authLogin: String) {
-        coordinator?.goToProfile(withUser: user, authLogin: authLogin)
+    func goToProfile(withUser user: User) {
+        coordinator?.goToProfile(withUser: user)
     }
     
-    func getUser(forUsername username: String, completion: @escaping(User) -> Void) {
-        gitHubService.getUser(forUsername: username) { result in
-            switch result {
-            case .success(let user):
-                completion(user)
-            case .failure(let error):
-                print("DEBUG: Error while fetching user with username, \(error.localizedDescription)")
-            }
+    func getUser(forUsername username: String) async throws -> User {
+        return try await gitHubService.getUser(forUsername: username)
+    }
+    
+    func handleCellImageVisibility() -> Bool {
+        if users?.items.isEmpty == false {
+            return true
+        } else {
+            return false
         }
     }
     
-    func searchUser(forUsername username: String, completion: @escaping() -> Void) {
-        gitHubService.searchUser(forUsername: username) { [weak self] result in
-            switch result {
-            case .success(let users):
-                self?.users = users
-                completion()
-            case .failure:
-                self?.users = nil
-                completion()
-            }
+    func searchUser(forUsername username: String) async throws {
+        if username == "" {
+            self.users = nil
+        } else {
+            self.users = try await gitHubService.searchUser(forUsername: username)
         }
+        
+        
     }
     
     func didSelectItemAt(index: Int) {
         guard let username = users?.items[index].login else { return }
-        getUser(forUsername: username, completion: { [weak self] user in
-            self?.goToProfile(withUser: user, authLogin: self?.authLogin ?? "")
-        })
+        Task {
+            let user = try await getUser(forUsername: username)
+            DispatchQueue.main.async {
+                self.goToProfile(withUser: user)
+            }
+        }
     }
 }

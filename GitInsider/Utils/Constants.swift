@@ -13,3 +13,7 @@ let gitHubRedirectUri = "gitinsider://github/callback"
 
 let gitHubAuthLink = "https://github.com/login/oauth/authorize?client_id=\(gitHubClientId)"
 let gitHubSignupLink = "https://github.com/signup"
+
+let authUsername = "Authenticated username"
+let accessTokenInKeychain = "Access Token"
+let accessTokenExpirationKeyInDefaults = "AccessTokenExpiration"

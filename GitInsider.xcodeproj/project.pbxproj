@@ -7,7 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C2218F322B19844A00FE14AC /* AppCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2218F312B19844A00FE14AC /* AppCoordinatorTests.swift */; };
+		C2218F342B19877E00FE14AC /* AuthCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2218F332B19877E00FE14AC /* AuthCoordinatorTests.swift */; };
+		C2218F362B198F0800FE14AC /* HomeCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2218F352B198F0800FE14AC /* HomeCoordinatorTests.swift */; };
 		C25572392B07D01600B10DF9 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25572382B07D01600B10DF9 /* NetworkManager.swift */; };
+		C255723C2B0E470D00B10DF9 /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = C255723B2B0E470D00B10DF9 /* SkeletonView */; };
+		C25572422B0FE71700B10DF9 /* WebController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25572412B0FE71700B10DF9 /* WebController.swift */; };
+		C25572442B14C18000B10DF9 /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25572432B14C18000B10DF9 /* WebViewModel.swift */; };
+		C25572482B14ED1300B10DF9 /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25572472B14ED1300B10DF9 /* AuthCoordinator.swift */; };
+		C255724A2B14ED1A00B10DF9 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25572492B14ED1A00B10DF9 /* HomeCoordinator.swift */; };
+		C255724D2B16544D00B10DF9 /* MockModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C255724C2B16544D00B10DF9 /* MockModels.swift */; };
+		C255724F2B16578800B10DF9 /* MockNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C255724E2B16578800B10DF9 /* MockNetworkManager.swift */; };
+		C25572522B1675BE00B10DF9 /* GitHubServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25572512B1675BE00B10DF9 /* GitHubServiceTests.swift */; };
+		C25572572B1787A800B10DF9 /* MockOAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25572562B1787A700B10DF9 /* MockOAuthManager.swift */; };
+		C255725F2B17C23E00B10DF9 /* SplashViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C255725E2B17C23E00B10DF9 /* SplashViewModelTests.swift */; };
+		C25572612B17C2E500B10DF9 /* MockGitHubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25572602B17C2E500B10DF9 /* MockGitHubService.swift */; };
+		C25572652B17DFA300B10DF9 /* MockUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25572642B17DFA300B10DF9 /* MockUserDefaults.swift */; };
+		C25572672B17E03F00B10DF9 /* MockKeychainSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25572662B17E03F00B10DF9 /* MockKeychainSwift.swift */; };
+		C25572692B18BB7C00B10DF9 /* MockAuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25572682B18BB7C00B10DF9 /* MockAuthCoordinator.swift */; };
+		C255726B2B18DC3200B10DF9 /* WebViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C255726A2B18DC3200B10DF9 /* WebViewModelTests.swift */; };
+		C255726D2B18DE0D00B10DF9 /* MockNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C255726C2B18DE0D00B10DF9 /* MockNotificationCenter.swift */; };
 		C265DA432B028F310006EF39 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C265DA422B028F310006EF39 /* User.swift */; };
 		C265DA492B038C960006EF39 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C265DA482B038C960006EF39 /* Constants.swift */; };
 		C265DA4C2B0391900006EF39 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C265DA4B2B0391900006EF39 /* KeychainSwift */; };
@@ -15,13 +34,16 @@
 		C265DA512B03D5150006EF39 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C265DA502B03D5150006EF39 /* SplashViewModel.swift */; };
 		C265DA542B03E54C0006EF39 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C265DA532B03E54C0006EF39 /* HomeController.swift */; };
 		C265DA562B03E5520006EF39 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C265DA552B03E5520006EF39 /* HomeViewModel.swift */; };
-		C265DA592B03FE1B0006EF39 /* SafariController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C265DA582B03FE1B0006EF39 /* SafariController.swift */; };
-		C265DA5B2B03FE230006EF39 /* SafariViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C265DA5A2B03FE230006EF39 /* SafariViewModel.swift */; };
+		C2C2A1142B18E21400BFD97B /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2A1132B18E21400BFD97B /* LoginViewModelTests.swift */; };
+		C2C2A1162B18F3D500BFD97B /* HomeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2A1152B18F3D500BFD97B /* HomeViewModelTests.swift */; };
+		C2C2A1182B19110D00BFD97B /* MockHomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2A1172B19110D00BFD97B /* MockHomeCoordinator.swift */; };
+		C2C2A11A2B191E3A00BFD97B /* ProfileViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2A1192B191E3A00BFD97B /* ProfileViewModelTests.swift */; };
+		C2C2A1222B1937A300BFD97B /* ProfileHeaderViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2A1212B1937A300BFD97B /* ProfileHeaderViewModelTests.swift */; };
+		C2C2A1262B195AB500BFD97B /* UserCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2A1252B195AB500BFD97B /* UserCellViewModelTests.swift */; };
 		C2D592652AFBC03D00B2D271 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D592642AFBC03D00B2D271 /* AppDelegate.swift */; };
 		C2D5926C2AFBC03D00B2D271 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2D5926A2AFBC03D00B2D271 /* Main.storyboard */; };
 		C2D5926E2AFBC03F00B2D271 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2D5926D2AFBC03F00B2D271 /* Assets.xcassets */; };
 		C2D592712AFBC03F00B2D271 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2D5926F2AFBC03F00B2D271 /* LaunchScreen.storyboard */; };
-		C2D5927C2AFBC03F00B2D271 /* GitInsiderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D5927B2AFBC03F00B2D271 /* GitInsiderTests.swift */; };
 		C2D592952AFBC08800B2D271 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D592942AFBC08800B2D271 /* Extensions.swift */; };
 		C2D592972AFBC0B500B2D271 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D592962AFBC0B500B2D271 /* AppCoordinator.swift */; };
 		C2D5929C2AFBC3CB00B2D271 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D5929B2AFBC3CB00B2D271 /* LoginController.swift */; };
@@ -61,15 +83,38 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C2218F312B19844A00FE14AC /* AppCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorTests.swift; sourceTree = "<group>"; };
+		C2218F332B19877E00FE14AC /* AuthCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinatorTests.swift; sourceTree = "<group>"; };
+		C2218F352B198F0800FE14AC /* HomeCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinatorTests.swift; sourceTree = "<group>"; };
 		C25572382B07D01600B10DF9 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		C25572412B0FE71700B10DF9 /* WebController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebController.swift; sourceTree = "<group>"; };
+		C25572432B14C18000B10DF9 /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
+		C25572472B14ED1300B10DF9 /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
+		C25572492B14ED1A00B10DF9 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
+		C255724C2B16544D00B10DF9 /* MockModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockModels.swift; sourceTree = "<group>"; };
+		C255724E2B16578800B10DF9 /* MockNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkManager.swift; sourceTree = "<group>"; };
+		C25572512B1675BE00B10DF9 /* GitHubServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubServiceTests.swift; sourceTree = "<group>"; };
+		C25572552B175A3200B10DF9 /* GitInsiderTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = GitInsiderTests.xctestplan; sourceTree = "<group>"; };
+		C25572562B1787A700B10DF9 /* MockOAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockOAuthManager.swift; sourceTree = "<group>"; };
+		C255725E2B17C23E00B10DF9 /* SplashViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModelTests.swift; sourceTree = "<group>"; };
+		C25572602B17C2E500B10DF9 /* MockGitHubService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGitHubService.swift; sourceTree = "<group>"; };
+		C25572642B17DFA300B10DF9 /* MockUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserDefaults.swift; sourceTree = "<group>"; };
+		C25572662B17E03F00B10DF9 /* MockKeychainSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockKeychainSwift.swift; sourceTree = "<group>"; };
+		C25572682B18BB7C00B10DF9 /* MockAuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthCoordinator.swift; sourceTree = "<group>"; };
+		C255726A2B18DC3200B10DF9 /* WebViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModelTests.swift; sourceTree = "<group>"; };
+		C255726C2B18DE0D00B10DF9 /* MockNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNotificationCenter.swift; sourceTree = "<group>"; };
 		C265DA422B028F310006EF39 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C265DA482B038C960006EF39 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C265DA4E2B03D5080006EF39 /* SplashController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashController.swift; sourceTree = "<group>"; };
 		C265DA502B03D5150006EF39 /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
 		C265DA532B03E54C0006EF39 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		C265DA552B03E5520006EF39 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		C265DA582B03FE1B0006EF39 /* SafariController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariController.swift; sourceTree = "<group>"; };
-		C265DA5A2B03FE230006EF39 /* SafariViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariViewModel.swift; sourceTree = "<group>"; };
+		C2C2A1132B18E21400BFD97B /* LoginViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
+		C2C2A1152B18F3D500BFD97B /* HomeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTests.swift; sourceTree = "<group>"; };
+		C2C2A1172B19110D00BFD97B /* MockHomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHomeCoordinator.swift; sourceTree = "<group>"; };
+		C2C2A1192B191E3A00BFD97B /* ProfileViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModelTests.swift; sourceTree = "<group>"; };
+		C2C2A1212B1937A300BFD97B /* ProfileHeaderViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderViewModelTests.swift; sourceTree = "<group>"; };
+		C2C2A1252B195AB500BFD97B /* UserCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCellViewModelTests.swift; sourceTree = "<group>"; };
 		C2D592612AFBC03D00B2D271 /* GitInsider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitInsider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2D592642AFBC03D00B2D271 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C2D5926B2AFBC03D00B2D271 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -77,7 +122,6 @@
 		C2D592702AFBC03F00B2D271 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C2D592722AFBC03F00B2D271 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C2D592772AFBC03F00B2D271 /* GitInsiderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitInsiderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C2D5927B2AFBC03F00B2D271 /* GitInsiderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitInsiderTests.swift; sourceTree = "<group>"; };
 		C2D592812AFBC03F00B2D271 /* GitInsiderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitInsiderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2D592942AFBC08800B2D271 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		C2D592962AFBC0B500B2D271 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
@@ -103,6 +147,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C255723C2B0E470D00B10DF9 /* SkeletonView in Frameworks */,
 				C265DA4C2B0391900006EF39 /* KeychainSwift in Frameworks */,
 				C2D592BB2AFD841100B2D271 /* Kingfisher in Frameworks */,
 				C2D592B82AFD83FA00B2D271 /* Moya in Frameworks */,
@@ -126,6 +171,86 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C2218F302B19836300FE14AC /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				C2218F312B19844A00FE14AC /* AppCoordinatorTests.swift */,
+				C2218F332B19877E00FE14AC /* AuthCoordinatorTests.swift */,
+				C2218F352B198F0800FE14AC /* HomeCoordinatorTests.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		C255724B2B16543B00B10DF9 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				C2C2A11B2B19371C00BFD97B /* Models */,
+				C2C2A11D2B19374900BFD97B /* Coordinators */,
+				C2C2A11C2B19372700BFD97B /* Service */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		C25572502B1675A300B10DF9 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				C25572512B1675BE00B10DF9 /* GitHubServiceTests.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		C25572582B17895700B10DF9 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				C25572592B17C1DE00B10DF9 /* Splash */,
+				C255725A2B17C1E300B10DF9 /* Web */,
+				C255725B2B17C1F000B10DF9 /* Login */,
+				C255725C2B17C1F500B10DF9 /* Home */,
+				C255725D2B17C1F900B10DF9 /* Profile */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		C25572592B17C1DE00B10DF9 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				C255725E2B17C23E00B10DF9 /* SplashViewModelTests.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		C255725A2B17C1E300B10DF9 /* Web */ = {
+			isa = PBXGroup;
+			children = (
+				C255726A2B18DC3200B10DF9 /* WebViewModelTests.swift */,
+			);
+			path = Web;
+			sourceTree = "<group>";
+		};
+		C255725B2B17C1F000B10DF9 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				C2C2A1132B18E21400BFD97B /* LoginViewModelTests.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		C255725C2B17C1F500B10DF9 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				C2C2A1152B18F3D500BFD97B /* HomeViewModelTests.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		C255725D2B17C1F900B10DF9 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				C2C2A1192B191E3A00BFD97B /* ProfileViewModelTests.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		C265DA4D2B03D4FF0006EF39 /* Splash */ = {
 			isa = PBXGroup;
 			children = (
@@ -144,18 +269,74 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
-		C265DA572B03FE0E0006EF39 /* Safari */ = {
+		C265DA572B03FE0E0006EF39 /* Web */ = {
 			isa = PBXGroup;
 			children = (
-				C265DA582B03FE1B0006EF39 /* SafariController.swift */,
-				C265DA5A2B03FE230006EF39 /* SafariViewModel.swift */,
+				C25572412B0FE71700B10DF9 /* WebController.swift */,
+				C25572432B14C18000B10DF9 /* WebViewModel.swift */,
 			);
-			path = Safari;
+			path = Web;
+			sourceTree = "<group>";
+		};
+		C2C2A11B2B19371C00BFD97B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C255724C2B16544D00B10DF9 /* MockModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C2C2A11C2B19372700BFD97B /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				C255724E2B16578800B10DF9 /* MockNetworkManager.swift */,
+				C25572562B1787A700B10DF9 /* MockOAuthManager.swift */,
+				C25572602B17C2E500B10DF9 /* MockGitHubService.swift */,
+				C25572642B17DFA300B10DF9 /* MockUserDefaults.swift */,
+				C25572662B17E03F00B10DF9 /* MockKeychainSwift.swift */,
+				C255726C2B18DE0D00B10DF9 /* MockNotificationCenter.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		C2C2A11D2B19374900BFD97B /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				C25572682B18BB7C00B10DF9 /* MockAuthCoordinator.swift */,
+				C2C2A1172B19110D00BFD97B /* MockHomeCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		C2C2A11E2B19376A00BFD97B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C2C2A1202B19378600BFD97B /* ProfileHeader */,
+				C2C2A11F2B19378000BFD97B /* UserCell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C2C2A11F2B19378000BFD97B /* UserCell */ = {
+			isa = PBXGroup;
+			children = (
+				C2C2A1252B195AB500BFD97B /* UserCellViewModelTests.swift */,
+			);
+			path = UserCell;
+			sourceTree = "<group>";
+		};
+		C2C2A1202B19378600BFD97B /* ProfileHeader */ = {
+			isa = PBXGroup;
+			children = (
+				C2C2A1212B1937A300BFD97B /* ProfileHeaderViewModelTests.swift */,
+			);
+			path = ProfileHeader;
 			sourceTree = "<group>";
 		};
 		C2D592582AFBC03D00B2D271 = {
 			isa = PBXGroup;
 			children = (
+				C25572552B175A3200B10DF9 /* GitInsiderTests.xctestplan */,
 				C2D592A12AFBCC6E00B2D271 /* GitInsider */,
 				C2D5927A2AFBC03F00B2D271 /* GitInsiderTests */,
 				C2D592622AFBC03D00B2D271 /* Products */,
@@ -175,8 +356,8 @@
 		C2D592632AFBC03D00B2D271 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				C265DA572B03FE0E0006EF39 /* Safari */,
 				C265DA4D2B03D4FF0006EF39 /* Splash */,
+				C265DA572B03FE0E0006EF39 /* Web */,
 				C2D5929A2AFBC3C000B2D271 /* Login */,
 				C265DA522B03E53E0006EF39 /* Home */,
 				C2EF76C32B0645C500A7DEDA /* Profile */,
@@ -187,7 +368,11 @@
 		C2D5927A2AFBC03F00B2D271 /* GitInsiderTests */ = {
 			isa = PBXGroup;
 			children = (
-				C2D5927B2AFBC03F00B2D271 /* GitInsiderTests.swift */,
+				C255724B2B16543B00B10DF9 /* Mocks */,
+				C2C2A11E2B19376A00BFD97B /* View */,
+				C2218F302B19836300FE14AC /* Coordinators */,
+				C25572582B17895700B10DF9 /* Modules */,
+				C25572502B1675A300B10DF9 /* Network */,
 			);
 			path = GitInsiderTests;
 			sourceTree = "<group>";
@@ -233,6 +418,8 @@
 			isa = PBXGroup;
 			children = (
 				C2D592962AFBC0B500B2D271 /* AppCoordinator.swift */,
+				C25572472B14ED1300B10DF9 /* AuthCoordinator.swift */,
+				C25572492B14ED1A00B10DF9 /* HomeCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -315,6 +502,7 @@
 				C2D592B72AFD83FA00B2D271 /* Moya */,
 				C2D592BA2AFD841100B2D271 /* Kingfisher */,
 				C265DA4B2B0391900006EF39 /* KeychainSwift */,
+				C255723B2B0E470D00B10DF9 /* SkeletonView */,
 			);
 			productName = GitInsider;
 			productReference = C2D592612AFBC03D00B2D271 /* GitInsider.app */;
@@ -371,6 +559,7 @@
 					};
 					C2D592762AFBC03F00B2D271 = {
 						CreatedOnToolsVersion = 14.3.1;
+						LastSwiftMigration = 1430;
 						TestTargetID = C2D592602AFBC03D00B2D271;
 					};
 					C2D592802AFBC03F00B2D271 = {
@@ -392,6 +581,7 @@
 				C2D592B62AFD83FA00B2D271 /* XCRemoteSwiftPackageReference "Moya" */,
 				C2D592B92AFD841100B2D271 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				C265DA4A2B0391900006EF39 /* XCRemoteSwiftPackageReference "keychain-swift" */,
+				C255723A2B0E470D00B10DF9 /* XCRemoteSwiftPackageReference "SkeletonView" */,
 			);
 			productRefGroup = C2D592622AFBC03D00B2D271 /* Products */;
 			projectDirPath = "";
@@ -436,8 +626,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C25572422B0FE71700B10DF9 /* WebController.swift in Sources */,
+				C25572442B14C18000B10DF9 /* WebViewModel.swift in Sources */,
 				C25572392B07D01600B10DF9 /* NetworkManager.swift in Sources */,
 				C2D592A02AFBC47F00B2D271 /* Utilities.swift in Sources */,
+				C255724A2B14ED1A00B10DF9 /* HomeCoordinator.swift in Sources */,
 				C2EF76C02B05469A00A7DEDA /* UserCellViewModel.swift in Sources */,
 				C2D592C22AFE825800B2D271 /* GitHubService.swift in Sources */,
 				C2D592652AFBC03D00B2D271 /* AppDelegate.swift in Sources */,
@@ -452,13 +645,12 @@
 				C2D5929C2AFBC3CB00B2D271 /* LoginController.swift in Sources */,
 				C265DA4F2B03D5080006EF39 /* SplashController.swift in Sources */,
 				C2D592972AFBC0B500B2D271 /* AppCoordinator.swift in Sources */,
+				C25572482B14ED1300B10DF9 /* AuthCoordinator.swift in Sources */,
 				C2D592C02AFE7BF800B2D271 /* OAuthManager.swift in Sources */,
 				C2EF76C22B062A2F00A7DEDA /* Users.swift in Sources */,
 				C2EF76C72B0645E400A7DEDA /* ProfileViewModel.swift in Sources */,
 				C2D5929E2AFBC3D100B2D271 /* LoginViewModel.swift in Sources */,
-				C265DA592B03FE1B0006EF39 /* SafariController.swift in Sources */,
 				C265DA492B038C960006EF39 /* Constants.swift in Sources */,
-				C265DA5B2B03FE230006EF39 /* SafariViewModel.swift in Sources */,
 				C2D592952AFBC08800B2D271 /* Extensions.swift in Sources */,
 				C2EF76D12B07945600A7DEDA /* Repo.swift in Sources */,
 				C265DA432B028F310006EF39 /* User.swift in Sources */,
@@ -470,7 +662,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C2D5927C2AFBC03F00B2D271 /* GitInsiderTests.swift in Sources */,
+				C2C2A1162B18F3D500BFD97B /* HomeViewModelTests.swift in Sources */,
+				C2218F362B198F0800FE14AC /* HomeCoordinatorTests.swift in Sources */,
+				C2C2A1142B18E21400BFD97B /* LoginViewModelTests.swift in Sources */,
+				C255724F2B16578800B10DF9 /* MockNetworkManager.swift in Sources */,
+				C255725F2B17C23E00B10DF9 /* SplashViewModelTests.swift in Sources */,
+				C25572692B18BB7C00B10DF9 /* MockAuthCoordinator.swift in Sources */,
+				C25572612B17C2E500B10DF9 /* MockGitHubService.swift in Sources */,
+				C25572522B1675BE00B10DF9 /* GitHubServiceTests.swift in Sources */,
+				C255724D2B16544D00B10DF9 /* MockModels.swift in Sources */,
+				C2218F322B19844A00FE14AC /* AppCoordinatorTests.swift in Sources */,
+				C25572672B17E03F00B10DF9 /* MockKeychainSwift.swift in Sources */,
+				C255726D2B18DE0D00B10DF9 /* MockNotificationCenter.swift in Sources */,
+				C2C2A11A2B191E3A00BFD97B /* ProfileViewModelTests.swift in Sources */,
+				C255726B2B18DC3200B10DF9 /* WebViewModelTests.swift in Sources */,
+				C25572652B17DFA300B10DF9 /* MockUserDefaults.swift in Sources */,
+				C25572572B1787A800B10DF9 /* MockOAuthManager.swift in Sources */,
+				C2C2A1182B19110D00BFD97B /* MockHomeCoordinator.swift in Sources */,
+				C2218F342B19877E00FE14AC /* AuthCoordinatorTests.swift in Sources */,
+				C2C2A1222B1937A300BFD97B /* ProfileHeaderViewModelTests.swift in Sources */,
+				C2C2A1262B195AB500BFD97B /* UserCellViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -566,7 +777,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -620,7 +831,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -646,6 +857,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -678,6 +890,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -699,6 +912,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6Y92LH56N8;
@@ -707,9 +921,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alphanogn.GitInsiderTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GitInsider.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/GitInsider";
 			};
 			name = Debug;
@@ -719,6 +937,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6Y92LH56N8;
@@ -727,9 +946,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alphanogn.GitInsiderTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GitInsider.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/GitInsider";
 			};
 			name = Release;
@@ -812,6 +1034,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		C255723A2B0E470D00B10DF9 /* XCRemoteSwiftPackageReference "SkeletonView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Juanpe/SkeletonView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		C265DA4A2B0391900006EF39 /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/evgenyneu/keychain-swift.git";
@@ -839,6 +1069,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		C255723B2B0E470D00B10DF9 /* SkeletonView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C255723A2B0E470D00B10DF9 /* XCRemoteSwiftPackageReference "SkeletonView" */;
+			productName = SkeletonView;
+		};
 		C265DA4B2B0391900006EF39 /* KeychainSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C265DA4A2B0391900006EF39 /* XCRemoteSwiftPackageReference "keychain-swift" */;

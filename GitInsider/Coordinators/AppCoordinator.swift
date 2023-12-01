@@ -10,14 +10,12 @@ import SafariServices
 import KeychainSwift
 
 protocol Coordinator: AnyObject {
-    var child: [Coordinator] { get set }
     var navigationController : UINavigationController { get set }
-    
     func start()
 }
 
 class AppCoordinator: Coordinator {
-    var child: [Coordinator] = []
+    var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     let keychain = KeychainSwift()
     
@@ -26,55 +24,33 @@ class AppCoordinator: Coordinator {
     }
     
     func start() {
-        goToSplash()
+        goToAuth()
     }
     
     func goToHome(withUser user: User) {
-        let homeController = HomeController()
-        let homeViewModel = HomeViewModel(user: user)
-        homeViewModel.coordinator = self
-        homeController.viewModel = homeViewModel
-        navigationController.pushViewController(homeController, animated: true)
+        if let existingHomeController = childCoordinators.first(where: { $0 is HomeCoordinator }) as? HomeCoordinator {
+            existingHomeController.user = user
+        } else {
+            let child = HomeCoordinator(navigationController: navigationController, user: user)
+            child.parentCoordinator = self
+            childCoordinators.append(child)
+            child.start()
+        }
     }
     
-    func goToProfile(withUser user: User, authLogin: String) {
-        let profileController = ProfileController()
-        let profileViewModel = ProfileViewModel(user: user, authLogin: authLogin)
-        profileViewModel.coordinator = self
-        profileController.viewModel = profileViewModel
-        navigationController.pushViewController(profileController, animated: true)
+    func goToAuth() {
+        let child = AuthCoordinator(navigationController: navigationController)
+        child.parentCoordinator = self
+        childCoordinators.append(child)
+        child.start()
     }
     
-    func goToSplash() {
-        let splashController = SplashController()
-        let splashViewModel = SplashViewModel()
-        splashViewModel.coordinator = self
-        splashController.viewModel = splashViewModel
-        navigationController.pushViewController(splashController, animated: false)
-    }
-    
-    func goToLoginPage() {
-        let loginController = LoginController()
-        let loginViewModel = LoginViewModel()
-        loginViewModel.coordinator = self
-        loginController.viewModel = loginViewModel
-        navigationController.pushViewController(loginController, animated: false)
-    }
-    
-    func signOut() {
-        navigationController.popToRootViewController(animated: false)
-    }
-    
-    func goToLoginOnSafari() {
-        guard let url = URL(string: gitHubAuthLink) else { return }
-        //        UIApplication.shared.open(url)
-        let safari = SFSafariViewController(url: url)
-        //        safari.modalPresentationStyle = .pageSheet
-        navigationController.pushViewController(safari, animated: true)
-    }
-    
-    func goToSignUpOnSafari() {
-        guard let url = URL(string: gitHubSignupLink) else { return }
-        UIApplication.shared.open(url)
+    func childDidFinish(_ child: Coordinator?) {
+        for (index, coordinator) in childCoordinators.enumerated() {
+            if coordinator === child {
+                childCoordinators.remove(at: index)
+                break
+            }
+        }
     }
 }

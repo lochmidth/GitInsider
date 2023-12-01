@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 class ProfileController: UIViewController {
     //MARK: - Properties
@@ -57,17 +58,16 @@ class ProfileController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureUI()
         configureProfileHeader()
         configureTableView()
-        configureUI()
+    }
+    
+    deinit {
+        print("DEBUG: \(self) deallocated.")
     }
     
     //MARK: - Helpers
-    
-    //    private func configureViewModel() {
-    //        guard let viewModel = viewModel else { return }
-    //
-    //    }
     
     private func configureUI() {
         view.backgroundColor = .white
@@ -83,28 +83,31 @@ class ProfileController: UIViewController {
     
     private func configureProfileHeader() {
         guard let viewModel = viewModel else { return }
-        viewModel.checkIfUserFollowing(username: viewModel.user.login) { [weak self] followingStatus in
-            if viewModel.authLogin == viewModel.user.login {
-                self?.profileHeader.viewModel = ProfileHeaderViewModel(user: viewModel.user, followingStatus: followingStatus, config: .editProfile)
-                self?.profileHeader.delegate = self
-            } else {
-                self?.profileHeader.viewModel = ProfileHeaderViewModel(user: viewModel.user, followingStatus: followingStatus)
-                self?.profileHeader.delegate = self
-            }
+        Task {
+            self.profileHeader.viewModel = try await viewModel.configureProfileHeaderViewModel()
+            self.profileHeader.delegate = self
         }
     }
     
     private func configureTableView() {
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.isSkeletonable = true
+        tableView.showAnimatedGradientSkeleton(usingGradient: .init(baseColor: .githubGrey), transition: .crossDissolve(0.25))
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "repoCell")
-        viewModel?.getUserRepos(username: viewModel?.user.login ?? "", completion: {
-            self.tableView.reloadData()
-        })
+        Task {
+            try await viewModel?.getUserRepos()
+            tableView.hideSkeleton(transition: .crossDissolve(1.0))
+            tableView.reloadData()
+        }
     }
 }
 
-extension ProfileController: UITableViewDelegate, UITableViewDataSource {
+extension ProfileController: UITableViewDelegate, SkeletonTableViewDataSource {
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return "repoCell"
+    }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return tableViewHeader
@@ -112,6 +115,17 @@ extension ProfileController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel?.repos.count ?? 0
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 6
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, skeletonCellForRowAt indexPath: IndexPath) -> UITableViewCell? {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "repoCell", for: indexPath)
+        cell.textLabel?.textColor = .black
+        cell.backgroundColor = .lightGray
+        return cell
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -123,33 +137,33 @@ extension ProfileController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let url = URL(string: viewModel?.repos[indexPath.item].htmlUrl ?? "") else { return }
-        UIApplication.shared.open(url)
+        viewModel?.didSelectRowAt(index: indexPath.item)
     }
 }
 
 extension ProfileController: ProfileHeaderDelegate {
     func follow(username: String) {
-        viewModel?.follow(username: username, completion: {
+        Task {
+            try await viewModel?.follow(username: username)
             print("DEBUG: \(username) followed.")
-            self.profileHeader.viewModel?.config = .following
+            profileHeader.viewModel?.config = .following
             
             UIView.animate(withDuration: 0.5) {
                 self.profileHeader.configureViewModel()
             }
-        })
+        }
     }
     
     func unfollow(username: String) {
-        print("DEBUG: unfollow pressed")
-        viewModel?.unfollow(username: username, completion: {
+        Task {
+            try await viewModel?.unfollow(username: username)
             print("DEBUG: \(username) unfollowed.")
             self.profileHeader.viewModel?.config = .notFollowing
             
             UIView.animate(withDuration: 0.5) {
                 self.profileHeader.configureViewModel()
             }
-        })
+        }
     }
     
     func editProfile() {

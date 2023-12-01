@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - AccessTokenResponse
+// MARK: - Access Token Response
 
 struct AccessTokenResponse: Codable {
     let accessToken: String

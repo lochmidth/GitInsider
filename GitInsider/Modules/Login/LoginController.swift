@@ -10,11 +10,7 @@ import UIKit
 class LoginController: UIViewController {
     //MARK: - Properties
     
-    var viewModel: LoginViewModel? {
-        didSet {
-            configureViewModel()
-        }
-    }
+    var viewModel: LoginViewModel?
     
     private let logoImageView: UIImageView = {
         let iv = UIImageView()
@@ -52,8 +48,14 @@ class LoginController: UIViewController {
         configureNavigationBar()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        configureNavigationBar()
+    }
+    
     deinit {
-        print("DEBUG: \(self) deinitialized.")
+        print("DEBUG: \(self) deallocated.")
     }
     
     //MARK: - Actions
@@ -67,10 +69,6 @@ class LoginController: UIViewController {
     }
     
     //MARK: - Helpers
-    
-    func configureViewModel() {
-        //        guard let viewModel else { return }
-    }
     
     private func configureUI() {
         view.backgroundColor = .githubBlack

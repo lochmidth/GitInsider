@@ -12,40 +12,42 @@ class LoginViewModel {
     
     //MARK: - Properties
     
-    weak var coordinator: AppCoordinator?
+    weak var coordinator: AuthCoordinator?
     
-    let oAuthManager: OAuthManager
-    let gitHubService: GitHubService
+    let gitHubService: GitHubServicing
     let keychain: KeychainSwift
+    let notificationCenter: NotificationCenter
+    let userDefaults: UserDefaults
     
     //MARK: - Lifecycle
     
-    init(oAuthManager: OAuthManager = OAuthManager(), gitHubService: GitHubService = GitHubService(), keychain: KeychainSwift = KeychainSwift()) {
-        self.oAuthManager = oAuthManager
+    init(gitHubService: GitHubServicing = GitHubService(), keychain: KeychainSwift = KeychainSwift(), notificationCenter: NotificationCenter = NotificationCenter.default, userDefaults: UserDefaults = UserDefaults.standard) {
         self.gitHubService = gitHubService
         self.keychain = keychain
+        self.notificationCenter = notificationCenter
+        self.userDefaults = userDefaults
         
-        NotificationCenter.default.addObserver(self, selector: #selector(handleReceivedUrl(_:)), name: .didReceiveURL, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(handleReceiveCode(_:)), name: .didReceiveCode, object: nil)
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self)
+        notificationCenter.removeObserver(self)
     }
     
     //MARK: - Actions
     
-    @objc func handleReceivedUrl(_ notification: Notification) {
-        guard let url = notification.userInfo?["url"] as? URL else { return }
+    @objc func handleReceiveCode(_ notification: Notification) {
+        guard let code = notification.userInfo?["code"] as? String else { return }
         Task {
-            let code = try await oAuthManager.handleCallBack(withUrl: url)
             let accessTokenResponse = try await gitHubService.exchangeToken(code: code)
             print("DEBUG: Access Token is received: \(accessTokenResponse.accessToken)")
-            keychain.set(accessTokenResponse.accessToken, forKey: "Access Token")
-            
+            keychain.set(accessTokenResponse.accessToken, forKey: accessTokenInKeychain)
+            setExpirationDate()
+
+            let user = try await getCurrentUser()
+            userDefaults.set(user.login, forKey: authUsername)
             DispatchQueue.main.async {
-                self.getCurrentUser { [weak self] user in
-                    self?.coordinator?.goToHome(withUser: user)
-                }
+                self.coordinator?.didFinishAuth(withUser: user)
             }
         }
     }
@@ -60,15 +62,12 @@ class LoginViewModel {
         coordinator?.goToSignUpOnSafari()
     }
     
-    private func getCurrentUser(completion: @escaping(User) -> Void) {
-        gitHubService.getCurrentUser { result in
-            switch result {
-            case .success(let user):
-                completion(user)
-            case .failure(let error):
-                print("DEBUG: Error while fetching user data, \(error.localizedDescription)")
-            }
-        }
+    private func getCurrentUser() async throws -> User {
+        return try await gitHubService.getCurrentUser()
     }
     
+    private func setExpirationDate() {
+        let expirationDate = Date().addingTimeInterval(TimeInterval(8 * 60 * 60))
+        userDefaults.set(expirationDate, forKey: accessTokenExpirationKeyInDefaults)
+    }
 }

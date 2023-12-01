@@ -18,7 +18,8 @@ extension UIColor {
     static let githubGrey = rgb(red: 43, green: 49, blue: 55)
     static let githubLightGray = rgb(red: 250, green: 251, blue: 252)
     static let gitHubWhite = rgb(red: 255, green: 255, blue: 255)
-    static let gitHubGreen = rgb(red: 45, green: 186, blue: 78)
+    static let gitHubGreen = rgb(red: 0, green: 200, blue: 0)
+    static let gitHubRed = rgb(red: 200, green: 0, blue: 0)
     
 }
 
@@ -36,6 +37,26 @@ extension UIViewController {
         view.layer.shadowOffset = CGSize(width: 0.55, height: 0.55)
         view.layer.masksToBounds = false
     }
+}
+
+extension URL {
+    var queryParameters: [String: String]? {
+        guard let components = URLComponents(url: self, resolvingAgainstBaseURL: true),
+              let queryItems = components.queryItems else {
+            return nil
+        }
+
+        var parameters = [String: String]()
+        for item in queryItems {
+            parameters[item.name] = item.value
+        }
+
+        return parameters
+    }
+}
+
+extension Notification.Name {
+    static let didReceiveCode = Notification.Name("DidReceiveCodeNotification")
 }
 
 extension UIView {
