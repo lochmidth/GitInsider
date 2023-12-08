@@ -8,6 +8,9 @@ GitInsider is a social app that leverages GitHub data to connect users, explore 
 
 ## Table of Contents
 - [Features](#features)
+  - [Tech Stack](#tech-stack)
+  - [Architecture](#architecture)
+  - [Unit Tests](#unit-tests)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
@@ -17,6 +20,7 @@ GitInsider is a social app that leverages GitHub data to connect users, explore 
   - [Profile Exploration](#profile-exploration)
   - [Following/Unfollowing Users](#followingunfollowing-users)
   - [Repository Browsing](#repository-browsing)
+- [Contributing](#contributing)
 - [License](#license)
 
 ## Features
@@ -26,6 +30,30 @@ GitInsider is a social app that leverages GitHub data to connect users, explore 
 - **Profile Exploration:** View detailed profiles of GitHub users.
 - **Follow/Unfollow:** Stay updated with the activities of users you find interesting.
 - **Repository Browsing:** Explore repositories owned by other GitHub users.
+
+### Tech Stack
+
+- **Xcode:** Version 14.3.1
+- **Language:** Swift 5.8.1
+- **Minimum iOS Version:** 16.4
+- **Dependency Manager:** SPM
+
+### Architecture
+
+![Architecture](https://miro.medium.com/v2/resize:fit:566/1*VS4lOMnFpqEAOwTdDsk4mg.jpeg)
+
+In developing GitInsider, I used the MVVM-C (Model-View-ViewModel-Coordinator) design pattern for these key reasons:
+
+- **Clear Separation:** MVVM-C ensures a distinct separation of concerns, simplifying development with isolated layers for UI logic (ViewModel), business logic (Model), and navigation flow (Coordinator).
+- **Test-Driven Development:** The pattern's modularity facilitates effective unit testing, enabling me to write comprehensive tests for each layer and ensure the app's stability.
+- **Scalability:** MVVM-C offers scalability, allowing the seamless addition of new features and easy maintenance, promoting agility in code evolution.
+- **Navigation Control:** The Coordinator element provides centralized navigation control, resulting in a well-organized and efficient navigation structure within the app.
+
+### Unit Tests
+
+**74.3 % Unit test covarage**
+
+I focused on testing the Model layer, ViewModel logic, and Coordinator navigation flow. This approach ensures that each layer of the application functions as expected in isolation, contributing to a robust and well-tested codebase.
 
 ## Getting Started
 
@@ -124,6 +152,10 @@ Also, make sure that these dependencies are added in your project's target:
 </p>
 
 ---
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change. Please make sure to update tests as appropiate.
 
 ## License
 
