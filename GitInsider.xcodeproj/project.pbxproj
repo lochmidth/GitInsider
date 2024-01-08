@@ -34,6 +34,9 @@
 		C265DA512B03D5150006EF39 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C265DA502B03D5150006EF39 /* SplashViewModel.swift */; };
 		C265DA542B03E54C0006EF39 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C265DA532B03E54C0006EF39 /* HomeController.swift */; };
 		C265DA562B03E5520006EF39 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C265DA552B03E5520006EF39 /* HomeViewModel.swift */; };
+		C2C0BEA02B4C41040017E179 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C0BE9F2B4C41040017E179 /* SplashView.swift */; };
+		C2C0BEA42B4C6EE60017E179 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C0BEA32B4C6EE60017E179 /* LoginView.swift */; };
+		C2C0BEA82B4C9CF30017E179 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C0BEA72B4C9CF30017E179 /* ProfileView.swift */; };
 		C2C2A1142B18E21400BFD97B /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2A1132B18E21400BFD97B /* LoginViewModelTests.swift */; };
 		C2C2A1162B18F3D500BFD97B /* HomeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2A1152B18F3D500BFD97B /* HomeViewModelTests.swift */; };
 		C2C2A1182B19110D00BFD97B /* MockHomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2A1172B19110D00BFD97B /* MockHomeCoordinator.swift */; };
@@ -109,6 +112,9 @@
 		C265DA502B03D5150006EF39 /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
 		C265DA532B03E54C0006EF39 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		C265DA552B03E5520006EF39 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		C2C0BE9F2B4C41040017E179 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		C2C0BEA32B4C6EE60017E179 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		C2C0BEA72B4C9CF30017E179 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		C2C2A1132B18E21400BFD97B /* LoginViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
 		C2C2A1152B18F3D500BFD97B /* HomeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTests.swift; sourceTree = "<group>"; };
 		C2C2A1172B19110D00BFD97B /* MockHomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHomeCoordinator.swift; sourceTree = "<group>"; };
@@ -254,6 +260,7 @@
 		C265DA4D2B03D4FF0006EF39 /* Splash */ = {
 			isa = PBXGroup;
 			children = (
+				C2C0BE9F2B4C41040017E179 /* SplashView.swift */,
 				C265DA4E2B03D5080006EF39 /* SplashController.swift */,
 				C265DA502B03D5150006EF39 /* SplashViewModel.swift */,
 			);
@@ -390,6 +397,7 @@
 		C2D5929A2AFBC3C000B2D271 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				C2C0BEA32B4C6EE60017E179 /* LoginView.swift */,
 				C2D5929B2AFBC3CB00B2D271 /* LoginController.swift */,
 				C2D5929D2AFBC3D100B2D271 /* LoginViewModel.swift */,
 			);
@@ -458,6 +466,7 @@
 		C2EF76C32B0645C500A7DEDA /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				C2C0BEA72B4C9CF30017E179 /* ProfileView.swift */,
 				C2EF76C42B0645DD00A7DEDA /* ProfileController.swift */,
 				C2EF76C62B0645E400A7DEDA /* ProfileViewModel.swift */,
 			);
@@ -643,10 +652,12 @@
 				C2EF76CF2B06563400A7DEDA /* ProfileHeaderViewModel.swift in Sources */,
 				C2D592BE2AFD8C2E00B2D271 /* GitHubAPI.swift in Sources */,
 				C2D5929C2AFBC3CB00B2D271 /* LoginController.swift in Sources */,
+				C2C0BEA02B4C41040017E179 /* SplashView.swift in Sources */,
 				C265DA4F2B03D5080006EF39 /* SplashController.swift in Sources */,
 				C2D592972AFBC0B500B2D271 /* AppCoordinator.swift in Sources */,
 				C25572482B14ED1300B10DF9 /* AuthCoordinator.swift in Sources */,
 				C2D592C02AFE7BF800B2D271 /* OAuthManager.swift in Sources */,
+				C2C0BEA42B4C6EE60017E179 /* LoginView.swift in Sources */,
 				C2EF76C22B062A2F00A7DEDA /* Users.swift in Sources */,
 				C2EF76C72B0645E400A7DEDA /* ProfileViewModel.swift in Sources */,
 				C2D5929E2AFBC3D100B2D271 /* LoginViewModel.swift in Sources */,
@@ -654,6 +665,7 @@
 				C2D592952AFBC08800B2D271 /* Extensions.swift in Sources */,
 				C2EF76D12B07945600A7DEDA /* Repo.swift in Sources */,
 				C265DA432B028F310006EF39 /* User.swift in Sources */,
+				C2C0BEA82B4C9CF30017E179 /* ProfileView.swift in Sources */,
 				C265DA542B03E54C0006EF39 /* HomeController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

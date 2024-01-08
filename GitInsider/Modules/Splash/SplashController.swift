@@ -11,32 +11,7 @@ class SplashController: UIViewController {
     //MARK: - Properties
     
     var viewModel: SplashViewModel?
-    
-    private let logoImageView: UIImageView = {
-        let iv = UIImageView()
-        iv.contentMode = .scaleAspectFill
-        iv.clipsToBounds = true
-        iv.setDimensions(height: 150, width: 150)
-        iv.image = UIImage(named: "GitHub_logo")
-        return iv
-    }()
-    
-    private let logoLabel: UILabel = {
-        let label = UILabel()
-        label.text = "INSIDER"
-        label.textColor = .githubLightGray
-        label.font = UIFont.boldSystemFont(ofSize: 30)
-        return label
-    }()
-    
-    private lazy var stack: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [logoImageView, logoLabel])
-        stack.axis = .vertical
-        stack.alignment = .center
-        stack.spacing = 4
-        stack.alpha = 0
-        return stack
-    }()
+    let splashView = SplashView()
     
     //MARK: - Lifecycle
     
@@ -52,6 +27,10 @@ class SplashController: UIViewController {
         animateLogoAndCheckAuth()
     }
     
+    override func loadView() {
+        view = splashView
+    }
+    
     deinit {
         print("DEBUG: \(self) deallocated.")
     }
@@ -60,15 +39,11 @@ class SplashController: UIViewController {
     
     private func configureUI() {
         navigationController?.navigationBar.isHidden = true
-        view.backgroundColor = .githubBlack
-        
-        view.addSubview(stack)
-        stack.center(inView: view, yConstant: -40)
     }
     
     private func animateLogoAndCheckAuth() {
         UIView.animate(withDuration: 3.0) {
-            self.stack.alpha = 1
+            self.splashView.stack.alpha = 1
         } completion: { [weak self] _ in
             self?.viewModel?.checkForAuth()
         }
