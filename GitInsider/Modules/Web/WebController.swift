@@ -12,10 +12,9 @@ class WebController: UIViewController {
     //MARK: - Properties
     
     var viewModel: WebViewModel?
-    
     let url: URL
     
-    private lazy var webView: WKWebView = {
+    lazy var webView: WKWebView = {
         let webview = WKWebView(frame: view.bounds)
         webview.navigationDelegate = self
         return webview
