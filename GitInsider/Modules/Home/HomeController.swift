@@ -124,7 +124,6 @@ class HomeController: UIViewController {
         self.present(alert, animated: true)
     }
     
-    
     //MARK: - Helpers
     
     private func configureViewModel() {
